@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Junior Management Consultant — Crescenti Pohl Advisory</title>
+<meta name="description" content="Join Crescenti Pohl Advisory as a Junior Management Consultant. Work at the forefront of the European energy sector alongside senior consultants and market specialists." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+<style>
+/* ═══════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --crimson: #4F0010;
+  --crimson-dark: #3a000c;
+  --crimson-deeper: #260008;
+  --blush: #D9C8CC;
+  --blush-light: #f5eff0;
+  --blush-mid: #ede1e3;
+  --white: #ffffff;
+  --text: #1c1417;
+  --text-muted: #6b5c5e;
+  --text-light: #9e8e90;
+  --border: rgba(79,0,16,0.12);
+  --border-strong: rgba(79,0,16,0.25);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --nav-h: 68px;
+  --max-w: 1060px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { font-family: var(--sans); cursor: pointer; border: none; background: none; }
+
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.8rem 1.8rem;
+  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  border-radius: 2px; transition: all 0.25s var(--ease);
+  cursor: pointer; text-decoration: none; white-space: nowrap;
+}
+.btn-primary { background: var(--white); color: var(--crimson); }
+.btn-primary:hover { background: var(--blush-light); }
+.btn-outline-white { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.45); }
+.btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.85); }
+.btn-outline-crimson { background: transparent; color: var(--crimson); border: 1px solid var(--border-strong); }
+.btn-outline-crimson:hover { background: var(--blush-light); }
+.btn-crimson { background: var(--crimson); color: var(--white); }
+.btn-crimson:hover { background: var(--crimson-dark); }
+
+/* Reveal */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+
+/* ═══════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════ */
+#site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-h);
+  background: var(--crimson);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+#site-header.scrolled {
+  background: var(--crimson-deeper);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.35);
+}
+
+.nav-inner {
+  max-width: var(--max-w); margin: 0 auto; padding: 0 2rem;
+  height: var(--nav-h);
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+
+.nav-logo { display: flex; align-items: center; flex-shrink: 0; line-height: 1; }
+.nav-logo:hover { opacity: 0.88; }
+
+.nav-desktop { display: flex; align-items: center; gap: 0; }
+
+.nav-item { position: relative; }
+
+.nav-link {
+  display: flex; align-items: center; gap: 5px;
+  padding: 0 1rem; height: var(--nav-h);
+  font-size: 12px; font-weight: 400;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.78);
+  transition: color 0.2s; cursor: pointer; white-space: nowrap;
+}
+.nav-link:hover { color: var(--white); }
+.nav-link svg { width: 10px; height: 10px; transition: transform 0.25s; flex-shrink: 0; }
+.nav-item:hover .nav-link svg { transform: rotate(180deg); }
+
+.nav-dropdown {
+  position: absolute; top: calc(var(--nav-h) - 4px); left: 0;
+  min-width: 240px; background: var(--crimson-deeper);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-top: 2px solid var(--blush);
+  opacity: 0; visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0.25s;
+  pointer-events: none;
+}
+.nav-item:hover .nav-dropdown {
+  opacity: 1; visibility: visible; transform: none; pointer-events: auto;
+}
+.nav-dropdown a {
+  display: block; padding: 0.75rem 1.25rem; font-size: 13px;
+  color: rgba(255,255,255,0.72);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: color 0.2s, background 0.2s;
+}
+.nav-dropdown a:last-child { border-bottom: none; }
+.nav-dropdown a:hover { color: var(--white); background: rgba(255,255,255,0.07); }
+
+.nav-cta {
+  margin-left: 0.75rem; padding: 0.55rem 1.25rem;
+  font-size: 11.5px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--white); border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 2px; transition: background 0.2s, border-color 0.2s; white-space: nowrap;
+}
+.nav-cta:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.8); }
+
+.nav-hamburger {
+  display: none; flex-direction: column; justify-content: center;
+  gap: 5px; width: 36px; height: 36px;
+  cursor: pointer; background: none; border: none; padding: 4px; flex-shrink: 0;
+}
+.nav-hamburger span {
+  display: block; height: 1.5px; background: var(--white);
+  transition: transform 0.3s var(--ease), opacity 0.3s; transform-origin: center;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+.nav-mobile {
+  display: none; position: fixed;
+  top: var(--nav-h); left: 0; right: 0; bottom: 0;
+  background: var(--crimson-deeper); overflow-y: auto; z-index: 999;
+  padding: 1.5rem 2rem 3rem;
+  transform: translateX(100%); transition: transform 0.35s var(--ease);
+}
+.nav-mobile.open { transform: none; }
+.mobile-section-label {
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(217,200,204,0.5); font-weight: 500;
+  padding: 1.25rem 0 0.4rem;
+  border-top: 1px solid rgba(255,255,255,0.08); margin-top: 0.75rem;
+}
+.mobile-section-label:first-child { border-top: none; margin-top: 0; }
+.nav-mobile a {
+  display: block; padding: 0.65rem 0; font-size: 15px;
+  color: rgba(255,255,255,0.82);
+  border-bottom: 1px solid rgba(255,255,255,0.05); transition: color 0.2s;
+}
+.nav-mobile a:hover { color: var(--white); }
+.nav-mobile .nav-cta { display: inline-block; margin-top: 1.5rem; }
+
+/* ═══════════════════════════════════════════════
+   PAGE HERO
+═══════════════════════════════════════════════ */
+.page-hero {
+  background: var(--crimson);
+  padding: calc(var(--nav-h) + 3.5rem) 0 3.5rem;
+  position: relative; overflow: hidden;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+
+.page-hero-inner {
+  position: relative;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+
+.breadcrumb {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 11px; font-weight: 400;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(217,200,204,0.55);
+}
+.breadcrumb a { transition: color 0.2s; }
+.breadcrumb a:hover { color: rgba(217,200,204,0.9); }
+.breadcrumb-sep { opacity: 0.4; }
+
+.page-hero-label {
+  font-size: 10.5px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--blush); opacity: 0.7; margin-bottom: 0.25rem;
+}
+
+.page-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 600; color: var(--white);
+  line-height: 1.1; letter-spacing: -0.01em;
+}
+
+.page-hero-meta {
+  display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.5rem;
+}
+.meta-tag {
+  display: flex; align-items: center; gap: 0.45rem;
+  font-size: 12.5px; color: rgba(217,200,204,0.7);
+}
+.meta-tag svg { width: 13px; height: 13px; opacity: 0.6; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════════
+   MAIN LAYOUT
+═══════════════════════════════════════════════ */
+.page-body {
+  padding: 5rem 0 6rem;
+}
+
+.page-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 5rem;
+  align-items: start;
+}
+
+/* ═══════════════════════════════════════════════
+   CONTENT COLUMN
+═══════════════════════════════════════════════ */
+.content-block { margin-bottom: 3rem; }
+.content-block:last-child { margin-bottom: 0; }
+
+.content-block h2 {
+  font-family: var(--serif);
+  font-size: 1.55rem; font-weight: 600;
+  color: var(--crimson); margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.content-block p {
+  font-size: 15px; color: var(--text-muted);
+  line-height: 1.85; margin-bottom: 0.85rem;
+}
+.content-block p:last-child { margin-bottom: 0; }
+
+/* Checklist */
+.checklist { display: flex; flex-direction: column; gap: 0.7rem; margin-top: 0.25rem; }
+.checklist-item {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  font-size: 14.5px; color: var(--text-muted); line-height: 1.65;
+}
+.checklist-icon {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--blush-light); border: 1px solid var(--blush-mid);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+.checklist-icon svg { width: 10px; height: 10px; stroke: var(--crimson); stroke-width: 2; fill: none; }
+
+/* Offer grid */
+.offer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+.offer-card {
+  background: var(--blush-light);
+  border: 1px solid var(--blush-mid);
+  border-radius: 2px;
+  padding: 1rem 1.1rem;
+  display: flex; align-items: flex-start; gap: 0.65rem;
+}
+.offer-card-icon {
+  font-size: 16px; flex-shrink: 0; margin-top: 1px;
+  line-height: 1;
+}
+.offer-card-text {
+  font-size: 13.5px; color: var(--text-muted); line-height: 1.5;
+}
+.offer-card-text strong {
+  display: block; font-size: 13px; font-weight: 500;
+  color: var(--crimson); margin-bottom: 0.1rem;
+}
+
+/* Cover letter steps */
+.steps { display: flex; flex-direction: column; gap: 0; }
+.step {
+  display: flex; gap: 1.25rem; align-items: flex-start;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+  font-family: var(--serif);
+  font-size: 1.8rem; font-weight: 400;
+  color: var(--blush); line-height: 1;
+  min-width: 28px; flex-shrink: 0;
+  margin-top: -3px;
+}
+.step-text {
+  font-size: 14.5px; color: var(--text-muted); line-height: 1.65;
+  padding-top: 0.15rem;
+}
+
+/* Sign-off */
+.signoff {
+  margin-top: 2rem;
+  padding: 1.5rem 1.75rem;
+  background: var(--crimson);
+  border-radius: 2px;
+}
+.signoff p {
+  font-size: 15px; color: rgba(217,200,204,0.85); line-height: 1.75;
+  font-family: var(--serif); font-style: italic; margin-bottom: 0 !important;
+}
+.signoff-name {
+  margin-top: 0.75rem;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(217,200,204,0.5);
+}
+
+/* ═══════════════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════════════ */
+.sidebar { position: sticky; top: calc(var(--nav-h) + 2rem); }
+
+.sidebar-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+
+.sidebar-card-header {
+  background: var(--crimson);
+  padding: 1.1rem 1.4rem;
+}
+.sidebar-card-header h3 {
+  font-family: var(--serif);
+  font-size: 1.1rem; font-weight: 600;
+  color: var(--white);
+}
+
+.sidebar-card-body { padding: 1.25rem 1.4rem; }
+
+.sidebar-detail {
+  display: flex; align-items: flex-start; gap: 0.7rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.sidebar-detail:last-child { border-bottom: none; padding-bottom: 0; }
+.sidebar-detail-label {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-light); min-width: 72px; padding-top: 2px;
+}
+.sidebar-detail-value { color: var(--text-muted); line-height: 1.45; }
+
+.sidebar-apply {
+  background: var(--crimson);
+  padding: 1.5rem 1.4rem;
+  text-align: center;
+}
+.sidebar-apply p {
+  font-size: 12.5px; color: rgba(217,200,204,0.75);
+  margin-bottom: 1rem; line-height: 1.55;
+}
+.sidebar-apply .btn {
+  width: 100%; justify-content: center;
+  background: var(--white); color: var(--crimson);
+}
+.sidebar-apply .btn:hover { background: var(--blush-light); }
+.sidebar-apply .btn-email {
+  margin-top: 0.6rem;
+  background: transparent; color: rgba(217,200,204,0.65);
+  border: 1px solid rgba(255,255,255,0.2); font-size: 11px;
+  width: 100%; justify-content: center;
+}
+.sidebar-apply .btn-email:hover { background: rgba(255,255,255,0.07); color: var(--white); }
+
+.sidebar-more { padding: 1.25rem 1.4rem; }
+.sidebar-more h4 {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-light); margin-bottom: 0.85rem;
+}
+.sidebar-position-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px; color: var(--text-muted);
+  transition: color 0.2s;
+}
+.sidebar-position-link:last-child { border-bottom: none; }
+.sidebar-position-link:hover { color: var(--crimson); }
+.sidebar-position-link span { line-height: 1.35; }
+.sidebar-position-link .arrow { flex-shrink: 0; opacity: 0.4; transition: opacity 0.2s, transform 0.2s; }
+.sidebar-position-link:hover .arrow { opacity: 0.8; transform: translateX(3px); }
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+#site-footer { background: #1a0005; }
+
+.footer-top {
+  padding: 3rem 0;
+  display: grid; grid-template-columns: auto 1fr auto;
+  gap: 2rem; align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer-logo { display: flex; align-items: center; }
+
+.footer-nav {
+  display: flex; justify-content: center;
+  gap: 2rem; flex-wrap: wrap;
+}
+.footer-nav a {
+  font-size: 12px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: rgba(217,200,204,0.45);
+  transition: color 0.2s;
+}
+.footer-nav a:hover { color: rgba(217,200,204,0.9); }
+
+.footer-social { display: flex; align-items: center; gap: 1rem; }
+.footer-social a {
+  display: flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px;
+  border: 1px solid rgba(255,255,255,0.12); border-radius: 2px;
+  color: rgba(217,200,204,0.5); transition: border-color 0.2s, color 0.2s;
+}
+.footer-social a:hover { border-color: rgba(217,200,204,0.5); color: rgba(217,200,204,0.9); }
+.footer-social svg { width: 16px; height: 16px; fill: currentColor; }
+
+.footer-bottom { padding: 1.25rem 0; }
+.footer-bottom-inner {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+}
+.footer-copy { font-size: 12px; color: rgba(217,200,204,0.35); letter-spacing: 0.03em; }
+.footer-legal { display: flex; gap: 1.5rem; }
+.footer-legal a { font-size: 12px; color: rgba(217,200,204,0.35); transition: color 0.2s; }
+.footer-legal a:hover { color: rgba(217,200,204,0.8); }
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media (max-width: 860px) {
+  .page-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .sidebar { position: static; }
+  .offer-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; text-align: center; }
+  .footer-nav { justify-content: center; }
+  .footer-social { justify-content: center; }
+}
+@media (max-width: 600px) {
+  .nav-desktop { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-mobile { display: block; }
+  .footer-bottom-inner { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<header id="site-header" role="banner">
+  <nav class="nav-inner" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="Crescenti Pohl Advisory – home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 52" height="34" style="display:block;" aria-hidden="true" focusable="false">
+        <polygon points="20,6 0,46 40,46"   fill="#ffffff"/>
+        <polygon points="38,20 25,46 51,46" fill="rgba(255,255,255,0.42)"/>
+        <text x="68" y="34" font-family="Cormorant Garamond, Georgia, serif" font-size="22" font-weight="500" letter-spacing="0.015em" fill="#ffffff">Crescenti Pohl Advisory</text>
+      </svg>
+    </a>
+
+    <ul class="nav-desktop" role="list">
+      <li class="nav-item">
+        <span class="nav-link" tabindex="0" aria-haspopup="true">
+          Clients
+          <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <div class="nav-dropdown" role="menu">
+          <a href="index.html#expertise" role="menuitem">Energy Transition</a>
+          <a href="index.html#expertise" role="menuitem">Business Transformation &amp; Digitalization</a>
+          <a href="index.html#expertise" role="menuitem">Market Insight &amp; Strategy</a>
+          <a href="index.html#expertise" role="menuitem">Data &amp; Artificial Intelligence</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link active" tabindex="0" aria-haspopup="true">
+          Careers
+          <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <div class="nav-dropdown" role="menu">
+          <a href="index.html#careers-teaser" role="menuitem">Why Work for Us</a>
+          <a href="index.html#careers-teaser" role="menuitem">Career Path</a>
+          <a href="index.html#careers-teaser" role="menuitem">Professional Development</a>
+          <a href="index.html#openpositions" role="menuitem">Open Positions</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link" tabindex="0" aria-haspopup="true">
+          About us
+          <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <div class="nav-dropdown" role="menu">
+          <a href="index.html#mission" role="menuitem">Mission &amp; Values</a>
+          <a href="index.html#team" role="menuitem">Our Team</a>
+          <a href="index.html#offices" role="menuitem">Our Offices</a>
+        </div>
+      </li>
+      <li>
+        <a class="nav-cta" href="mailto:info@crescentipohl.com?subject=Please get in touch with me!">Contact us</a>
+      </li>
+    </ul>
+
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <nav class="nav-mobile" id="mobile-menu" aria-label="Mobile navigation">
+    <div class="mobile-section-label">Clients</div>
+    <a href="index.html#expertise">Energy Transition</a>
+    <a href="index.html#expertise">Business Transformation &amp; Digitalization</a>
+    <a href="index.html#expertise">Market Insight &amp; Strategy</a>
+    <a href="index.html#expertise">Data &amp; Artificial Intelligence</a>
+    <div class="mobile-section-label">Careers</div>
+    <a href="index.html#careers-teaser">Why Work for Us</a>
+    <a href="index.html#careers-teaser">Career Path</a>
+    <a href="index.html#careers-teaser">Open Positions</a>
+    <div class="mobile-section-label">About Us</div>
+    <a href="index.html#mission">Mission &amp; Values</a>
+    <a href="index.html#team">Our Team</a>
+    <a href="index.html#offices">Our Offices</a>
+    <div class="mobile-section-label">Contact</div>
+    <a class="nav-cta" href="mailto:info@crescentipohl.com?subject=Please get in touch with me!">Contact us →</a>
+  </nav>
+</header>
+
+<main>
+<!-- ═══════════════ PAGE HERO ═══════════════ -->
+<section class="page-hero" aria-labelledby="job-title">
+  <div class="container page-hero-inner">
+    <nav class="breadcrumb reveal" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <a href="index.html#careers-teaser">Careers</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span aria-current="page">Junior Management Consultant</span>
+    </nav>
+    <p class="page-hero-label reveal">Open position</p>
+    <h1 id="job-title" class="reveal reveal-delay-1">Junior Management<br>Consultant</h1>
+    <div class="page-hero-meta reveal reveal-delay-2">
+      <span class="meta-tag">
+        <svg viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M6.5 1a4 4 0 100 8 4 4 0 000-8zm0 10.5c-2.8 0-5.5 1.4-5.5 2v.5h11v-.5c0-.6-2.7-2-5.5-2z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
+        Entry level
+      </span>
+      <span class="meta-tag">
+        <svg viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M6.5 1.5a4 4 0 100 8 4 4 0 000-8zM6.5 5v2.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
+        Permanent · Full-time
+      </span>
+      <span class="meta-tag">
+        <svg viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M6.5 1C4.3 1 2.5 2.8 2.5 5c0 3 4 7 4 7s4-4 4-7c0-2.2-1.8-4-4-4zm0 5.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
+        Cyprus · United Kingdom · Germany
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CONTENT ═══════════════ -->
+<div class="page-body">
+  <div class="container">
+    <div class="page-layout">
+
+      <!-- LEFT: Main content -->
+      <div>
+
+        <!-- About us -->
+        <div class="content-block reveal">
+          <h2>About Crescenti Pohl Advisory</h2>
+          <p>We are a small but strongly connected business consultancy working with some of the largest European energy companies. We have started to grow into a wider recognised brand and currently have a physical presence in three countries: Cyprus, United Kingdom, and Germany.</p>
+          <p>We are now aiming to further expand our footprint by growing our team across all those countries. We are looking for highly motivated candidates to join us as Junior Management Consultant — a great career-starter opportunity for ambitious professionals looking to work and thrive at the forefront of the European energy sector alongside our senior business consultants and market specialists with deep industry knowledge.</p>
+        </div>
+
+        <!-- What we're looking for -->
+        <div class="content-block reveal">
+          <h2>What we are looking for</h2>
+          <ul class="checklist" role="list">
+            <li class="checklist-item">
+              <div class="checklist-icon" aria-hidden="true">
+                <svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              A fast learner and capable of understanding highly complex topics
+            </li>
+            <li class="checklist-item">
+              <div class="checklist-icon" aria-hidden="true">
+                <svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              An adept problem-solver with critical thinking and attention to detail
+            </li>
+            <li class="checklist-item">
+              <div class="checklist-icon" aria-hidden="true">
+                <svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              An excellent communicator with strong presentation skills
+            </li>
+            <li class="checklist-item">
+              <div class="checklist-icon" aria-hidden="true">
+                <svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              An expert in collecting, analysing, and interpreting information
+            </li>
+            <li class="checklist-item">
+              <div class="checklist-icon" aria-hidden="true">
+                <svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              Willing to travel within Europe if required
+            </li>
+          </ul>
+        </div>
+
+        <!-- The role -->
+        <div class="content-block reveal">
+          <h2>The role</h2>
+          <p>You will be developing concepts for change and supporting our utility clients in large business transformations. Our projects span the full breadth of the European energy sector — from energy transition and renewables to data platforms, trading IT, and market strategy.</p>
+          <p>Project examples can be found on our website at <a href="http://www.crescentipohl.com" style="color:var(--crimson);text-decoration:underline;text-underline-offset:3px;">www.crescentipohl.com</a>.</p>
+        </div>
+
+        <!-- What we offer -->
+        <div class="content-block reveal">
+          <h2>What we offer</h2>
+          <div class="offer-grid">
+            <div class="offer-card">
+              <div class="offer-card-icon" aria-hidden="true">📈</div>
+              <div class="offer-card-text">
+                <strong>Career prospects</strong>
+                Permanent employment with great career prospects and success-based promotions
+              </div>
+            </div>
+            <div class="offer-card">
+              <div class="offer-card-icon" aria-hidden="true">💰</div>
+              <div class="offer-card-text">
+                <strong>Compensation</strong>
+                Above average base salary and extra performance-based bonus
+              </div>
+            </div>
+            <div class="offer-card">
+              <div class="offer-card-icon" aria-hidden="true">🏖️</div>
+              <div class="offer-card-text">
+                <strong>Annual leave</strong>
+                25 days of annual leave per year
+              </div>
+            </div>
+            <div class="offer-card">
+              <div class="offer-card-icon" aria-hidden="true">🎓</div>
+              <div class="offer-card-text">
+                <strong>Training budget</strong>
+                Flexible training budget to support your professional development
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- How to apply -->
+        <div class="content-block reveal">
+          <h2>How to apply</h2>
+          <p>Please send your application to <a href="mailto:recruitment@crescentipohl.com?subject=Application: Junior Management Consultant" style="color:var(--crimson);text-decoration:underline;text-underline-offset:3px;">recruitment@crescentipohl.com</a>. In your cover letter, please address the following three points:</p>
+          <div class="steps" role="list">
+            <div class="step" role="listitem">
+              <div class="step-num" aria-hidden="true">1</div>
+              <div class="step-text">What fascinates you in business consulting and why you want to build your career in the energy sector</div>
+            </div>
+            <div class="step" role="listitem">
+              <div class="step-num" aria-hidden="true">2</div>
+              <div class="step-text">How your experience and training enable you to be a good business consultant</div>
+            </div>
+            <div class="step" role="listitem">
+              <div class="step-num" aria-hidden="true">3</div>
+              <div class="step-text">What you need to keep a good work-life balance and stay motivated in a demanding environment</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sign-off -->
+        <div class="signoff reveal">
+          <p>We are looking forward to hearing from you.</p>
+          <div class="signoff-name">Your future colleagues at Crescenti Pohl Advisory</div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Sidebar -->
+      <aside class="sidebar" aria-label="Job details">
+
+        <!-- Quick facts -->
+        <div class="sidebar-card reveal">
+          <div class="sidebar-card-header">
+            <h3>Position details</h3>
+          </div>
+          <div class="sidebar-card-body">
+            <div class="sidebar-detail">
+              <span class="sidebar-detail-label">Role</span>
+              <span class="sidebar-detail-value">Junior Management Consultant</span>
+            </div>
+            <div class="sidebar-detail">
+              <span class="sidebar-detail-label">Level</span>
+              <span class="sidebar-detail-value">Entry level / Analyst</span>
+            </div>
+            <div class="sidebar-detail">
+              <span class="sidebar-detail-label">Type</span>
+              <span class="sidebar-detail-value">Permanent · Full-time</span>
+            </div>
+            <div class="sidebar-detail">
+              <span class="sidebar-detail-label">Locations</span>
+              <span class="sidebar-detail-value">Cyprus · United Kingdom · Germany</span>
+            </div>
+            <div class="sidebar-detail">
+              <span class="sidebar-detail-label">Travel</span>
+              <span class="sidebar-detail-value">Within Europe as required</span>
+            </div>
+            <div class="sidebar-detail">
+              <span class="sidebar-detail-label">Sector</span>
+              <span class="sidebar-detail-value">Energy — Utilities &amp; Trading</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Apply CTA -->
+        <div class="sidebar-card reveal reveal-delay-1">
+          <div class="sidebar-apply">
+            <p>Ready to apply? Send your CV and cover letter directly to our team.</p>
+            <a href="mailto:recruitment@crescentipohl.com?subject=Application: Junior Management Consultant" class="btn">
+              Apply now
+            </a>
+            <a href="mailto:recruitment@crescentipohl.com?subject=Question: Junior Management Consultant role" class="btn btn-email">
+              Ask a question
+            </a>
+          </div>
+        </div>
+
+        <!-- Other positions -->
+        <div class="sidebar-card reveal reveal-delay-2">
+          <div class="sidebar-more">
+            <h4>Other open positions</h4>
+            <a href="senior-consultant.html" class="sidebar-position-link">
+              <span>Senior Management Consultant<br><span style="font-size:11.5px;color:var(--text-light);">UK · Germany</span></span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="mailto:recruitment@crescentipohl.com?subject=Speculative application as a management consultant at Crescenti Pohl Advisory" class="sidebar-position-link">
+              <span>Speculative application<br><span style="font-size:11.5px;color:var(--text-light);">All offices</span></span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+  </div>
+</div>
+</main>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer id="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 52" height="26" style="display:block;" aria-hidden="true" focusable="false">
+          <polygon points="20,6 0,46 40,46"   fill="#ffffff"/>
+          <polygon points="38,20 25,46 51,46" fill="rgba(255,255,255,0.28)"/>
+          <text x="68" y="34" font-family="Cormorant Garamond, Georgia, serif" font-size="22" font-weight="500" letter-spacing="0.015em" fill="rgba(255,255,255,0.48)">Crescenti Pohl Advisory</text>
+        </svg>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html#expertise">Clients</a>
+        <a href="index.html#careers-teaser">Careers</a>
+        <a href="index.html#mission">About us</a>
+        <a href="index.html#offices">Offices</a>
+        <a href="mailto:info@crescentipohl.com?subject=Please get in touch with me!">Contact</a>
+      </nav>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/company/72534621" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p class="footer-copy">© 2025 Crescenti Pohl Advisory Ltd. All rights reserved.</p>
+        <nav class="footer-legal" aria-label="Legal links">
+          <a href="/impressum">Impressum</a>
+          <a href="/privacy">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const header = document.getElementById('site-header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+function toggleMenu(open) {
+  hamburger.classList.toggle('open', open);
+  mobileMenu.classList.toggle('open', open);
+  hamburger.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+hamburger.addEventListener('click', () => toggleMenu(!hamburger.classList.contains('open')));
+mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => toggleMenu(false)));
+document.addEventListener('click', e => {
+  if (mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && !hamburger.contains(e.target)) toggleMenu(false);
+});
+
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+reveals.forEach(el => observer.observe(el));
+setTimeout(() => document.querySelectorAll('.page-hero .reveal').forEach(el => el.classList.add('visible')), 80);
+</script>
+</body>
+</html>
