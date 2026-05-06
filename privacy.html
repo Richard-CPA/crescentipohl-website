@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Privacy Policy — Crescenti Pohl Advisory</title>
+<meta name="description" content="Privacy policy and cookie policy for Crescenti Pohl Advisory. How we collect, process and protect your personal data in compliance with GDPR." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --crimson: #4F0010; --crimson-dark: #3a000c; --crimson-deeper: #260008;
+  --blush: #D9C8CC; --blush-light: #f5eff0; --blush-mid: #ede1e3;
+  --white: #ffffff; --text: #1c1417; --text-muted: #6b5c5e; --text-light: #9e8e90;
+  --border: rgba(79,0,16,0.12); --border-strong: rgba(79,0,16,0.25);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --nav-h: 68px; --max-w: 1060px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); font-size: 16px; line-height: 1.6; color: var(--text); background: var(--white); overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { font-family: var(--sans); cursor: pointer; border: none; background: none; }
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+.btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.8rem 1.8rem; font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 2px; transition: all 0.25s var(--ease); cursor: pointer; text-decoration: none; white-space: nowrap; }
+.btn-crimson { background: var(--crimson); color: var(--white); }
+.btn-crimson:hover { background: var(--crimson-dark); }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+
+/* NAV */
+#site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); background: var(--crimson); transition: background 0.3s, box-shadow 0.3s; }
+#site-header.scrolled { background: var(--crimson-deeper); box-shadow: 0 2px 24px rgba(0,0,0,0.35); }
+.nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.nav-logo { display: flex; align-items: center; flex-shrink: 0; line-height: 1; }
+.nav-logo:hover { opacity: 0.88; }
+.nav-desktop { display: flex; align-items: center; gap: 0; }
+.nav-item { position: relative; }
+.nav-link { display: flex; align-items: center; gap: 5px; padding: 0 1rem; height: var(--nav-h); font-size: 12px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.78); transition: color 0.2s; cursor: pointer; white-space: nowrap; }
+.nav-link:hover { color: var(--white); }
+.nav-link svg { width: 10px; height: 10px; transition: transform 0.25s; flex-shrink: 0; }
+.nav-item:hover .nav-link svg { transform: rotate(180deg); }
+.nav-dropdown { position: absolute; top: calc(var(--nav-h) - 4px); left: 0; min-width: 240px; background: var(--crimson-deeper); border: 1px solid rgba(255,255,255,0.1); border-top: 2px solid var(--blush); opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0.25s; pointer-events: none; }
+.nav-item:hover .nav-dropdown { opacity: 1; visibility: visible; transform: none; pointer-events: auto; }
+.nav-dropdown a { display: block; padding: 0.75rem 1.25rem; font-size: 13px; color: rgba(255,255,255,0.72); border-bottom: 1px solid rgba(255,255,255,0.06); transition: color 0.2s, background 0.2s; }
+.nav-dropdown a:last-child { border-bottom: none; }
+.nav-dropdown a:hover { color: var(--white); background: rgba(255,255,255,0.07); }
+.nav-cta { margin-left: 0.75rem; padding: 0.55rem 1.25rem; font-size: 11.5px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); border: 1px solid rgba(255,255,255,0.4); border-radius: 2px; transition: background 0.2s, border-color 0.2s; white-space: nowrap; }
+.nav-cta:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.8); }
+.nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; cursor: pointer; background: none; border: none; padding: 4px; flex-shrink: 0; }
+.nav-hamburger span { display: block; height: 1.5px; background: var(--white); transition: transform 0.3s var(--ease), opacity 0.3s; transform-origin: center; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.nav-mobile { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0; background: var(--crimson-deeper); overflow-y: auto; z-index: 999; padding: 1.5rem 2rem 3rem; transform: translateX(100%); transition: transform 0.35s var(--ease); }
+.nav-mobile.open { transform: none; }
+.mobile-section-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(217,200,204,0.5); font-weight: 500; padding: 1.25rem 0 0.4rem; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 0.75rem; }
+.mobile-section-label:first-child { border-top: none; margin-top: 0; }
+.nav-mobile a { display: block; padding: 0.65rem 0; font-size: 15px; color: rgba(255,255,255,0.82); border-bottom: 1px solid rgba(255,255,255,0.05); transition: color 0.2s; }
+.nav-mobile a:hover { color: var(--white); }
+.nav-mobile .nav-cta { display: inline-block; margin-top: 1.5rem; }
+
+/* PAGE HERO */
+.page-hero { background: var(--crimson); padding: calc(var(--nav-h) + 3.5rem) 0 3.5rem; position: relative; overflow: hidden; }
+.page-hero::before { content: ''; position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 80px 80px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%); }
+.page-hero-inner { position: relative; }
+.page-hero-label { font-size: 10.5px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blush); opacity: 0.7; margin-bottom: 0.75rem; display: block; }
+.page-hero h1 { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 600; color: var(--white); line-height: 1.1; letter-spacing: -0.01em; }
+.breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 11px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(217,200,204,0.55); margin-bottom: 1rem; }
+.breadcrumb a { transition: color 0.2s; }
+.breadcrumb a:hover { color: rgba(217,200,204,0.9); }
+.breadcrumb-sep { opacity: 0.4; }
+
+/* FOOTER */
+#site-footer { background: #1a0005; }
+.footer-top { padding: 3rem 0; display: grid; grid-template-columns: auto 1fr auto; gap: 2rem; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.footer-logo { display: flex; align-items: center; }
+.footer-nav { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+.footer-nav a { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(217,200,204,0.45); transition: color 0.2s; }
+.footer-nav a:hover { color: rgba(217,200,204,0.9); }
+.footer-social { display: flex; align-items: center; gap: 1rem; }
+.footer-social a { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.12); border-radius: 2px; color: rgba(217,200,204,0.5); transition: border-color 0.2s, color 0.2s; }
+.footer-social a:hover { border-color: rgba(217,200,204,0.5); color: rgba(217,200,204,0.9); }
+.footer-social svg { width: 16px; height: 16px; fill: currentColor; }
+.footer-bottom { padding: 1.25rem 0; }
+.footer-bottom-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.footer-copy { font-size: 12px; color: rgba(217,200,204,0.35); letter-spacing: 0.03em; }
+.footer-legal { display: flex; gap: 1.5rem; }
+.footer-legal a { font-size: 12px; color: rgba(217,200,204,0.35); transition: color 0.2s; }
+.footer-legal a:hover { color: rgba(217,200,204,0.8); }
+
+@media (max-width: 860px) { .footer-top { grid-template-columns: 1fr; text-align: center; } .footer-nav { justify-content: center; } .footer-social { justify-content: center; } }
+@media (max-width: 600px) { .nav-desktop { display: none; } .nav-hamburger { display: flex; } .nav-mobile { display: block; } .footer-bottom-inner { flex-direction: column; text-align: center; } }
+
+
+.legal-body { padding: 5rem 0 6rem; }
+.legal-layout { max-width: 820px; }
+
+.legal-section { margin-bottom: 3.5rem; }
+.legal-section:last-child { margin-bottom: 0; }
+
+.legal-section h2 {
+  font-family: var(--serif);
+  font-size: 1.5rem; font-weight: 600;
+  color: var(--crimson);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.legal-section h3 {
+  font-family: var(--serif);
+  font-size: 1.15rem; font-weight: 600;
+  color: var(--crimson); opacity: 0.85;
+  margin: 1.5rem 0 0.6rem;
+}
+
+.legal-section p {
+  font-size: 14.5px; color: var(--text-muted);
+  line-height: 1.85; margin-bottom: 0.85rem;
+}
+.legal-section p:last-child { margin-bottom: 0; }
+.legal-section a {
+  color: var(--crimson);
+  text-decoration: underline; text-underline-offset: 3px;
+  transition: opacity 0.2s;
+}
+.legal-section a:hover { opacity: 0.7; }
+
+/* Bullet list */
+.legal-list {
+  margin: 0.75rem 0 0.75rem 0;
+  display: flex; flex-direction: column; gap: 0.55rem;
+}
+.legal-list li {
+  display: flex; align-items: flex-start; gap: 0.7rem;
+  font-size: 14.5px; color: var(--text-muted); line-height: 1.7;
+}
+.legal-list-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--crimson); opacity: 0.4;
+  flex-shrink: 0; margin-top: 9px;
+}
+
+/* Highlight box */
+.info-box {
+  background: var(--blush-light);
+  border: 1px solid var(--blush-mid);
+  border-left: 3px solid var(--crimson);
+  border-radius: 0 3px 3px 0;
+  padding: 1.25rem 1.5rem;
+  margin: 1.25rem 0;
+}
+.info-box p { font-size: 14px; color: var(--text-muted); line-height: 1.75; margin: 0; }
+
+/* Section divider */
+.legal-divider { height: 1px; background: var(--border); margin: 0 0 3.5rem; }
+
+/* Last updated badge */
+.last-updated {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-light);
+  background: var(--blush-light); border: 1px solid var(--blush-mid);
+  border-radius: 2px; padding: 0.4rem 0.85rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Cookie table */
+.cookie-types {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: var(--border); border: 1px solid var(--border);
+  border-radius: 3px; overflow: hidden; margin: 1rem 0;
+}
+.cookie-type {
+  background: var(--white); padding: 1.1rem 1.25rem;
+}
+.cookie-type-label {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--crimson); opacity: 0.75;
+  margin-bottom: 0.35rem; display: block;
+}
+.cookie-type p { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin: 0; }
+
+@media (max-width: 600px) { .cookie-types { grid-template-columns: 1fr; } }
+
+</style>
+</head>
+<body>
+
+<header id="site-header" role="banner">
+  <nav class="nav-inner" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="Crescenti Pohl Advisory – home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 52" height="34" style="display:block;" aria-hidden="true" focusable="false">
+        <polygon points="20,6 0,46 40,46"   fill="#ffffff"/>
+        <polygon points="38,20 25,46 51,46" fill="rgba(255,255,255,0.42)"/>
+        <text x="68" y="34" font-family="Cormorant Garamond, Georgia, serif" font-size="22" font-weight="500" letter-spacing="0.015em" fill="#ffffff">Crescenti Pohl Advisory</text>
+      </svg>
+    </a>
+    <ul class="nav-desktop" role="list">
+      <li class="nav-item">
+        <span class="nav-link" tabindex="0" aria-haspopup="true">Clients
+          <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        </span>
+        <div class="nav-dropdown" role="menu">
+          <a href="index.html#expertise" role="menuitem">Energy Transition</a>
+          <a href="index.html#expertise" role="menuitem">Business Transformation &amp; Digitalization</a>
+          <a href="index.html#expertise" role="menuitem">Market Insight &amp; Strategy</a>
+          <a href="index.html#expertise" role="menuitem">Data &amp; Artificial Intelligence</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link" tabindex="0" aria-haspopup="true">Careers
+          <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        </span>
+        <div class="nav-dropdown" role="menu">
+          <a href="index.html#careers-teaser" role="menuitem">Why Work for Us</a>
+          <a href="index.html#careers-teaser" role="menuitem">Career Path</a>
+          <a href="index.html#careers-teaser" role="menuitem">Professional Development</a>
+          <a href="index.html#openpositions" role="menuitem">Open Positions</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link" tabindex="0" aria-haspopup="true">About us
+          <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        </span>
+        <div class="nav-dropdown" role="menu">
+          <a href="index.html#mission" role="menuitem">Mission &amp; Values</a>
+          <a href="index.html#team" role="menuitem">Our Team</a>
+          <a href="index.html#offices" role="menuitem">Our Offices</a>
+        </div>
+      </li>
+      <li><a class="nav-cta" href="mailto:info@crescentipohl.com?subject=Please get in touch with me!">Contact us</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <nav class="nav-mobile" id="mobile-menu" aria-label="Mobile navigation">
+    <div class="mobile-section-label">Clients</div>
+    <a href="index.html#expertise">Energy Transition</a>
+    <a href="index.html#expertise">Business Transformation &amp; Digitalization</a>
+    <a href="index.html#expertise">Market Insight &amp; Strategy</a>
+    <a href="index.html#expertise">Data &amp; Artificial Intelligence</a>
+    <div class="mobile-section-label">Careers</div>
+    <a href="index.html#careers-teaser">Why Work for Us</a>
+    <a href="index.html#careers-teaser">Career Path</a>
+    <a href="index.html#openpositions">Open Positions</a>
+    <div class="mobile-section-label">About Us</div>
+    <a href="index.html#mission">Mission &amp; Values</a>
+    <a href="index.html#team">Our Team</a>
+    <a href="index.html#offices">Our Offices</a>
+    <div class="mobile-section-label">Contact</div>
+    <a class="nav-cta" href="mailto:info@crescentipohl.com?subject=Please get in touch with me!">Contact us →</a>
+  </nav>
+</header>
+
+<main>
+<section class="page-hero" aria-labelledby="page-title">
+  <div class="container page-hero-inner">
+    <nav class="breadcrumb reveal" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span aria-current="page">Privacy Policy</span>
+    </nav>
+    <span class="page-hero-label reveal">Legal</span>
+    <h1 id="page-title" class="reveal reveal-delay-1">Privacy Statement</h1>
+  </div>
+</section>
+
+<div class="legal-body">
+  <div class="container">
+    <div class="legal-layout">
+
+      <div class="last-updated reveal" aria-label="Last updated">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M6 3.5V6l1.5 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        Last updated: 2025
+      </div>
+
+      <!-- Data Protection -->
+      <div class="legal-section reveal">
+        <h2>Data protection and our commitment</h2>
+        <p>Crescenti Pohl Advisory is governed by EU data protection law. We understand the importance of your privacy rights, and we are committed to treating any personal data or information legally collected by us or provided to us with respect and care.</p>
+
+        <h3>What data we may collect</h3>
+        <p>We might collect, process, and use personal information for the purpose of providing services to our clients, or alternatively for contacting and/or site experience improvement purposes. This information might include but is not limited to:</p>
+        <ul class="legal-list" role="list">
+          <li><span class="legal-list-dot" aria-hidden="true"></span>Names, addresses, email addresses, and phone numbers</li>
+          <li><span class="legal-list-dot" aria-hidden="true"></span>Demographic information</li>
+          <li><span class="legal-list-dot" aria-hidden="true"></span>Financial information</li>
+          <li><span class="legal-list-dot" aria-hidden="true"></span>Operational processes and business practices</li>
+        </ul>
+
+        <h3>How we share your data</h3>
+        <p>We do not share any of this information with third parties, except in the following circumstances:</p>
+        <ul class="legal-list" role="list">
+          <li><span class="legal-list-dot" aria-hidden="true"></span>Where you have given us your written or verbal consent</li>
+          <li><span class="legal-list-dot" aria-hidden="true"></span>Where it is needed by a third party to provide services on your behalf</li>
+          <li><span class="legal-list-dot" aria-hidden="true"></span>Where it is required by law</li>
+        </ul>
+
+        <h3>Third-party links</h3>
+        <p>The present site may contain external links to content provided by third parties, such as articles, multimedia, or other sources of information. Crescenti Pohl Advisory warns that these external sites might be governed by different data protection regulations, and we disclaim any responsibility concerning the data and privacy protection practices of these third parties.</p>
+      </div>
+
+      <div class="legal-divider reveal" aria-hidden="true"></div>
+
+      <!-- Cookies -->
+      <div class="legal-section reveal">
+        <h2>Cookies policy</h2>
+        <p>Cookies are small text files containing information about your web visits and activity, user preferences, and login information. Under normal circumstances, cookies cannot transfer viruses or malware to your computer.</p>
+
+        <div class="info-box reveal">
+          <p>Once you have given your consent for the use of cookies, you have the right to withdraw it (opt-out) at any time by deleting cookies through your browser settings. More information on cookies can be found at <a href="https://www.allaboutcookies.org/" target="_blank" rel="noopener noreferrer">www.allaboutcookies.org</a>.</p>
+        </div>
+
+        <h3>How we use cookies</h3>
+        <p>With your consent, our website may use cookies for the following purposes:</p>
+
+        <div class="cookie-types reveal">
+          <div class="cookie-type">
+            <span class="cookie-type-label">Preferences</span>
+            <p>To enhance your user experience by remembering your preferences and settings across visits.</p>
+          </div>
+          <div class="cookie-type">
+            <span class="cookie-type-label">Secure access</span>
+            <p>To provide features such as accessing secure areas for registered users.</p>
+          </div>
+          <div class="cookie-type">
+            <span class="cookie-type-label">Localisation</span>
+            <p>To identify your region and language in order to serve appropriate content.</p>
+          </div>
+          <div class="cookie-type">
+            <span class="cookie-type-label">Analytics</span>
+            <p>For marketing analytics purposes to understand how our site is used and improve it.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="legal-divider reveal" aria-hidden="true"></div>
+
+      <!-- Contact -->
+      <div class="legal-section reveal">
+        <h2>Questions about this policy</h2>
+        <p>If you have any questions or concerns regarding this privacy statement or the way we process your personal data, please do not hesitate to contact us.</p>
+        <div class="info-box">
+          <p>
+            <strong style="color:var(--text);">Crescenti Pohl Advisory</strong><br>
+            Email: <a href="mailto:info@crescentipohl.com">info@crescentipohl.com</a><br>
+            Website: <a href="https://www.crescentipohl.com" target="_blank" rel="noopener noreferrer">www.crescentipohl.com</a>
+          </p>
+        </div>
+        <p>For details of our registered legal entities and office addresses, please refer to our <a href="impressum.html">Impressum</a>.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+</main>
+
+<footer id="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 52" height="26" style="display:block;" aria-hidden="true" focusable="false">
+          <polygon points="20,6 0,46 40,46"   fill="#ffffff"/>
+          <polygon points="38,20 25,46 51,46" fill="rgba(255,255,255,0.28)"/>
+          <text x="68" y="34" font-family="Cormorant Garamond, Georgia, serif" font-size="22" font-weight="500" letter-spacing="0.015em" fill="rgba(255,255,255,0.48)">Crescenti Pohl Advisory</text>
+        </svg></div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html#expertise">Clients</a>
+        <a href="index.html#careers-teaser">Careers</a>
+        <a href="index.html#mission">About us</a>
+        <a href="index.html#offices">Offices</a>
+        <a href="mailto:info@crescentipohl.com?subject=Please get in touch with me!">Contact</a>
+      </nav>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/company/72534621" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p class="footer-copy">© 2025 Crescenti Pohl Advisory Ltd. All rights reserved.</p>
+        <nav class="footer-legal" aria-label="Legal links">
+          <a href="impressum.html">Impressum</a>
+          <a href="privacy.html">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+
+const header = document.getElementById('site-header');
+window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 60); }, { passive: true });
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+function toggleMenu(open) { hamburger.classList.toggle('open', open); mobileMenu.classList.toggle('open', open); hamburger.setAttribute('aria-expanded', open); document.body.style.overflow = open ? 'hidden' : ''; }
+hamburger.addEventListener('click', () => toggleMenu(!hamburger.classList.contains('open')));
+mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => toggleMenu(false)));
+document.addEventListener('click', e => { if (mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && !hamburger.contains(e.target)) toggleMenu(false); });
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }); }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+reveals.forEach(el => observer.observe(el));
+setTimeout(() => document.querySelectorAll('.page-hero .reveal').forEach(el => el.classList.add('visible')), 80);
+
+</script>
+</body>
+</html>
