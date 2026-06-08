@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Case Study: Renewable Commercial Mandate — Crescenti Pohl Advisory</title>
+<meta name="description" content="How Crescenti Pohl Advisory delivered a full commercial mandate for a European utility's renewable function — covering project development, asset commercialisation, and portfolio management." />
+
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAfklEQVR42u3WwQmAMAyF4YzgZq7twQWc5lkQBIMmMU1bWwy5Ff6v9FSaaSq61AwA8AMqEGKQUB8CyDdaALgOO92WNRhgRudAqh/rB/AwQwBn/ZVhBdIEABCnLMDqduMbwG3daJD7+v0AQt1i1AJ87xMAqHXVqAJk1mWDuv9d7yYscd32so0rAAAAAElFTkSuQmCC" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+<style>
+
+/* ═══════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --crimson: #4F0010;
+  --crimson-dark: #3a000c;
+  --crimson-deeper: #260008;
+  --blush: #D9C8CC;
+  --blush-light: #f5eff0;
+  --blush-mid: #ede1e3;
+  --white: #ffffff;
+  --text: #1c1417;
+  --text-muted: #6b5c5e;
+  --text-light: #9e8e90;
+  --border: rgba(79,0,16,0.12);
+  --border-strong: rgba(79,0,16,0.25);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --nav-h: 68px;
+  --max-w: 1060px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { font-family: var(--sans); cursor: pointer; border: none; background: none; }
+
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.8rem 1.8rem;
+  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  border-radius: 2px; transition: all 0.25s var(--ease);
+  cursor: pointer; text-decoration: none; white-space: nowrap;
+}
+.btn-primary { background: var(--white); color: var(--crimson); }
+.btn-primary:hover { background: var(--blush-light); }
+.btn-outline-white { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.45); }
+.btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.85); }
+.btn-outline-crimson { background: transparent; color: var(--crimson); border: 1px solid var(--border-strong); }
+.btn-outline-crimson:hover { background: var(--blush-light); }
+.btn-crimson { background: var(--crimson); color: var(--white); }
+.btn-crimson:hover { background: var(--crimson-dark); }
+
+/* Reveal */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+
+/* ═══════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════ */
+#site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-h);
+  background: var(--crimson);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+#site-header.scrolled {
+  background: var(--crimson-deeper);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.35);
+}
+
+.nav-inner {
+  max-width: var(--max-w); margin: 0 auto; padding: 0 2rem;
+  height: var(--nav-h);
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+
+.nav-logo { display: flex; align-items: center; flex-shrink: 0; line-height: 1; }
+.nav-logo:hover { opacity: 0.88; }
+
+.nav-desktop { display: flex; align-items: center; gap: 0; }
+
+.nav-item { position: relative; }
+
+.nav-link {
+  display: flex; align-items: center; gap: 5px;
+  padding: 0 1rem; height: var(--nav-h);
+  font-size: 12px; font-weight: 400;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.78);
+  transition: color 0.2s; cursor: pointer; white-space: nowrap;
+}
+.nav-link:hover { color: var(--white); }
+.nav-link svg { width: 10px; height: 10px; transition: transform 0.25s; flex-shrink: 0; }
+.nav-item:hover .nav-link svg { transform: rotate(180deg); }
+
+.nav-dropdown {
+  position: absolute; top: calc(var(--nav-h) - 4px); left: 0;
+  min-width: 240px; background: var(--crimson-deeper);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-top: 2px solid var(--blush);
+  opacity: 0; visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0.25s;
+  pointer-events: none;
+}
+.nav-item:hover .nav-dropdown {
+  opacity: 1; visibility: visible; transform: none; pointer-events: auto;
+}
+.nav-dropdown a {
+  display: block; padding: 0.75rem 1.25rem; font-size: 13px;
+  color: rgba(255,255,255,0.72);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: color 0.2s, background 0.2s;
+}
+.nav-dropdown a:last-child { border-bottom: none; }
+.nav-dropdown a:hover { color: var(--white); background: rgba(255,255,255,0.07); }
+
+.nav-cta {
+  margin-left: 0.75rem; padding: 0.55rem 1.25rem;
+  font-size: 11.5px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--white); border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 2px; transition: background 0.2s, border-color 0.2s; white-space: nowrap;
+}
+.nav-cta:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.8); }
+
+.nav-hamburger {
+  display: none; flex-direction: column; justify-content: center;
+  gap: 5px; width: 36px; height: 36px;
+  cursor: pointer; background: none; border: none; padding: 4px; flex-shrink: 0;
+}
+.nav-hamburger span {
+  display: block; height: 1.5px; background: var(--white);
+  transition: transform 0.3s var(--ease), opacity 0.3s; transform-origin: center;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+.nav-mobile {
+  display: none; position: fixed;
+  top: var(--nav-h); left: 0; right: 0; bottom: 0;
+  background: var(--crimson-deeper); overflow-y: auto; z-index: 999;
+  padding: 1.5rem 2rem 3rem;
+  transform: translateX(100%); transition: transform 0.35s var(--ease);
+}
+.nav-mobile.open { transform: none; }
+.mobile-section-label {
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(217,200,204,0.5); font-weight: 500;
+  padding: 1.25rem 0 0.4rem;
+  border-top: 1px solid rgba(255,255,255,0.08); margin-top: 0.75rem;
+}
+.mobile-section-label:first-child { border-top: none; margin-top: 0; }
+.nav-mobile a {
+  display: block; padding: 0.65rem 0; font-size: 15px;
+  color: rgba(255,255,255,0.82);
+  border-bottom: 1px solid rgba(255,255,255,0.05); transition: color 0.2s;
+}
+.nav-mobile a:hover { color: var(--white); }
+.nav-mobile .nav-cta { display: inline-block; margin-top: 1.5rem; }
+
+/* ═══════════════════════════════════════════════
+   PAGE HERO
+═══════════════════════════════════════════════ */
+.page-hero {
+  background: var(--crimson);
+  padding: calc(var(--nav-h) + 3.5rem) 0 3.5rem;
+  position: relative; overflow: hidden;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+
+.page-hero-inner {
+  position: relative;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+
+.breadcrumb {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 11px; font-weight: 400;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(217,200,204,0.55);
+}
+.breadcrumb a { transition: color 0.2s; }
+.breadcrumb a:hover { color: rgba(217,200,204,0.9); }
+.breadcrumb-sep { opacity: 0.4; }
+
+.page-hero-label {
+  font-size: 10.5px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--blush); opacity: 0.7; margin-bottom: 0.25rem;
+}
+
+.page-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 600; color: var(--white);
+  line-height: 1.1; letter-spacing: -0.01em;
+}
+
+.page-hero-meta {
+  display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.5rem;
+}
+.meta-tag {
+  display: flex; align-items: center; gap: 0.45rem;
+  font-size: 12.5px; color: rgba(217,200,204,0.7);
+}
+.meta-tag svg { width: 13px; height: 13px; opacity: 0.6; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════════
+   MAIN LAYOUT
+═══════════════════════════════════════════════ */
+.page-body {
+  padding: 5rem 0 6rem;
+}
+
+.page-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 5rem;
+  align-items: start;
+}
+
+/* ═══════════════════════════════════════════════
+   CONTENT COLUMN
+═══════════════════════════════════════════════ */
+.content-block { margin-bottom: 3rem; }
+.content-block:last-child { margin-bottom: 0; }
+
+.content-block h2 {
+  font-family: var(--serif);
+  font-size: 1.55rem; font-weight: 600;
+  color: var(--crimson); margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.content-block p {
+  font-size: 15px; color: var(--text-muted);
+  line-height: 1.85; margin-bottom: 0.85rem;
+}
+.content-block p:last-child { margin-bottom: 0; }
+
+/* Checklist */
+.checklist { display: flex; flex-direction: column; gap: 0.7rem; margin-top: 0.25rem; }
+.checklist-item {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  font-size: 14.5px; color: var(--text-muted); line-height: 1.65;
+}
+.checklist-icon {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--blush-light); border: 1px solid var(--blush-mid);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+.checklist-icon svg { width: 10px; height: 10px; stroke: var(--crimson); stroke-width: 2; fill: none; }
+
+/* Offer grid */
+.offer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+.offer-card {
+  background: var(--blush-light);
+  border: 1px solid var(--blush-mid);
+  border-radius: 2px;
+  padding: 1rem 1.1rem;
+  display: flex; align-items: flex-start; gap: 0.65rem;
+}
+.offer-card-icon {
+  font-size: 16px; flex-shrink: 0; margin-top: 1px;
+  line-height: 1;
+}
+.offer-card-text {
+  font-size: 13.5px; color: var(--text-muted); line-height: 1.5;
+}
+.offer-card-text strong {
+  display: block; font-size: 13px; font-weight: 500;
+  color: var(--crimson); margin-bottom: 0.1rem;
+}
+
+/* Cover letter steps */
+.steps { display: flex; flex-direction: column; gap: 0; }
+.step {
+  display: flex; gap: 1.25rem; align-items: flex-start;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+  font-family: var(--serif);
+  font-size: 1.8rem; font-weight: 400;
+  color: var(--blush); line-height: 1;
+  min-width: 28px; flex-shrink: 0;
+  margin-top: -3px;
+}
+.step-text {
+  font-size: 14.5px; color: var(--text-muted); line-height: 1.65;
+  padding-top: 0.15rem;
+}
+
+/* Sign-off */
+.signoff {
+  margin-top: 2rem;
+  padding: 1.5rem 1.75rem;
+  background: var(--crimson);
+  border-radius: 2px;
+}
+.signoff p {
+  font-size: 15px; color: rgba(217,200,204,0.85); line-height: 1.75;
+  font-family: var(--serif); font-style: italic; margin-bottom: 0 !important;
+}
+.signoff-name {
+  margin-top: 0.75rem;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(217,200,204,0.5);
+}
+
+/* ═══════════════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════════════ */
+.sidebar { position: sticky; top: calc(var(--nav-h) + 2rem); }
+
+.sidebar-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+
+.sidebar-card-header {
+  background: var(--crimson);
+  padding: 1.1rem 1.4rem;
+}
+.sidebar-card-header h3 {
+  font-family: var(--serif);
+  font-size: 1.1rem; font-weight: 600;
+  color: var(--white);
+}
+
+.sidebar-card-body { padding: 1.25rem 1.4rem; }
+
+.sidebar-detail {
+  display: flex; align-items: flex-start; gap: 0.7rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.sidebar-detail:last-child { border-bottom: none; padding-bottom: 0; }
+.sidebar-detail-label {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-light); min-width: 72px; padding-top: 2px;
+}
+.sidebar-detail-value { color: var(--text-muted); line-height: 1.45; }
+
+.sidebar-apply {
+  background: var(--crimson);
+  padding: 1.5rem 1.4rem;
+  text-align: center;
+}
+.sidebar-apply p {
+  font-size: 12.5px; color: rgba(217,200,204,0.75);
+  margin-bottom: 1rem; line-height: 1.55;
+}
+.sidebar-apply .btn {
+  width: 100%; justify-content: center;
+  background: var(--white); color: var(--crimson);
+}
+.sidebar-apply .btn:hover { background: var(--blush-light); }
+.sidebar-apply .btn-email {
+  margin-top: 0.6rem;
+  background: transparent; color: rgba(217,200,204,0.65);
+  border: 1px solid rgba(255,255,255,0.2); font-size: 11px;
+  width: 100%; justify-content: center;
+}
+.sidebar-apply .btn-email:hover { background: rgba(255,255,255,0.07); color: var(--white); }
+
+.sidebar-more { padding: 1.25rem 1.4rem; }
+.sidebar-more h4 {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-light); margin-bottom: 0.85rem;
+}
+.sidebar-position-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px; color: var(--text-muted);
+  transition: color 0.2s;
+}
+.sidebar-position-link:last-child { border-bottom: none; }
+.sidebar-position-link:hover { color: var(--crimson); }
+.sidebar-position-link span { line-height: 1.35; }
+.sidebar-position-link .arrow { flex-shrink: 0; opacity: 0.4; transition: opacity 0.2s, transform 0.2s; }
+.sidebar-position-link:hover .arrow { opacity: 0.8; transform: translateX(3px); }
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+#site-footer { background: #1a0005; }
+
+.footer-top {
+  padding: 3rem 0;
+  display: grid; grid-template-columns: auto 1fr auto;
+  gap: 2rem; align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer-logo { display: flex; align-items: center; }
+
+.footer-nav {
+  display: flex; justify-content: center;
+  gap: 2rem; flex-wrap: wrap;
+}
+.footer-nav a {
+  font-size: 12px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: rgba(217,200,204,0.45);
+  transition: color 0.2s;
+}
+.footer-nav a:hover { color: rgba(217,200,204,0.9); }
+
+.footer-social { display: flex; align-items: center; gap: 1rem; }
+.footer-social a {
+  display: flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px;
+  border: 1px solid rgba(255,255,255,0.12); border-radius: 2px;
+  color: rgba(217,200,204,0.5); transition: border-color 0.2s, color 0.2s;
+}
+.footer-social a:hover { border-color: rgba(217,200,204,0.5); color: rgba(217,200,204,0.9); }
+.footer-social svg { width: 16px; height: 16px; fill: currentColor; }
+
+.footer-bottom { padding: 1.25rem 0; }
+.footer-bottom-inner {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+}
+.footer-copy { font-size: 12px; color: rgba(217,200,204,0.35); letter-spacing: 0.03em; }
+.footer-legal { display: flex; gap: 1.5rem; }
+.footer-legal a { font-size: 12px; color: rgba(217,200,204,0.35); transition: color 0.2s; }
+.footer-legal a:hover { color: rgba(217,200,204,0.8); }
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media (max-width: 860px) {
+  .page-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .sidebar { position: static; }
+  .offer-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; text-align: center; }
+  .footer-nav { justify-content: center; }
+  .footer-social { justify-content: center; }
+}
+@media (max-width: 600px) {
+  .nav-desktop { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-mobile { display: block; }
+  .footer-bottom-inner { flex-direction: column; text-align: center; }
+}
+
+
+/* ── Case study page ─────────────────────────── */
+.cs-hero-kicker { font-size: 10px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blush); opacity: 0.6; display: block; margin-bottom: 0.5rem; }
+.cs-hero-title  { font-family: var(--serif); font-size: clamp(2rem,5vw,3.6rem); font-weight: 600; color: var(--white); line-height: 1.08; letter-spacing: -0.01em; }
+.cs-hero-sub    { font-size: 15px; color: var(--blush); opacity: 0.85; max-width: 520px; line-height: 1.75; margin-top: 1rem; }
+.cs-hero-pills  { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.75rem; }
+.cs-hero-pill   { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 20px; padding: 0.3rem 0.85rem; }
+
+/* Layout */
+.cs-body        { padding: 5.5rem 0 6rem; }
+.cs-layout      { display: grid; grid-template-columns: 1fr 300px; gap: 5rem; align-items: start; }
+
+/* Visual banner */
+.cs-visual-banner {
+  width: 100%; border-radius: 3px; overflow: hidden;
+  background: var(--crimson); margin-bottom: 3rem;
+  position: relative; height: 280px;
+  display: flex; align-items: center; justify-content: center;
+}
+.cs-visual-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(-45deg,transparent,transparent 20px,rgba(255,255,255,0.025) 20px,rgba(255,255,255,0.025) 21px);
+}
+.cs-banner-svg  { position: relative; z-index: 1; width: 100%; height: 100%; }
+
+/* Stat strip */
+.cs-stats-strip {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1.5px; background: var(--border);
+  border: 1.5px solid var(--border); border-radius: 3px;
+  overflow: hidden; margin-bottom: 3rem;
+}
+.cs-stat-box    { background: var(--white); padding: 1.5rem 1.25rem; text-align: center; }
+.cs-stat-num    { font-family: var(--serif); font-size: 2.2rem; font-weight: 600; color: var(--crimson); line-height: 1; }
+.cs-stat-label  { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-top: 0.35rem; }
+
+/* Section blocks */
+.cs-block       { margin-bottom: 3rem; }
+.cs-block:last-of-type { margin-bottom: 0; }
+.cs-block h2    { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: var(--crimson); margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
+.cs-block p     { font-size: 15px; color: var(--text-muted); line-height: 1.85; margin-bottom: 0.85rem; }
+.cs-block p:last-child { margin-bottom: 0; }
+
+/* Situation cards */
+.cs-cards       { display: flex; flex-direction: column; gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); border-radius: 3px; overflow: hidden; margin-top: 1rem; }
+.cs-card        { background: var(--white); padding: 1.4rem 1.5rem; display: flex; gap: 1rem; transition: background 0.25s; }
+.cs-card:hover  { background: var(--blush-light); }
+.cs-card-num    { font-family: var(--serif); font-size: 1.6rem; font-weight: 400; color: var(--blush); flex-shrink: 0; line-height: 1.1; min-width: 24px; margin-top: -1px; }
+.cs-card-text   { font-size: 14.5px; color: var(--text-muted); line-height: 1.7; }
+.cs-card-text strong { display: block; font-size: 13px; font-weight: 500; color: var(--crimson); margin-bottom: 0.2rem; }
+
+/* Contribution items with crimson left bar */
+.cs-contribution { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1rem; }
+.cs-contrib-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1.25rem 1.25rem 1.25rem 1.5rem; background: var(--blush-light); border: 1px solid var(--blush-mid); border-left: 3px solid var(--crimson); border-radius: 0 3px 3px 0; }
+.cs-contrib-icon { width: 36px; height: 36px; background: var(--white); border: 1px solid var(--blush-mid); border-radius: 3px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.cs-contrib-icon svg { width: 18px; height: 18px; stroke: var(--crimson); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.cs-contrib-body strong { display: block; font-size: 13px; font-weight: 500; color: var(--crimson); margin-bottom: 0.25rem; letter-spacing: 0.02em; }
+.cs-contrib-body p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin: 0; }
+
+/* Challenge / solution grid */
+.cs-challenge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); border-radius: 3px; overflow: hidden; margin-top: 1rem; }
+.cs-challenge-col  { background: var(--white); padding: 1.75rem 1.5rem; }
+.cs-challenge-label { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--crimson); opacity: 0.7; margin-bottom: 1rem; display: block; }
+.cs-challenge-col ul { display: flex; flex-direction: column; gap: 0.65rem; }
+.cs-challenge-col li { display: flex; gap: 0.6rem; font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
+.cs-challenge-dot  { width: 5px; height: 5px; border-radius: 50%; background: var(--crimson); opacity: 0.4; flex-shrink: 0; margin-top: 7px; }
+
+/* Process flow */
+.cs-process     { display: flex; align-items: flex-start; gap: 0; margin-top: 1rem; overflow-x: auto; padding-bottom: 0.5rem; }
+.cs-process-step { flex: 1; min-width: 120px; text-align: center; position: relative; }
+.cs-process-step::after { content: ''; position: absolute; top: 18px; left: 60%; right: -40%; height: 1.5px; background: var(--blush-mid); z-index: 0; }
+.cs-process-step:last-child::after { display: none; }
+.cs-process-dot { width: 36px; height: 36px; border-radius: 50%; background: var(--crimson); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.65rem; position: relative; z-index: 1; }
+.cs-process-dot svg { width: 16px; height: 16px; stroke: white; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.cs-process-label { font-size: 11.5px; font-weight: 500; color: var(--crimson); line-height: 1.35; padding: 0 0.25rem; }
+
+/* Quote pull */
+.cs-pullquote   { background: var(--crimson); border-radius: 3px; padding: 2rem 2.25rem; margin: 2.5rem 0; text-align: center; }
+.cs-pullquote p { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 400; color: var(--white); line-height: 1.6; }
+.cs-pullquote-attr { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(217,200,204,0.55); margin-top: 0.85rem; display: block; }
+
+/* Sidebar */
+.sidebar        { position: sticky; top: calc(var(--nav-h) + 2rem); }
+.sidebar-card   { background: var(--white); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; margin-bottom: 1.25rem; }
+.sidebar-card-header   { background: var(--crimson); padding: 1.1rem 1.4rem; }
+.sidebar-card-header h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; color: var(--white); }
+.sidebar-card-body     { padding: 1.25rem 1.4rem; }
+.sidebar-detail        { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.65rem 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.sidebar-detail:last-child { border-bottom: none; padding-bottom: 0; }
+.sidebar-detail-label  { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-light); min-width: 72px; padding-top: 2px; }
+.sidebar-detail-value  { color: var(--text-muted); line-height: 1.45; }
+.sidebar-cta           { padding: 1.4rem; background: var(--crimson); text-align: center; }
+.sidebar-cta p         { font-size: 12.5px; color: rgba(217,200,204,0.75); margin-bottom: 1rem; line-height: 1.55; }
+.sidebar-cta .btn-w    { width: 100%; justify-content: center; background: var(--white); color: var(--crimson); }
+.sidebar-cta .btn-w:hover { background: var(--blush-light); }
+.sidebar-more          { padding: 1.25rem 1.4rem; }
+.sidebar-more h4       { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.85rem; }
+.sidebar-cs-link       { display: flex; align-items: center; justify-content: space-between; padding: 0.7rem 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); transition: color 0.2s; }
+.sidebar-cs-link:last-child { border-bottom: none; }
+.sidebar-cs-link:hover { color: var(--crimson); }
+.sidebar-cs-link .arrow { flex-shrink: 0; opacity: 0.4; transition: opacity 0.2s, transform 0.2s; }
+.sidebar-cs-link:hover .arrow { opacity: 0.8; transform: translateX(3px); }
+.sidebar-tag           { display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; background: var(--blush-light); border: 1px solid var(--blush-mid); color: var(--crimson); border-radius: 2px; padding: 0.2rem 0.5rem; margin-bottom: 0.25rem; }
+
+/* meta tags in hero */
+.page-hero-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem; }
+.meta-tag       { display: flex; align-items: center; gap: 0.45rem; font-size: 12.5px; color: rgba(217,200,204,0.7); }
+.meta-tag svg   { width: 13px; height: 13px; opacity: 0.6; flex-shrink: 0; }
+
+@media (max-width: 860px) {
+  .cs-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .sidebar { position: static; }
+  .cs-challenge-grid { grid-template-columns: 1fr; }
+  .cs-stats-strip { grid-template-columns: 1fr; }
+  .cs-process { flex-wrap: wrap; gap: 1.5rem; }
+  .cs-process-step::after { display: none; }
+}
+
+</style>
+</head>
+<body>
+
+<header id="site-header" role="banner">
+  <nav class="nav-inner" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="Crescenti Pohl Advisory – home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 52" height="34" style="display:block;" aria-hidden="true" focusable="false">
+        <polygon points="20,6 0,46 40,46"   fill="#ffffff"/>
+        <polygon points="38,20 25,46 51,46" fill="rgba(255,255,255,0.42)"/>
+        <text x="68" y="34" font-family="Cormorant Garamond, Georgia, serif" font-size="22" font-weight="500" letter-spacing="0.015em" fill="#ffffff">Crescenti Pohl Advisory</text>
+      </svg>
+    </a>
+
+    <ul class="nav-desktop" role="list">
+      <li class="nav-item">
+        <span class="nav-link" tabindex="0" aria-haspopup="true">
+          Clients
+          <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <div class="nav-dropdown" role="menu">
+          <a href="index.html#expertise" role="menuitem">Energy Transition</a>
+          <a href="index.html#expertise" role="menuitem">Business Transformation &amp; Digitalization</a>
+          <a href="index.html#expertise" role="menuitem">Market Insight &amp; Strategy</a>
+          <a href="index.html#expertise" role="menuitem">Data &amp; Artificial Intelligence</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link active" tabindex="0" aria-haspopup="true">
+          Careers
+          <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <div class="nav-dropdown" role="menu">
+          <a href="index.html#careers-teaser" role="menuitem">Why Work for Us</a>
+          <a href="index.html#careers-teaser" role="menuitem">Career Path</a>
+          <a href="index.html#careers-teaser" role="menuitem">Professional Development</a>
+          <a href="index.html#openpositions" role="menuitem">Open Positions</a>
+          <a href="speculative.html" role="menuitem">Speculative Application</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link" tabindex="0" aria-haspopup="true">
+          About us
+          <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <div class="nav-dropdown" role="menu">
+          <a href="index.html#mission" role="menuitem">Mission &amp; Values</a>
+          <a href="index.html#team" role="menuitem">Our Team</a>
+          <a href="index.html#offices" role="menuitem">Our Offices</a>
+        </div>
+      </li>
+      <li>
+        <a class="nav-cta" href="mailto:info@crescentipohl.com?subject=Please get in touch with me!">Contact us</a>
+      </li>
+    </ul>
+
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <nav class="nav-mobile" id="mobile-menu" aria-label="Mobile navigation">
+    <div class="mobile-section-label">Clients</div>
+    <a href="index.html#expertise">Energy Transition</a>
+    <a href="index.html#expertise">Business Transformation &amp; Digitalization</a>
+    <a href="index.html#expertise">Market Insight &amp; Strategy</a>
+    <a href="index.html#expertise">Data &amp; Artificial Intelligence</a>
+    <div class="mobile-section-label">Careers</div>
+    <a href="index.html#careers-teaser">Why Work for Us</a>
+    <a href="index.html#careers-teaser">Career Path</a>
+    <a href="index.html#openpositions">Open Positions</a>
+    <a href="speculative.html">Speculative Application</a>
+    <div class="mobile-section-label">About Us</div>
+    <a href="index.html#mission">Mission &amp; Values</a>
+    <a href="index.html#team">Our Team</a>
+    <a href="index.html#offices">Our Offices</a>
+    <div class="mobile-section-label">Contact</div>
+    <a class="nav-cta" href="mailto:info@crescentipohl.com?subject=Please get in touch with me!">Contact us →</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ═══ HERO ═══ -->
+<section class="page-hero" aria-labelledby="cs-title">
+  <div class="container page-hero-inner">
+    <nav class="breadcrumb reveal" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <a href="index.html#expertise">Clients</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <a href="index.html#expertise">Energy Transition</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span aria-current="page">Case Study</span>
+    </nav>
+    <span class="cs-hero-kicker reveal">Case study</span>
+    <h1 id="cs-title" class="cs-hero-title reveal reveal-delay-1">Renewable Commercial<br>Mandate</h1>
+    <p class="cs-hero-sub reveal reveal-delay-2">Defining end-to-end commercial models and portfolio management capabilities for a major European utility building its renewable pipeline.</p>
+    <div class="cs-hero-pills reveal reveal-delay-2">
+      <span class="cs-hero-pill">Energy Transition</span>
+      <span class="cs-hero-pill">Portfolio Management</span>
+      <span class="cs-hero-pill">Trading Capabilities</span>
+      <span class="cs-hero-pill">Target Operating Model</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BODY ═══ -->
+<div class="cs-body">
+  <div class="container">
+    <div class="cs-layout">
+
+      <!-- ── LEFT: Main content ── -->
+      <div>
+
+        <!-- Visual banner -->
+        <div class="cs-visual-banner reveal" aria-hidden="true">
+          <svg class="cs-banner-svg" viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg" aria-label="Renewable energy illustration — wind turbines and solar panels">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3a000c"/>
+      <stop offset="100%" stop-color="#6b0018"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5a0012"/>
+      <stop offset="100%" stop-color="#3a000c"/>
+    </linearGradient>
+    <linearGradient id="blade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.55)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.1)"/>
+    </linearGradient>
+    <linearGradient id="solar" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="rgba(217,200,204,0.35)"/>
+      <stop offset="100%" stop-color="rgba(217,200,204,0.1)"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="900" height="280" fill="url(#sky)"/>
+
+  <!-- Horizon glow -->
+  <ellipse cx="450" cy="200" rx="380" ry="60" fill="rgba(255,255,255,0.04)"/>
+
+  <!-- Ground -->
+  <rect x="0" y="210" width="900" height="70" fill="url(#ground)"/>
+  <path d="M0 210 Q225 200 450 212 Q675 224 900 210 L900 280 L0 280Z" fill="rgba(0,0,0,0.2)"/>
+
+  <!-- Stars -->
+  <circle cx="80"  cy="30"  r="1.2" fill="rgba(255,255,255,0.5)"/>
+  <circle cx="150" cy="55"  r="0.9" fill="rgba(255,255,255,0.4)"/>
+  <circle cx="240" cy="20"  r="1.1" fill="rgba(255,255,255,0.45)"/>
+  <circle cx="340" cy="45"  r="0.8" fill="rgba(255,255,255,0.35)"/>
+  <circle cx="600" cy="25"  r="1.2" fill="rgba(255,255,255,0.5)"/>
+  <circle cx="700" cy="50"  r="0.9" fill="rgba(255,255,255,0.4)"/>
+  <circle cx="790" cy="18"  r="1.0" fill="rgba(255,255,255,0.45)"/>
+  <circle cx="850" cy="60"  r="0.8" fill="rgba(255,255,255,0.35)"/>
+  <circle cx="500" cy="35"  r="1.0" fill="rgba(255,255,255,0.4)"/>
+
+  <!-- Wind turbine 1 — tall, centre-left -->
+  <g transform="translate(230,40)">
+    <!-- Tower -->
+    <polygon points="-5,170 5,170 2,0 -2,0" fill="rgba(255,255,255,0.6)"/>
+    <!-- Hub -->
+    <circle cx="0" cy="0" r="6" fill="rgba(255,255,255,0.8)"/>
+    <!-- Blade 1 (up-right) -->
+    <polygon points="0,0 4,-52 -4,-52" fill="url(#blade)" transform="rotate(10)"/>
+    <!-- Blade 2 (down-right) -->
+    <polygon points="0,0 4,-52 -4,-52" fill="url(#blade)" transform="rotate(130)"/>
+    <!-- Blade 3 (left) -->
+    <polygon points="0,0 4,-52 -4,-52" fill="url(#blade)" transform="rotate(250)"/>
+    <!-- Nacelle -->
+    <rect x="-8" y="-7" width="22" height="10" rx="2" fill="rgba(255,255,255,0.5)"/>
+  </g>
+
+  <!-- Wind turbine 2 — smaller, right -->
+  <g transform="translate(620,80)" opacity="0.85">
+    <polygon points="-4,130 4,130 1.5,0 -1.5,0" fill="rgba(255,255,255,0.5)"/>
+    <circle cx="0" cy="0" r="5" fill="rgba(255,255,255,0.7)"/>
+    <polygon points="0,0 3,-40 -3,-40" fill="url(#blade)" transform="rotate(20)"/>
+    <polygon points="0,0 3,-40 -3,-40" fill="url(#blade)" transform="rotate(140)"/>
+    <polygon points="0,0 3,-40 -3,-40" fill="url(#blade)" transform="rotate(260)"/>
+    <rect x="-6" y="-5" width="17" height="8" rx="2" fill="rgba(255,255,255,0.45)"/>
+  </g>
+
+  <!-- Wind turbine 3 — smallest, far right -->
+  <g transform="translate(800,105)" opacity="0.6">
+    <polygon points="-3,95 3,95 1,0 -1,0" fill="rgba(255,255,255,0.45)"/>
+    <circle cx="0" cy="0" r="4" fill="rgba(255,255,255,0.6)"/>
+    <polygon points="0,0 2.5,-30 -2.5,-30" fill="url(#blade)" transform="rotate(35)"/>
+    <polygon points="0,0 2.5,-30 -2.5,-30" fill="url(#blade)" transform="rotate(155)"/>
+    <polygon points="0,0 2.5,-30 -2.5,-30" fill="url(#blade)" transform="rotate(275)"/>
+  </g>
+
+  <!-- Solar panel array — foreground right -->
+  <g transform="translate(490,195)">
+    <!-- Row 1 -->
+    <g transform="translate(0,0) skewX(-15)">
+      <rect x="0"   y="0"  width="38" height="24" rx="1" fill="url(#solar)" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+      <rect x="42"  y="0"  width="38" height="24" rx="1" fill="url(#solar)" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+      <rect x="84"  y="0"  width="38" height="24" rx="1" fill="url(#solar)" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+      <!-- Panel grid lines -->
+      <line x1="19"  y1="0"  x2="19"  y2="24" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+      <line x1="61"  y1="0"  x2="61"  y2="24" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+      <line x1="103" y1="0"  x2="103" y2="24" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+      <line x1="0"   y1="12" x2="122" y2="12" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+    </g>
+    <!-- Row 2 -->
+    <g transform="translate(0,28) skewX(-15)" opacity="0.8">
+      <rect x="0"   y="0"  width="38" height="24" rx="1" fill="url(#solar)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+      <rect x="42"  y="0"  width="38" height="24" rx="1" fill="url(#solar)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+      <rect x="84"  y="0"  width="38" height="24" rx="1" fill="url(#solar)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+    </g>
+    <!-- Support structures -->
+    <line x1="19"  y1="24" x2="14"  y2="45" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <line x1="61"  y1="24" x2="56"  y2="45" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <line x1="103" y1="24" x2="98"  y2="45" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+  </g>
+
+  <!-- Solar panel array 2 — further left -->
+  <g transform="translate(60,205)" opacity="0.7">
+    <g transform="skewX(-15)">
+      <rect x="0"  y="0" width="32" height="20" rx="1" fill="url(#solar)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+      <rect x="36" y="0" width="32" height="20" rx="1" fill="url(#solar)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+      <line x1="0" y1="10" x2="68"  y2="10" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+      <line x1="16" y1="0" x2="16"  y2="20" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+      <line x1="52" y1="0" x2="52"  y2="20" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+    </g>
+  </g>
+
+  <!-- Power lines -->
+  <g stroke="rgba(255,255,255,0.18)" stroke-width="1" fill="none">
+    <line x1="235" y1="210" x2="490" y2="210"/>
+    <line x1="235" y1="205" x2="235" y2="215"/>
+    <line x1="310" y1="205" x2="310" y2="215"/>
+    <line x1="390" y1="205" x2="390" y2="215"/>
+    <line x1="490" y1="205" x2="490" y2="215"/>
+    <path d="M235 205 Q272 195 310 205" fill="none"/>
+    <path d="M310 205 Q350 195 390 205" fill="none"/>
+    <path d="M390 205 Q440 195 490 205" fill="none"/>
+  </g>
+
+  <!-- Text overlay -->
+  <text x="450" y="115" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="28" font-weight="600" fill="rgba(255,255,255,0.92)" letter-spacing="0.5">Renewable Commercial Mandate</text>
+  <text x="450" y="142" text-anchor="middle" font-family="DM Sans, system-ui, sans-serif" font-size="12" font-weight="400" fill="rgba(217,200,204,0.6)" letter-spacing="2">ENERGY TRANSITION · CASE STUDY</text>
+</svg>
+        </div>
+
+        <!-- Key figures -->
+        <div class="cs-stats-strip reveal">
+          <div class="cs-stat-box">
+            <div class="cs-stat-num">3</div>
+            <div class="cs-stat-label">Core markets</div>
+          </div>
+          <div class="cs-stat-box">
+            <div class="cs-stat-num">E2E</div>
+            <div class="cs-stat-label">Portfolio mandate scope</div>
+          </div>
+          <div class="cs-stat-box">
+            <div class="cs-stat-num">4</div>
+            <div class="cs-stat-label">Commercial model types</div>
+          </div>
+        </div>
+
+        <!-- Context -->
+        <div class="cs-block reveal">
+          <h2>Context</h2>
+          <p>European utilities are under mounting pressure to accelerate the build-out of renewable capacity while maintaining commercial discipline and alignment with risk policy. This mandate arose when a major utility, with a well-established project pipeline, discovered that its engineering, commercialisation and operations functions held fundamentally different views on how that build-out should be governed — and who was accountable for what.</p>
+          <p>Without a shared commercial framework, the organisation risked misaligned investment decisions, unhedged exposures, and a target operating model that no single function could own.</p>
+        </div>
+
+        <!-- Pull quote -->
+        <div class="cs-pullquote reveal">
+          <p>"Without a shared commercial framework, the organisation risked misaligned investment decisions and a target operating model that no function could fully own."</p>
+          <span class="cs-pullquote-attr">Crescenti Pohl Advisory · Project observation</span>
+        </div>
+
+        <!-- Client situation -->
+        <div class="cs-block reveal">
+          <h2>Client situation</h2>
+          <div class="cs-challenge-grid">
+            <div class="cs-challenge-col">
+              <span class="cs-challenge-label">The starting point</span>
+              <ul role="list">
+                <li><span class="cs-challenge-dot" aria-hidden="true"></span>Target renewables portfolio under development across core European markets</li>
+                <li><span class="cs-challenge-dot" aria-hidden="true"></span>Established pipeline of renewable projects across generation technologies</li>
+                <li><span class="cs-challenge-dot" aria-hidden="true"></span>Commercialisation and operations required to align with group risk policy</li>
+              </ul>
+            </div>
+            <div class="cs-challenge-col">
+              <span class="cs-challenge-label">The core challenge</span>
+              <ul role="list">
+                <li><span class="cs-challenge-dot" aria-hidden="true"></span>Fundamentally different understanding between engineering, commercial and operations functions on how targets should be achieved</li>
+                <li><span class="cs-challenge-dot" aria-hidden="true"></span>Unclear requirements, accountability gaps and no agreed path to a concrete target operating model</li>
+                <li><span class="cs-challenge-dot" aria-hidden="true"></span>Risk of misaligned commercial decisions across the full asset lifecycle</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Our approach / process -->
+        <div class="cs-block reveal">
+          <h2>Our approach</h2>
+          <p>We structured our engagement in four sequential phases, moving from stakeholder alignment through to capability review and model validation — ensuring each step built organisational consensus before proceeding.</p>
+          <div class="cs-process" role="list">
+            <div class="cs-process-step" role="listitem">
+              <div class="cs-process-dot" aria-hidden="true">
+                <svg viewBox="0 0 16 16"><path d="M8 3v5l3 3"/><circle cx="8" cy="8" r="6"/></svg>
+              </div>
+              <div class="cs-process-label">Stakeholder alignment &amp; mandate scoping</div>
+            </div>
+            <div class="cs-process-step" role="listitem">
+              <div class="cs-process-dot" aria-hidden="true">
+                <svg viewBox="0 0 16 16"><rect x="3" y="3" width="10" height="10" rx="1"/><path d="M6 8h4M8 6v4"/></svg>
+              </div>
+              <div class="cs-process-label">Commercial model definition per asset type</div>
+            </div>
+            <div class="cs-process-step" role="listitem">
+              <div class="cs-process-dot" aria-hidden="true">
+                <svg viewBox="0 0 16 16"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
+              </div>
+              <div class="cs-process-label">E2E capability mapping by commercial model</div>
+            </div>
+            <div class="cs-process-step" role="listitem">
+              <div class="cs-process-dot" aria-hidden="true">
+                <svg viewBox="0 0 16 16"><path d="M4 8l3 3 5-5"/><circle cx="8" cy="8" r="6"/></svg>
+              </div>
+              <div class="cs-process-label">Trading capability review in core markets</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Our contribution -->
+        <div class="cs-block reveal">
+          <h2>Our contribution</h2>
+          <div class="cs-contribution" role="list">
+
+            <div class="cs-contrib-item" role="listitem">
+              <div class="cs-contrib-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M20.618 5.984A11 11 0 1 1 8.336 2.21"/></svg>
+              </div>
+              <div class="cs-contrib-body">
+                <strong>Commercial mandate across the full renewable function</strong>
+                <p>Took full commercial responsibility covering project development, asset commercialisation and the operation of renewables contracts — bridging the gap between engineering and trading functions.</p>
+              </div>
+            </div>
+
+            <div class="cs-contrib-item" role="listitem">
+              <div class="cs-contrib-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              <div class="cs-contrib-body">
+                <strong>Commercial model definition aligned to risk appetite</strong>
+                <p>Developed and documented commercial models for each asset category — merchant, fully-hedged, PPA-backed, and hybrid — each calibrated to the client's group risk policy and market context.</p>
+              </div>
+            </div>
+
+            <div class="cs-contrib-item" role="listitem">
+              <div class="cs-contrib-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 0 0 4.93 19.07"/><path d="M4.93 4.93A10 10 0 0 1 19.07 19.07"/></svg>
+              </div>
+              <div class="cs-contrib-body">
+                <strong>End-to-end capability mapping per commercial model</strong>
+                <p>Produced a structured map of required portfolio management and trading capabilities for each commercial model — from origination and pricing through to settlement and reporting.</p>
+              </div>
+            </div>
+
+            <div class="cs-contrib-item" role="listitem">
+              <div class="cs-contrib-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <div class="cs-contrib-body">
+                <strong>Trading capability review across core markets</strong>
+                <p>Assessed existing trading capabilities market by market, identifying gaps and prioritising build-vs-buy decisions to reach the required capability level for each commercial model.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Outcome -->
+        <div class="cs-block reveal">
+          <h2>Outcome</h2>
+          <p>The engagement delivered a concrete, jointly owned target operating model for the renewable function — with clear commercial accountability across project development, asset operation, and portfolio management. The capability gap analysis provided the basis for a structured roadmap of investments in trading infrastructure, people, and processes across the client's core markets.</p>
+          <p>By establishing a common commercial language across functions, the client was able to proceed with its renewable pipeline with substantially reduced coordination risk and a clear governance structure aligned to group risk policy.</p>
+        </div>
+
+      </div>
+
+      <!-- ── RIGHT: Sidebar ── -->
+      <aside class="sidebar" aria-label="Case study details">
+
+        <div class="sidebar-card reveal">
+          <div class="sidebar-card-header"><h3>Case study details</h3></div>
+          <div class="sidebar-card-body">
+            <div class="sidebar-detail">
+              <span class="sidebar-detail-label">Practice</span>
+              <span class="sidebar-detail-value">Energy Transition</span>
+            </div>
+            <div class="sidebar-detail">
+              <span class="sidebar-detail-label">Client</span>
+              <span class="sidebar-detail-value">Major European utility (name withheld)</span>
+            </div>
+            <div class="sidebar-detail">
+              <span class="sidebar-detail-label">Scope</span>
+              <span class="sidebar-detail-value">Commercial mandate, model definition, capability mapping</span>
+            </div>
+            <div class="sidebar-detail">
+              <span class="sidebar-detail-label">Markets</span>
+              <span class="sidebar-detail-value">Multiple European core markets</span>
+            </div>
+            <div class="sidebar-detail">
+              <span class="sidebar-detail-label">Technologies</span>
+              <span class="sidebar-detail-value">Wind · Solar · Storage · Hybrid</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-card reveal reveal-delay-1">
+          <div class="sidebar-cta">
+            <p>Interested in how we could help with your renewables portfolio?</p>
+            <a href="mailto:info@crescentipohl.com?subject=Enquiry: Renewable portfolio mandate" class="btn btn-w">Get in touch</a>
+          </div>
+        </div>
+
+        <div class="sidebar-card reveal reveal-delay-2">
+          <div class="sidebar-more">
+            <h4>Other case studies</h4>
+            <a href="case-study-asset-optimization.html" class="sidebar-cs-link">
+              <div>
+                <span class="sidebar-tag">Business Transformation</span><br>
+                <span>Asset optimization platform</span>
+              </div>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="case-study-hydro-investment.html" class="sidebar-cs-link">
+              <div>
+                <span class="sidebar-tag">Market Strategy</span><br>
+                <span>Investment hydro pump storage</span>
+              </div>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="case-study-data-platform.html" class="sidebar-cs-link">
+              <div>
+                <span class="sidebar-tag">Data &amp; AI</span><br>
+                <span>Strategic data platform</span>
+              </div>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="sidebar-card reveal reveal-delay-2">
+          <div class="sidebar-more">
+            <h4>Related expertise</h4>
+            <a href="index.html#expertise" class="sidebar-cs-link">
+              <span>Energy Transition</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="index.html#expertise" class="sidebar-cs-link">
+              <span>Market Insight &amp; Strategy</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer id="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 52" height="26" style="display:block;" aria-hidden="true" focusable="false">
+          <polygon points="20,6 0,46 40,46"   fill="#ffffff"/>
+          <polygon points="38,20 25,46 51,46" fill="rgba(255,255,255,0.28)"/>
+          <text x="68" y="34" font-family="Cormorant Garamond, Georgia, serif" font-size="22" font-weight="500" letter-spacing="0.015em" fill="rgba(255,255,255,0.48)">Crescenti Pohl Advisory</text>
+        </svg>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html#expertise">Clients</a>
+        <a href="index.html#careers-teaser">Careers</a>
+        <a href="index.html#mission">About us</a>
+        <a href="index.html#offices">Offices</a>
+        <a href="mailto:info@crescentipohl.com?subject=Please get in touch with me!">Contact</a>
+      </nav>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/company/72534621" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p class="footer-copy">© 2025 Crescenti Pohl Advisory Ltd. All rights reserved.</p>
+        <nav class="footer-legal" aria-label="Legal links">
+          <a href="impressum.html">Impressum</a>
+          <a href="privacy.html">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const header = document.getElementById('site-header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+function toggleMenu(open) {
+  hamburger.classList.toggle('open', open);
+  mobileMenu.classList.toggle('open', open);
+  hamburger.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+hamburger.addEventListener('click', () => toggleMenu(!hamburger.classList.contains('open')));
+mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => toggleMenu(false)));
+document.addEventListener('click', e => {
+  if (mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && !hamburger.contains(e.target)) toggleMenu(false);
+});
+
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+reveals.forEach(el => observer.observe(el));
+setTimeout(() => document.querySelectorAll('.page-hero .reveal').forEach(el => el.classList.add('visible')), 80);
+</script>
+</body>
+</html>

@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Asset Optimization Platform — Crescenti Pohl Advisory</title>
+<meta name="description" content="How Crescenti Pohl Advisory built a modular cloud-based asset optimization platform for a European utility, delivering mid-term and long-term dispatch optimization with advanced scenario capability."/>
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAfklEQVR42u3WwQmAMAyF4YzgZq7twQWc5lkQBIMmMU1bWwy5Ff6v9FSaaSq61AwA8AMqEGKQUB8CyDdaALgOO92WNRhgRudAqh/rB/AwQwBn/ZVhBdIEABCnLMDqduMbwG3daJD7+v0AQt1i1AJ87xMAqHXVqAJk1mWDuv9d7yYscd32so0rAAAAAElFTkSuQmCC" />
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+<style>
+
+
+/* ═══════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --crimson: #4F0010;
+  --crimson-dark: #3a000c;
+  --crimson-deeper: #260008;
+  --blush: #D9C8CC;
+  --blush-light: #f5eff0;
+  --blush-mid: #ede1e3;
+  --white: #ffffff;
+  --text: #1c1417;
+  --text-muted: #6b5c5e;
+  --text-light: #9e8e90;
+  --border: rgba(79,0,16,0.12);
+  --border-strong: rgba(79,0,16,0.25);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --nav-h: 68px;
+  --max-w: 1060px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { font-family: var(--sans); cursor: pointer; border: none; background: none; }
+
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.8rem 1.8rem;
+  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  border-radius: 2px; transition: all 0.25s var(--ease);
+  cursor: pointer; text-decoration: none; white-space: nowrap;
+}
+.btn-primary { background: var(--white); color: var(--crimson); }
+.btn-primary:hover { background: var(--blush-light); }
+.btn-outline-white { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.45); }
+.btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.85); }
+.btn-outline-crimson { background: transparent; color: var(--crimson); border: 1px solid var(--border-strong); }
+.btn-outline-crimson:hover { background: var(--blush-light); }
+.btn-crimson { background: var(--crimson); color: var(--white); }
+.btn-crimson:hover { background: var(--crimson-dark); }
+
+/* Reveal */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+
+/* ═══════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════ */
+#site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-h);
+  background: var(--crimson);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+#site-header.scrolled {
+  background: var(--crimson-deeper);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.35);
+}
+
+.nav-inner {
+  max-width: var(--max-w); margin: 0 auto; padding: 0 2rem;
+  height: var(--nav-h);
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+
+.nav-logo { display: flex; align-items: center; flex-shrink: 0; line-height: 1; }
+.nav-logo:hover { opacity: 0.88; }
+
+.nav-desktop { display: flex; align-items: center; gap: 0; }
+
+.nav-item { position: relative; }
+
+.nav-link {
+  display: flex; align-items: center; gap: 5px;
+  padding: 0 1rem; height: var(--nav-h);
+  font-size: 12px; font-weight: 400;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.78);
+  transition: color 0.2s; cursor: pointer; white-space: nowrap;
+}
+.nav-link:hover { color: var(--white); }
+.nav-link svg { width: 10px; height: 10px; transition: transform 0.25s; flex-shrink: 0; }
+.nav-item:hover .nav-link svg { transform: rotate(180deg); }
+
+.nav-dropdown {
+  position: absolute; top: calc(var(--nav-h) - 4px); left: 0;
+  min-width: 240px; background: var(--crimson-deeper);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-top: 2px solid var(--blush);
+  opacity: 0; visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0.25s;
+  pointer-events: none;
+}
+.nav-item:hover .nav-dropdown {
+  opacity: 1; visibility: visible; transform: none; pointer-events: auto;
+}
+.nav-dropdown a {
+  display: block; padding: 0.75rem 1.25rem; font-size: 13px;
+  color: rgba(255,255,255,0.72);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: color 0.2s, background 0.2s;
+}
+.nav-dropdown a:last-child { border-bottom: none; }
+.nav-dropdown a:hover { color: var(--white); background: rgba(255,255,255,0.07); }
+
+.nav-cta {
+  margin-left: 0.75rem; padding: 0.55rem 1.25rem;
+  font-size: 11.5px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--white); border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 2px; transition: background 0.2s, border-color 0.2s; white-space: nowrap;
+}
+.nav-cta:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.8); }
+
+.nav-hamburger {
+  display: none; flex-direction: column; justify-content: center;
+  gap: 5px; width: 36px; height: 36px;
+  cursor: pointer; background: none; border: none; padding: 4px; flex-shrink: 0;
+}
+.nav-hamburger span {
+  display: block; height: 1.5px; background: var(--white);
+  transition: transform 0.3s var(--ease), opacity 0.3s; transform-origin: center;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+.nav-mobile {
+  display: none; position: fixed;
+  top: var(--nav-h); left: 0; right: 0; bottom: 0;
+  background: var(--crimson-deeper); overflow-y: auto; z-index: 999;
+  padding: 1.5rem 2rem 3rem;
+  transform: translateX(100%); transition: transform 0.35s var(--ease);
+}
+.nav-mobile.open { transform: none; }
+.mobile-section-label {
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(217,200,204,0.5); font-weight: 500;
+  padding: 1.25rem 0 0.4rem;
+  border-top: 1px solid rgba(255,255,255,0.08); margin-top: 0.75rem;
+}
+.mobile-section-label:first-child { border-top: none; margin-top: 0; }
+.nav-mobile a {
+  display: block; padding: 0.65rem 0; font-size: 15px;
+  color: rgba(255,255,255,0.82);
+  border-bottom: 1px solid rgba(255,255,255,0.05); transition: color 0.2s;
+}
+.nav-mobile a:hover { color: var(--white); }
+.nav-mobile .nav-cta { display: inline-block; margin-top: 1.5rem; }
+
+/* ═══════════════════════════════════════════════
+   PAGE HERO
+═══════════════════════════════════════════════ */
+.page-hero {
+  background: var(--crimson);
+  padding: calc(var(--nav-h) + 3.5rem) 0 3.5rem;
+  position: relative; overflow: hidden;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+
+.page-hero-inner {
+  position: relative;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+
+.breadcrumb {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 11px; font-weight: 400;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(217,200,204,0.55);
+}
+.breadcrumb a { transition: color 0.2s; }
+.breadcrumb a:hover { color: rgba(217,200,204,0.9); }
+.breadcrumb-sep { opacity: 0.4; }
+
+.page-hero-label {
+  font-size: 10.5px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--blush); opacity: 0.7; margin-bottom: 0.25rem;
+}
+
+.page-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 600; color: var(--white);
+  line-height: 1.1; letter-spacing: -0.01em;
+}
+
+.page-hero-meta {
+  display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.5rem;
+}
+.meta-tag {
+  display: flex; align-items: center; gap: 0.45rem;
+  font-size: 12.5px; color: rgba(217,200,204,0.7);
+}
+.meta-tag svg { width: 13px; height: 13px; opacity: 0.6; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════════
+   MAIN LAYOUT
+═══════════════════════════════════════════════ */
+.page-body {
+  padding: 5rem 0 6rem;
+}
+
+.page-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 5rem;
+  align-items: start;
+}
+
+/* ═══════════════════════════════════════════════
+   CONTENT COLUMN
+═══════════════════════════════════════════════ */
+.content-block { margin-bottom: 3rem; }
+.content-block:last-child { margin-bottom: 0; }
+
+.content-block h2 {
+  font-family: var(--serif);
+  font-size: 1.55rem; font-weight: 600;
+  color: var(--crimson); margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.content-block p {
+  font-size: 15px; color: var(--text-muted);
+  line-height: 1.85; margin-bottom: 0.85rem;
+}
+.content-block p:last-child { margin-bottom: 0; }
+
+/* Checklist */
+.checklist { display: flex; flex-direction: column; gap: 0.7rem; margin-top: 0.25rem; }
+.checklist-item {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  font-size: 14.5px; color: var(--text-muted); line-height: 1.65;
+}
+.checklist-icon {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--blush-light); border: 1px solid var(--blush-mid);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+.checklist-icon svg { width: 10px; height: 10px; stroke: var(--crimson); stroke-width: 2; fill: none; }
+
+/* Offer grid */
+.offer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+.offer-card {
+  background: var(--blush-light);
+  border: 1px solid var(--blush-mid);
+  border-radius: 2px;
+  padding: 1rem 1.1rem;
+  display: flex; align-items: flex-start; gap: 0.65rem;
+}
+.offer-card-icon {
+  font-size: 16px; flex-shrink: 0; margin-top: 1px;
+  line-height: 1;
+}
+.offer-card-text {
+  font-size: 13.5px; color: var(--text-muted); line-height: 1.5;
+}
+.offer-card-text strong {
+  display: block; font-size: 13px; font-weight: 500;
+  color: var(--crimson); margin-bottom: 0.1rem;
+}
+
+/* Cover letter steps */
+.steps { display: flex; flex-direction: column; gap: 0; }
+.step {
+  display: flex; gap: 1.25rem; align-items: flex-start;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+  font-family: var(--serif);
+  font-size: 1.8rem; font-weight: 400;
+  color: var(--blush); line-height: 1;
+  min-width: 28px; flex-shrink: 0;
+  margin-top: -3px;
+}
+.step-text {
+  font-size: 14.5px; color: var(--text-muted); line-height: 1.65;
+  padding-top: 0.15rem;
+}
+
+/* Sign-off */
+.signoff {
+  margin-top: 2rem;
+  padding: 1.5rem 1.75rem;
+  background: var(--crimson);
+  border-radius: 2px;
+}
+.signoff p {
+  font-size: 15px; color: rgba(217,200,204,0.85); line-height: 1.75;
+  font-family: var(--serif); font-style: italic; margin-bottom: 0 !important;
+}
+.signoff-name {
+  margin-top: 0.75rem;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(217,200,204,0.5);
+}
+
+/* ═══════════════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════════════ */
+.sidebar { position: sticky; top: calc(var(--nav-h) + 2rem); }
+
+.sidebar-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+
+.sidebar-card-header {
+  background: var(--crimson);
+  padding: 1.1rem 1.4rem;
+}
+.sidebar-card-header h3 {
+  font-family: var(--serif);
+  font-size: 1.1rem; font-weight: 600;
+  color: var(--white);
+}
+
+.sidebar-card-body { padding: 1.25rem 1.4rem; }
+
+.sidebar-detail {
+  display: flex; align-items: flex-start; gap: 0.7rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.sidebar-detail:last-child { border-bottom: none; padding-bottom: 0; }
+.sidebar-detail-label {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-light); min-width: 72px; padding-top: 2px;
+}
+.sidebar-detail-value { color: var(--text-muted); line-height: 1.45; }
+
+.sidebar-apply {
+  background: var(--crimson);
+  padding: 1.5rem 1.4rem;
+  text-align: center;
+}
+.sidebar-apply p {
+  font-size: 12.5px; color: rgba(217,200,204,0.75);
+  margin-bottom: 1rem; line-height: 1.55;
+}
+.sidebar-apply .btn {
+  width: 100%; justify-content: center;
+  background: var(--white); color: var(--crimson);
+}
+.sidebar-apply .btn:hover { background: var(--blush-light); }
+.sidebar-apply .btn-email {
+  margin-top: 0.6rem;
+  background: transparent; color: rgba(217,200,204,0.65);
+  border: 1px solid rgba(255,255,255,0.2); font-size: 11px;
+  width: 100%; justify-content: center;
+}
+.sidebar-apply .btn-email:hover { background: rgba(255,255,255,0.07); color: var(--white); }
+
+.sidebar-more { padding: 1.25rem 1.4rem; }
+.sidebar-more h4 {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-light); margin-bottom: 0.85rem;
+}
+.sidebar-position-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px; color: var(--text-muted);
+  transition: color 0.2s;
+}
+.sidebar-position-link:last-child { border-bottom: none; }
+.sidebar-position-link:hover { color: var(--crimson); }
+.sidebar-position-link span { line-height: 1.35; }
+.sidebar-position-link .arrow { flex-shrink: 0; opacity: 0.4; transition: opacity 0.2s, transform 0.2s; }
+.sidebar-position-link:hover .arrow { opacity: 0.8; transform: translateX(3px); }
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+#site-footer { background: #1a0005; }
+
+.footer-top {
+  padding: 3rem 0;
+  display: grid; grid-template-columns: auto 1fr auto;
+  gap: 2rem; align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer-logo { display: flex; align-items: center; }
+
+.footer-nav {
+  display: flex; justify-content: center;
+  gap: 2rem; flex-wrap: wrap;
+}
+.footer-nav a {
+  font-size: 12px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: rgba(217,200,204,0.45);
+  transition: color 0.2s;
+}
+.footer-nav a:hover { color: rgba(217,200,204,0.9); }
+
+.footer-social { display: flex; align-items: center; gap: 1rem; }
+.footer-social a {
+  display: flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px;
+  border: 1px solid rgba(255,255,255,0.12); border-radius: 2px;
+  color: rgba(217,200,204,0.5); transition: border-color 0.2s, color 0.2s;
+}
+.footer-social a:hover { border-color: rgba(217,200,204,0.5); color: rgba(217,200,204,0.9); }
+.footer-social svg { width: 16px; height: 16px; fill: currentColor; }
+
+.footer-bottom { padding: 1.25rem 0; }
+.footer-bottom-inner {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+}
+.footer-copy { font-size: 12px; color: rgba(217,200,204,0.35); letter-spacing: 0.03em; }
+.footer-legal { display: flex; gap: 1.5rem; }
+.footer-legal a { font-size: 12px; color: rgba(217,200,204,0.35); transition: color 0.2s; }
+.footer-legal a:hover { color: rgba(217,200,204,0.8); }
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media (max-width: 860px) {
+  .page-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .sidebar { position: static; }
+  .offer-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; text-align: center; }
+  .footer-nav { justify-content: center; }
+  .footer-social { justify-content: center; }
+}
+@media (max-width: 600px) {
+  .nav-desktop { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-mobile { display: block; }
+  .footer-bottom-inner { flex-direction: column; text-align: center; }
+}
+
+
+/* ── Case study page ─────────────────────────── */
+.cs-hero-kicker { font-size: 10px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blush); opacity: 0.6; display: block; margin-bottom: 0.5rem; }
+.cs-hero-title  { font-family: var(--serif); font-size: clamp(2rem,5vw,3.6rem); font-weight: 600; color: var(--white); line-height: 1.08; letter-spacing: -0.01em; }
+.cs-hero-sub    { font-size: 15px; color: var(--blush); opacity: 0.85; max-width: 520px; line-height: 1.75; margin-top: 1rem; }
+.cs-hero-pills  { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.75rem; }
+.cs-hero-pill   { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 20px; padding: 0.3rem 0.85rem; }
+
+/* Layout */
+.cs-body        { padding: 5.5rem 0 6rem; }
+.cs-layout      { display: grid; grid-template-columns: 1fr 300px; gap: 5rem; align-items: start; }
+
+/* Visual banner */
+.cs-visual-banner {
+  width: 100%; border-radius: 3px; overflow: hidden;
+  background: var(--crimson); margin-bottom: 3rem;
+  position: relative; height: 280px;
+  display: flex; align-items: center; justify-content: center;
+}
+.cs-visual-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(-45deg,transparent,transparent 20px,rgba(255,255,255,0.025) 20px,rgba(255,255,255,0.025) 21px);
+}
+.cs-banner-svg  { position: relative; z-index: 1; width: 100%; height: 100%; }
+
+/* Stat strip */
+.cs-stats-strip {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1.5px; background: var(--border);
+  border: 1.5px solid var(--border); border-radius: 3px;
+  overflow: hidden; margin-bottom: 3rem;
+}
+.cs-stat-box    { background: var(--white); padding: 1.5rem 1.25rem; text-align: center; }
+.cs-stat-num    { font-family: var(--serif); font-size: 2.2rem; font-weight: 600; color: var(--crimson); line-height: 1; }
+.cs-stat-label  { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-top: 0.35rem; }
+
+/* Section blocks */
+.cs-block       { margin-bottom: 3rem; }
+.cs-block:last-of-type { margin-bottom: 0; }
+.cs-block h2    { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: var(--crimson); margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
+.cs-block p     { font-size: 15px; color: var(--text-muted); line-height: 1.85; margin-bottom: 0.85rem; }
+.cs-block p:last-child { margin-bottom: 0; }
+
+/* Situation cards */
+.cs-cards       { display: flex; flex-direction: column; gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); border-radius: 3px; overflow: hidden; margin-top: 1rem; }
+.cs-card        { background: var(--white); padding: 1.4rem 1.5rem; display: flex; gap: 1rem; transition: background 0.25s; }
+.cs-card:hover  { background: var(--blush-light); }
+.cs-card-num    { font-family: var(--serif); font-size: 1.6rem; font-weight: 400; color: var(--blush); flex-shrink: 0; line-height: 1.1; min-width: 24px; margin-top: -1px; }
+.cs-card-text   { font-size: 14.5px; color: var(--text-muted); line-height: 1.7; }
+.cs-card-text strong { display: block; font-size: 13px; font-weight: 500; color: var(--crimson); margin-bottom: 0.2rem; }
+
+/* Contribution items with crimson left bar */
+.cs-contribution { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1rem; }
+.cs-contrib-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1.25rem 1.25rem 1.25rem 1.5rem; background: var(--blush-light); border: 1px solid var(--blush-mid); border-left: 3px solid var(--crimson); border-radius: 0 3px 3px 0; }
+.cs-contrib-icon { width: 36px; height: 36px; background: var(--white); border: 1px solid var(--blush-mid); border-radius: 3px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.cs-contrib-icon svg { width: 18px; height: 18px; stroke: var(--crimson); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.cs-contrib-body strong { display: block; font-size: 13px; font-weight: 500; color: var(--crimson); margin-bottom: 0.25rem; letter-spacing: 0.02em; }
+.cs-contrib-body p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin: 0; }
+
+/* Challenge / solution grid */
+.cs-challenge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); border-radius: 3px; overflow: hidden; margin-top: 1rem; }
+.cs-challenge-col  { background: var(--white); padding: 1.75rem 1.5rem; }
+.cs-challenge-label { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--crimson); opacity: 0.7; margin-bottom: 1rem; display: block; }
+.cs-challenge-col ul { display: flex; flex-direction: column; gap: 0.65rem; }
+.cs-challenge-col li { display: flex; gap: 0.6rem; font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
+.cs-challenge-dot  { width: 5px; height: 5px; border-radius: 50%; background: var(--crimson); opacity: 0.4; flex-shrink: 0; margin-top: 7px; }
+
+/* Process flow */
+.cs-process     { display: flex; align-items: flex-start; gap: 0; margin-top: 1rem; overflow-x: auto; padding-bottom: 0.5rem; }
+.cs-process-step { flex: 1; min-width: 120px; text-align: center; position: relative; }
+.cs-process-step::after { content: ''; position: absolute; top: 18px; left: 60%; right: -40%; height: 1.5px; background: var(--blush-mid); z-index: 0; }
+.cs-process-step:last-child::after { display: none; }
+.cs-process-dot { width: 36px; height: 36px; border-radius: 50%; background: var(--crimson); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.65rem; position: relative; z-index: 1; }
+.cs-process-dot svg { width: 16px; height: 16px; stroke: white; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.cs-process-label { font-size: 11.5px; font-weight: 500; color: var(--crimson); line-height: 1.35; padding: 0 0.25rem; }
+
+/* Quote pull */
+.cs-pullquote   { background: var(--crimson); border-radius: 3px; padding: 2rem 2.25rem; margin: 2.5rem 0; text-align: center; }
+.cs-pullquote p { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 400; color: var(--white); line-height: 1.6; }
+.cs-pullquote-attr { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(217,200,204,0.55); margin-top: 0.85rem; display: block; }
+
+/* Sidebar */
+.sidebar        { position: sticky; top: calc(var(--nav-h) + 2rem); }
+.sidebar-card   { background: var(--white); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; margin-bottom: 1.25rem; }
+.sidebar-card-header   { background: var(--crimson); padding: 1.1rem 1.4rem; }
+.sidebar-card-header h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; color: var(--white); }
+.sidebar-card-body     { padding: 1.25rem 1.4rem; }
+.sidebar-detail        { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.65rem 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.sidebar-detail:last-child { border-bottom: none; padding-bottom: 0; }
+.sidebar-detail-label  { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-light); min-width: 72px; padding-top: 2px; }
+.sidebar-detail-value  { color: var(--text-muted); line-height: 1.45; }
+.sidebar-cta           { padding: 1.4rem; background: var(--crimson); text-align: center; }
+.sidebar-cta p         { font-size: 12.5px; color: rgba(217,200,204,0.75); margin-bottom: 1rem; line-height: 1.55; }
+.sidebar-cta .btn-w    { width: 100%; justify-content: center; background: var(--white); color: var(--crimson); }
+.sidebar-cta .btn-w:hover { background: var(--blush-light); }
+.sidebar-more          { padding: 1.25rem 1.4rem; }
+.sidebar-more h4       { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.85rem; }
+.sidebar-cs-link       { display: flex; align-items: center; justify-content: space-between; padding: 0.7rem 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); transition: color 0.2s; }
+.sidebar-cs-link:last-child { border-bottom: none; }
+.sidebar-cs-link:hover { color: var(--crimson); }
+.sidebar-cs-link .arrow { flex-shrink: 0; opacity: 0.4; transition: opacity 0.2s, transform 0.2s; }
+.sidebar-cs-link:hover .arrow { opacity: 0.8; transform: translateX(3px); }
+.sidebar-tag           { display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; background: var(--blush-light); border: 1px solid var(--blush-mid); color: var(--crimson); border-radius: 2px; padding: 0.2rem 0.5rem; margin-bottom: 0.25rem; }
+
+/* meta tags in hero */
+.page-hero-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem; }
+.meta-tag       { display: flex; align-items: center; gap: 0.45rem; font-size: 12.5px; color: rgba(217,200,204,0.7); }
+.meta-tag svg   { width: 13px; height: 13px; opacity: 0.6; flex-shrink: 0; }
+
+@media (max-width: 860px) {
+  .cs-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .sidebar { position: static; }
+  .cs-challenge-grid { grid-template-columns: 1fr; }
+  .cs-stats-strip { grid-template-columns: 1fr; }
+  .cs-process { flex-wrap: wrap; gap: 1.5rem; }
+  .cs-process-step::after { display: none; }
+}
+
+
+/* ── Case study page ─────────────────────────── */
+.cs-hero-kicker { font-size: 10px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blush); opacity: 0.6; display: block; margin-bottom: 0.5rem; }
+.cs-hero-title  { font-family: var(--serif); font-size: clamp(2rem,5vw,3.6rem); font-weight: 600; color: var(--white); line-height: 1.08; letter-spacing: -0.01em; }
+.cs-hero-sub    { font-size: 15px; color: var(--blush); opacity: 0.85; max-width: 520px; line-height: 1.75; margin-top: 1rem; }
+.cs-hero-pills  { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.75rem; }
+.cs-hero-pill   { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 20px; padding: 0.3rem 0.85rem; }
+
+/* Layout */
+.cs-body        { padding: 5.5rem 0 6rem; }
+.cs-layout      { display: grid; grid-template-columns: 1fr 300px; gap: 5rem; align-items: start; }
+
+/* Visual banner */
+.cs-visual-banner {
+  width: 100%; border-radius: 3px; overflow: hidden;
+  background: var(--crimson); margin-bottom: 3rem;
+  position: relative; height: 280px;
+  display: flex; align-items: center; justify-content: center;
+}
+.cs-visual-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(-45deg,transparent,transparent 20px,rgba(255,255,255,0.025) 20px,rgba(255,255,255,0.025) 21px);
+}
+.cs-banner-svg  { position: relative; z-index: 1; width: 100%; height: 100%; }
+
+/* Stat strip */
+.cs-stats-strip {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1.5px; background: var(--border);
+  border: 1.5px solid var(--border); border-radius: 3px;
+  overflow: hidden; margin-bottom: 3rem;
+}
+.cs-stat-box    { background: var(--white); padding: 1.5rem 1.25rem; text-align: center; }
+.cs-stat-num    { font-family: var(--serif); font-size: 2.2rem; font-weight: 600; color: var(--crimson); line-height: 1; }
+.cs-stat-label  { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-top: 0.35rem; }
+
+/* Section blocks */
+.cs-block       { margin-bottom: 3rem; }
+.cs-block:last-of-type { margin-bottom: 0; }
+.cs-block h2    { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: var(--crimson); margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
+.cs-block p     { font-size: 15px; color: var(--text-muted); line-height: 1.85; margin-bottom: 0.85rem; }
+.cs-block p:last-child { margin-bottom: 0; }
+
+/* Situation cards */
+.cs-cards       { display: flex; flex-direction: column; gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); border-radius: 3px; overflow: hidden; margin-top: 1rem; }
+.cs-card        { background: var(--white); padding: 1.4rem 1.5rem; display: flex; gap: 1rem; transition: background 0.25s; }
+.cs-card:hover  { background: var(--blush-light); }
+.cs-card-num    { font-family: var(--serif); font-size: 1.6rem; font-weight: 400; color: var(--blush); flex-shrink: 0; line-height: 1.1; min-width: 24px; margin-top: -1px; }
+.cs-card-text   { font-size: 14.5px; color: var(--text-muted); line-height: 1.7; }
+.cs-card-text strong { display: block; font-size: 13px; font-weight: 500; color: var(--crimson); margin-bottom: 0.2rem; }
+
+/* Contribution items with crimson left bar */
+.cs-contribution { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1rem; }
+.cs-contrib-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1.25rem 1.25rem 1.25rem 1.5rem; background: var(--blush-light); border: 1px solid var(--blush-mid); border-left: 3px solid var(--crimson); border-radius: 0 3px 3px 0; }
+.cs-contrib-icon { width: 36px; height: 36px; background: var(--white); border: 1px solid var(--blush-mid); border-radius: 3px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.cs-contrib-icon svg { width: 18px; height: 18px; stroke: var(--crimson); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.cs-contrib-body strong { display: block; font-size: 13px; font-weight: 500; color: var(--crimson); margin-bottom: 0.25rem; letter-spacing: 0.02em; }
+.cs-contrib-body p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin: 0; }
+
+/* Challenge / solution grid */
+.cs-challenge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); border-radius: 3px; overflow: hidden; margin-top: 1rem; }
+.cs-challenge-col  { background: var(--white); padding: 1.75rem 1.5rem; }
+.cs-challenge-label { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--crimson); opacity: 0.7; margin-bottom: 1rem; display: block; }
+.cs-challenge-col ul { display: flex; flex-direction: column; gap: 0.65rem; }
+.cs-challenge-col li { display: flex; gap: 0.6rem; font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
+.cs-challenge-dot  { width: 5px; height: 5px; border-radius: 50%; background: var(--crimson); opacity: 0.4; flex-shrink: 0; margin-top: 7px; }
+
+/* Process flow */
+.cs-process     { display: flex; align-items: flex-start; gap: 0; margin-top: 1rem; overflow-x: auto; padding-bottom: 0.5rem; }
+.cs-process-step { flex: 1; min-width: 120px; text-align: center; position: relative; }
+.cs-process-step::after { content: ''; position: absolute; top: 18px; left: 60%; right: -40%; height: 1.5px; background: var(--blush-mid); z-index: 0; }
+.cs-process-step:last-child::after { display: none; }
+.cs-process-dot { width: 36px; height: 36px; border-radius: 50%; background: var(--crimson); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.65rem; position: relative; z-index: 1; }
+.cs-process-dot svg { width: 16px; height: 16px; stroke: white; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.cs-process-label { font-size: 11.5px; font-weight: 500; color: var(--crimson); line-height: 1.35; padding: 0 0.25rem; }
+
+/* Quote pull */
+.cs-pullquote   { background: var(--crimson); border-radius: 3px; padding: 2rem 2.25rem; margin: 2.5rem 0; text-align: center; }
+.cs-pullquote p { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 400; color: var(--white); line-height: 1.6; }
+.cs-pullquote-attr { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(217,200,204,0.55); margin-top: 0.85rem; display: block; }
+
+/* Sidebar */
+.sidebar        { position: sticky; top: calc(var(--nav-h) + 2rem); }
+.sidebar-card   { background: var(--white); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; margin-bottom: 1.25rem; }
+.sidebar-card-header   { background: var(--crimson); padding: 1.1rem 1.4rem; }
+.sidebar-card-header h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; color: var(--white); }
+.sidebar-card-body     { padding: 1.25rem 1.4rem; }
+.sidebar-detail        { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.65rem 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.sidebar-detail:last-child { border-bottom: none; padding-bottom: 0; }
+.sidebar-detail-label  { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-light); min-width: 72px; padding-top: 2px; }
+.sidebar-detail-value  { color: var(--text-muted); line-height: 1.45; }
+.sidebar-cta           { padding: 1.4rem; background: var(--crimson); text-align: center; }
+.sidebar-cta p         { font-size: 12.5px; color: rgba(217,200,204,0.75); margin-bottom: 1rem; line-height: 1.55; }
+.sidebar-cta .btn-w    { width: 100%; justify-content: center; background: var(--white); color: var(--crimson); }
+.sidebar-cta .btn-w:hover { background: var(--blush-light); }
+.sidebar-more          { padding: 1.25rem 1.4rem; }
+.sidebar-more h4       { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.85rem; }
+.sidebar-cs-link       { display: flex; align-items: center; justify-content: space-between; padding: 0.7rem 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); transition: color 0.2s; }
+.sidebar-cs-link:last-child { border-bottom: none; }
+.sidebar-cs-link:hover { color: var(--crimson); }
+.sidebar-cs-link .arrow { flex-shrink: 0; opacity: 0.4; transition: opacity 0.2s, transform 0.2s; }
+.sidebar-cs-link:hover .arrow { opacity: 0.8; transform: translateX(3px); }
+.sidebar-tag           { display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; background: var(--blush-light); border: 1px solid var(--blush-mid); color: var(--crimson); border-radius: 2px; padding: 0.2rem 0.5rem; margin-bottom: 0.25rem; }
+
+/* meta tags in hero */
+.page-hero-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem; }
+.meta-tag       { display: flex; align-items: center; gap: 0.45rem; font-size: 12.5px; color: rgba(217,200,204,0.7); }
+.meta-tag svg   { width: 13px; height: 13px; opacity: 0.6; flex-shrink: 0; }
+
+@media (max-width: 860px) {
+  .cs-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .sidebar { position: static; }
+  .cs-challenge-grid { grid-template-columns: 1fr; }
+  .cs-stats-strip { grid-template-columns: 1fr; }
+  .cs-process { flex-wrap: wrap; gap: 1.5rem; }
+  .cs-process-step::after { display: none; }
+}
+
+
+</style>
+</head>
+<body>
+<header id="site-header" role="banner">
+  <nav class="nav-inner" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="Crescenti Pohl Advisory – home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 52" height="34" style="display:block;" aria-hidden="true" focusable="false">
+        <polygon points="20,6 0,46 40,46"   fill="#ffffff"/>
+        <polygon points="38,20 25,46 51,46" fill="rgba(255,255,255,0.42)"/>
+        <text x="68" y="34" font-family="Cormorant Garamond, Georgia, serif" font-size="22" font-weight="500" letter-spacing="0.015em" fill="#ffffff">Crescenti Pohl Advisory</text>
+      </svg>
+    </a>
+
+    <ul class="nav-desktop" role="list">
+      <li class="nav-item">
+        <span class="nav-link" tabindex="0" aria-haspopup="true">
+          Clients
+          <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <div class="nav-dropdown" role="menu">
+          <a href="index.html#expertise" role="menuitem">Energy Transition</a>
+          <a href="index.html#expertise" role="menuitem">Business Transformation &amp; Digitalization</a>
+          <a href="index.html#expertise" role="menuitem">Market Insight &amp; Strategy</a>
+          <a href="index.html#expertise" role="menuitem">Data &amp; Artificial Intelligence</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link active" tabindex="0" aria-haspopup="true">
+          Careers
+          <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <div class="nav-dropdown" role="menu">
+          <a href="index.html#careers-teaser" role="menuitem">Why Work for Us</a>
+          <a href="index.html#careers-teaser" role="menuitem">Career Path</a>
+          <a href="index.html#careers-teaser" role="menuitem">Professional Development</a>
+          <a href="index.html#openpositions" role="menuitem">Open Positions</a>
+          <a href="speculative.html" role="menuitem">Speculative Application</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link" tabindex="0" aria-haspopup="true">
+          About us
+          <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <div class="nav-dropdown" role="menu">
+          <a href="index.html#mission" role="menuitem">Mission &amp; Values</a>
+          <a href="index.html#team" role="menuitem">Our Team</a>
+          <a href="index.html#offices" role="menuitem">Our Offices</a>
+        </div>
+      </li>
+      <li>
+        <a class="nav-cta" href="mailto:info@crescentipohl.com?subject=Please get in touch with me!">Contact us</a>
+      </li>
+    </ul>
+
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <nav class="nav-mobile" id="mobile-menu" aria-label="Mobile navigation">
+    <div class="mobile-section-label">Clients</div>
+    <a href="index.html#expertise">Energy Transition</a>
+    <a href="index.html#expertise">Business Transformation &amp; Digitalization</a>
+    <a href="index.html#expertise">Market Insight &amp; Strategy</a>
+    <a href="index.html#expertise">Data &amp; Artificial Intelligence</a>
+    <div class="mobile-section-label">Careers</div>
+    <a href="index.html#careers-teaser">Why Work for Us</a>
+    <a href="index.html#careers-teaser">Career Path</a>
+    <a href="index.html#openpositions">Open Positions</a>
+    <a href="speculative.html">Speculative Application</a>
+    <div class="mobile-section-label">About Us</div>
+    <a href="index.html#mission">Mission &amp; Values</a>
+    <a href="index.html#team">Our Team</a>
+    <a href="index.html#offices">Our Offices</a>
+    <div class="mobile-section-label">Contact</div>
+    <a class="nav-cta" href="mailto:info@crescentipohl.com?subject=Please get in touch with me!">Contact us →</a>
+  </nav>
+</header>
+<main>
+<section class="page-hero" aria-labelledby="cs-title">
+  <div class="container page-hero-inner">
+    <nav class="breadcrumb reveal" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep" aria-hidden="true">›</span><a href="index.html#expertise">Clients</a><span class="breadcrumb-sep" aria-hidden="true">›</span><a href="index.html#expertise">Business Transformation</a><span class="breadcrumb-sep" aria-hidden="true">›</span><span aria-current="page">Case Study</span></nav>
+    <span class="cs-hero-kicker reveal">Case study</span>
+    <h1 id="cs-title" class="cs-hero-title reveal reveal-delay-1">Asset Optimization<br>Platform</h1>
+    <p class="cs-hero-sub reveal reveal-delay-2">Replacing legacy applications with a modular, cloud-based solution for power asset modelling and optimization — fully integrated into both current and target landscapes.</p>
+    <div class="cs-hero-pills reveal reveal-delay-2"><span class="cs-hero-pill">Business Transformation</span><span class="cs-hero-pill">Cloud Architecture</span><span class="cs-hero-pill">Asset Modelling</span><span class="cs-hero-pill">Scenario Optimization</span></div>
+  </div>
+</section>
+<div class="cs-body">
+  <div class="container">
+    <div class="cs-layout">
+      <div>
+        <div class="cs-visual-banner reveal" aria-hidden="true"><svg viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+  <defs>
+    <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3a000c"/><stop offset="100%" stop-color="#6b0018"/></linearGradient>
+    <linearGradient id="panel2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,0.12)"/><stop offset="100%" stop-color="rgba(255,255,255,0.03)"/></linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(217,200,204,0.25)"/><stop offset="100%" stop-color="rgba(79,0,16,0.6)"/></linearGradient>
+  </defs>
+  <rect width="900" height="280" fill="url(#sky2)"/>
+  <rect x="0" y="210" width="900" height="70" fill="rgba(0,0,0,0.25)"/>
+  <path d="M0 210 Q450 200 900 210 L900 280 L0 280Z" fill="rgba(0,0,0,0.15)"/>
+  <!-- Grid backdrop -->
+  <g stroke="rgba(255,255,255,0.04)" stroke-width="1">
+    <line x1="0" y1="60"  x2="900" y2="60"/>
+    <line x1="0" y1="120" x2="900" y2="120"/>
+    <line x1="0" y1="180" x2="900" y2="180"/>
+    <line x1="150" y1="0" x2="150" y2="280"/>
+    <line x1="300" y1="0" x2="300" y2="280"/>
+    <line x1="450" y1="0" x2="450" y2="280"/>
+    <line x1="600" y1="0" x2="600" y2="280"/>
+    <line x1="750" y1="0" x2="750" y2="280"/>
+  </g>
+  <!-- Power plant silhouette left -->
+  <g fill="rgba(255,255,255,0.08)">
+    <rect x="40" y="150" width="60" height="60"/>
+    <rect x="55" y="120" width="30" height="30"/>
+    <rect x="90" y="160" width="20" height="50"/>
+    <rect x="20" y="170" width="25" height="40"/>
+    <!-- Cooling towers -->
+    <ellipse cx="160" cy="150" rx="18" ry="8"/>
+    <path d="M142 150 Q148 100 160 95 Q172 100 178 150Z" fill="rgba(255,255,255,0.07)"/>
+    <ellipse cx="205" cy="158" rx="14" ry="6"/>
+    <path d="M191 158 Q196 115 205 110 Q214 115 219 158Z" fill="rgba(255,255,255,0.06)"/>
+  </g>
+  <!-- Hydro dam right -->
+  <g fill="rgba(255,255,255,0.07)">
+    <rect x="700" y="130" width="120" height="80"/>
+    <path d="M690 210 Q720 180 760 175 Q800 170 830 185 L830 210Z" fill="rgba(255,255,255,0.05)"/>
+    <rect x="820" y="145" width="15" height="65"/>
+    <rect x="838" y="160" width="10" height="50"/>
+  </g>
+  <!-- Water ripples -->
+  <g stroke="rgba(255,255,255,0.12)" stroke-width="1" fill="none">
+    <ellipse cx="760" cy="218" rx="80" ry="8"/>
+    <ellipse cx="760" cy="225" rx="55" ry="5"/>
+  </g>
+  <!-- Optimisation chart overlay — centre -->
+  <g transform="translate(310,50)">
+    <rect width="280" height="160" rx="4" fill="rgba(0,0,0,0.35)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+    <text x="14" y="22" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(217,200,204,0.6)" letter-spacing="1.5">ASSET OPTIMISATION · DISPATCH FORECAST</text>
+    <!-- Chart axes -->
+    <line x1="30" y1="130" x2="260" y2="130" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <line x1="30" y1="130" x2="30"  y2="35"  stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <!-- Price curve — crimson -->
+    <polyline points="30,110 60,95 90,105 120,75 150,80 180,60 210,70 240,50 260,55"
+      fill="none" stroke="rgba(217,200,204,0.7)" stroke-width="2" stroke-linejoin="round"/>
+    <!-- Dispatch bars -->
+    <rect x="38"  y="100" width="14" height="30" fill="rgba(255,255,255,0.15)" rx="1"/>
+    <rect x="68"  y="85"  width="14" height="45" fill="rgba(255,255,255,0.18)" rx="1"/>
+    <rect x="98"  y="92"  width="14" height="38" fill="rgba(255,255,255,0.15)" rx="1"/>
+    <rect x="128" y="68"  width="14" height="62" fill="rgba(255,255,255,0.22)" rx="1"/>
+    <rect x="158" y="72"  width="14" height="58" fill="rgba(255,255,255,0.2)"  rx="1"/>
+    <rect x="188" y="55"  width="14" height="75" fill="rgba(255,255,255,0.25)" rx="1"/>
+    <rect x="218" y="62"  width="14" height="68" fill="rgba(255,255,255,0.22)" rx="1"/>
+    <rect x="248" y="45"  width="12" height="85" fill="rgba(255,255,255,0.28)" rx="1"/>
+    <!-- X labels -->
+    <text x="30"  y="142" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,255,255,0.35)" text-anchor="middle">M1</text>
+    <text x="75"  y="142" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,255,255,0.35)" text-anchor="middle">M2</text>
+    <text x="120" y="142" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,255,255,0.35)" text-anchor="middle">M3</text>
+    <text x="165" y="142" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,255,255,0.35)" text-anchor="middle">M4</text>
+    <text x="210" y="142" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,255,255,0.35)" text-anchor="middle">M5</text>
+    <text x="255" y="142" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,255,255,0.35)" text-anchor="middle">M6</text>
+  </g>
+  <!-- Stars -->
+  <circle cx="70"  cy="25"  r="1"   fill="rgba(255,255,255,0.45)"/>
+  <circle cx="260" cy="35"  r="0.8" fill="rgba(255,255,255,0.4)"/>
+  <circle cx="500" cy="20"  r="1"   fill="rgba(255,255,255,0.5)"/>
+  <circle cx="670" cy="40"  r="0.9" fill="rgba(255,255,255,0.4)"/>
+  <circle cx="860" cy="28"  r="1"   fill="rgba(255,255,255,0.45)"/>
+  <!-- Title -->
+  <text x="450" y="240" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="24" font-weight="600" fill="rgba(255,255,255,0.88)" letter-spacing="0.5">Asset Optimization Platform</text>
+  <text x="450" y="260" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="rgba(217,200,204,0.55)" letter-spacing="2">BUSINESS TRANSFORMATION · CASE STUDY</text>
+</svg></div>
+        <div class="cs-stats-strip reveal"><div class="cs-stat-box"><div class="cs-stat-num">2</div><div class="cs-stat-label">Optimization horizons</div></div><div class="cs-stat-box"><div class="cs-stat-num">Cloud</div><div class="cs-stat-label">Target architecture</div></div><div class="cs-stat-box"><div class="cs-stat-num">Zero</div><div class="cs-stat-label">Operational disruption</div></div></div>
+        <div class="cs-block reveal"><h2>Context</h2><p>Conventional and hydro generation portfolios represent stable, long-standing value streams for European utilities. Yet the systems built to optimize these assets — scheduling, dispatch, pricing — are often among the oldest in the IT landscape, predating cloud architecture and modern integration standards.</p><p>This utility faced a situation common across the industry: asset optimization running on monolithic legacy applications that could neither be extended to meet new analytical requirements nor realistically maintained in a stable operational state. The decision to replace was made; the challenge was doing so without disrupting the operating model that depended on it.</p></div>
+        <div class="cs-pullquote reveal"><p>"Legacy optimization systems had become a strategic constraint — unable to meet new analytical demands, yet too critical to take offline without a fully integrated replacement."</p><span class="cs-pullquote-attr">Crescenti Pohl Advisory · Project observation</span></div>
+        <div class="cs-block reveal">
+          <h2>Client situation</h2>
+          <div class="cs-challenge-grid">
+            <div class="cs-challenge-col"><span class="cs-challenge-label">Asset situation</span><ul role="list"><li><span class="cs-challenge-dot" aria-hidden="true"></span>Conventional and hydro generation assets providing a reliable and material value stream</li><li><span class="cs-challenge-dot" aria-hidden="true"></span>Asset optimization running on legacy applications that could not be extended with new functionality</li><li><span class="cs-challenge-dot" aria-hidden="true"></span>Existing systems increasingly difficult to maintain in stable operational condition</li></ul></div>
+            <div class="cs-challenge-col"><span class="cs-challenge-label">The core challenge</span><ul role="list"><li><span class="cs-challenge-dot" aria-hidden="true"></span>Need to replace business-critical optimization capability without operational disruption</li><li><span class="cs-challenge-dot" aria-hidden="true"></span>Required seamless integration with both existing legacy landscape and the strategic target architecture</li><li><span class="cs-challenge-dot" aria-hidden="true"></span>Analytical use cases — mid-term dispatch planning and long-term scenario modelling — each required different optimization approaches</li></ul></div>
+          </div>
+        </div>
+        <div class="cs-block reveal"><h2>Our approach</h2><div class="cs-process" role="list"><div class="cs-process-step" role="listitem"><div class="cs-process-dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div><div class="cs-process-label">Legacy landscape & requirements analysis</div></div><div class="cs-process-step" role="listitem"><div class="cs-process-dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z M2 17l10 5 10-5"/></svg></div><div class="cs-process-label">Modular solution architecture design</div></div><div class="cs-process-step" role="listitem"><div class="cs-process-dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4M20.618 5.984A11 11 0 1 1 8.336 2.21"/></svg></div><div class="cs-process-label">Asset characterisation & parametrisation</div></div><div class="cs-process-step" role="listitem"><div class="cs-process-dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="cs-process-label">Mid-term & long-term optimization delivery</div></div></div></div>
+        <div class="cs-block reveal"><h2>Our contribution</h2><div class="cs-contribution" role="list"><div class="cs-contrib-item" role="listitem"><div class="cs-contrib-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div class="cs-contrib-body"><strong>Modular, flexible cloud-based solution architecture</strong><p>Designed and delivered a cloud-based power asset modelling and optimization solution built on modular, extensible components — allowing capabilities to be added, replaced or scaled independently of each other.</p></div></div><div class="cs-contrib-item" role="listitem"><div class="cs-contrib-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9 M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><div class="cs-contrib-body"><strong>Full integration into legacy and target landscapes</strong><p>Ensured the new solution operated seamlessly within the existing operational processes and system interfaces, while simultaneously being architected to align with the client's strategic target IT landscape — avoiding a costly double migration.</p></div></div><div class="cs-contrib-item" role="listitem"><div class="cs-contrib-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20 M12 2l8 10-8 10-8-10 8-10z"/></svg></div><div class="cs-contrib-body"><strong>Mid-term optimization for analytical use cases</strong><p>Delivered a mid-term optimization module covering generation asset characterization and parametrisation, supporting analytical use cases such as hedging decisions, portfolio planning and regulatory reporting.</p></div></div><div class="cs-contrib-item" role="listitem"><div class="cs-contrib-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 00-2 2v4 M9 3h6M15 3h4a2 2 0 012 2v4 M21 15v4a2 2 0 01-2 2h-4 M15 21H9 M3 15v4a2 2 0 002 2h4"/></svg></div><div class="cs-contrib-body"><strong>Long-term optimization with advanced scenario capability</strong><p>Built a long-term optimization engine with highly advanced multi-scenario capability, enabling the client to model asset value across market, regulatory and technology scenarios at the strategic planning horizon.</p></div></div></div></div>
+        <div class="cs-block reveal"><h2>Outcome</h2><p>The client replaced a strategically critical but operationally constrained legacy system with a modern, cloud-based optimization platform — without disrupting day-to-day dispatch and portfolio management operations.</p><p>The modular architecture means individual components can be extended or replaced as the energy market evolves, addressing the root cause of the original constraint. Both mid-term analytical and long-term strategic planning capabilities are now supported natively, replacing manual workarounds and approximation models that had accumulated in the legacy environment.</p></div>
+      </div>
+      <aside class="sidebar" aria-label="Case study details">
+        <div class="sidebar-card reveal"><div class="sidebar-card-header"><h3>Case study details</h3></div><div class="sidebar-card-body"><div class="sidebar-detail"><span class="sidebar-detail-label">Practice</span><span class="sidebar-detail-value">Business Transformation & Digitalization</span></div><div class="sidebar-detail"><span class="sidebar-detail-label">Client</span><span class="sidebar-detail-value">European utility (name withheld)</span></div><div class="sidebar-detail"><span class="sidebar-detail-label">Scope</span><span class="sidebar-detail-value">Solution design, build, legacy integration</span></div><div class="sidebar-detail"><span class="sidebar-detail-label">Horizons</span><span class="sidebar-detail-value">Mid-term · Long-term</span></div><div class="sidebar-detail"><span class="sidebar-detail-label">Assets</span><span class="sidebar-detail-value">Conventional generation · Hydro</span></div></div></div>
+        <div class="sidebar-card reveal reveal-delay-1"><div class="sidebar-cta"><p>Interested in how we could modernise your asset optimization infrastructure?</p><a href="mailto:info@crescentipohl.com?subject=Enquiry: Asset optimization platform" class="btn btn-w">Get in touch</a></div></div>
+        <div class="sidebar-card reveal reveal-delay-2"><div class="sidebar-more"><h4>Other case studies</h4><a href="case-study-renewable-mandate.html" class="sidebar-cs-link"><div><span class="sidebar-tag">Energy Transition</span><br><span>Renewable commercial mandate</span></div><span class="arrow" aria-hidden="true">→</span></a><a href="case-study-hydro-investment.html" class="sidebar-cs-link"><div><span class="sidebar-tag">Market Strategy</span><br><span>Investment hydro pump storage</span></div><span class="arrow" aria-hidden="true">→</span></a><a href="case-study-data-platform.html" class="sidebar-cs-link"><div><span class="sidebar-tag">Data & AI</span><br><span>Strategic data platform</span></div><span class="arrow" aria-hidden="true">→</span></a></div></div>
+        <div class="sidebar-card reveal reveal-delay-2"><div class="sidebar-more"><h4>Related expertise</h4><a href="index.html#expertise" class="sidebar-cs-link"><span>Business Transformation & Digitalization</span><span class="arrow" aria-hidden="true">→</span></a><a href="index.html#expertise" class="sidebar-cs-link"><span>Data & Artificial Intelligence</span><span class="arrow" aria-hidden="true">→</span></a></div></div>
+      </aside>
+    </div>
+  </div>
+</div>
+</main>
+<footer id="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 52" height="26" style="display:block;" aria-hidden="true" focusable="false">
+          <polygon points="20,6 0,46 40,46"   fill="#ffffff"/>
+          <polygon points="38,20 25,46 51,46" fill="rgba(255,255,255,0.28)"/>
+          <text x="68" y="34" font-family="Cormorant Garamond, Georgia, serif" font-size="22" font-weight="500" letter-spacing="0.015em" fill="rgba(255,255,255,0.48)">Crescenti Pohl Advisory</text>
+        </svg>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html#expertise">Clients</a>
+        <a href="index.html#careers-teaser">Careers</a>
+        <a href="index.html#mission">About us</a>
+        <a href="index.html#offices">Offices</a>
+        <a href="mailto:info@crescentipohl.com?subject=Please get in touch with me!">Contact</a>
+      </nav>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/company/72534621" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p class="footer-copy">© 2025 Crescenti Pohl Advisory Ltd. All rights reserved.</p>
+        <nav class="footer-legal" aria-label="Legal links">
+          <a href="impressum.html">Impressum</a>
+          <a href="privacy.html">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+const header = document.getElementById('site-header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+function toggleMenu(open) {
+  hamburger.classList.toggle('open', open);
+  mobileMenu.classList.toggle('open', open);
+  hamburger.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+hamburger.addEventListener('click', () => toggleMenu(!hamburger.classList.contains('open')));
+mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => toggleMenu(false)));
+document.addEventListener('click', e => {
+  if (mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && !hamburger.contains(e.target)) toggleMenu(false);
+});
+
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+reveals.forEach(el => observer.observe(el));
+setTimeout(() => document.querySelectorAll('.page-hero .reveal').forEach(el => el.classList.add('visible')), 80);
+</script>
+</body>
+</html>
