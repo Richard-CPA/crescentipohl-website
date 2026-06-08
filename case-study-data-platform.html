@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Strategic Cloud Data Platform — Crescenti Pohl Advisory</title>
+<meta name="description" content="How Crescenti Pohl Advisory designed and delivered a strategic cloud-based data integration and analytics platform for a European energy company, replacing legacy on-premise systems with scalable, automated data capabilities."/>
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAfklEQVR42u3WwQmAMAyF4YzgZq7twQWc5lkQBIMmMU1bWwy5Ff6v9FSaaSq61AwA8AMqEGKQUB8CyDdaALgOO92WNRhgRudAqh/rB/AwQwBn/ZVhBdIEABCnLMDqduMbwG3daJD7+v0AQt1i1AJ87xMAqHXVqAJk1mWDuv9d7yYscd32so0rAAAAAElFTkSuQmCC" />
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+<style>
+
+
+/* ═══════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --crimson: #4F0010;
+  --crimson-dark: #3a000c;
+  --crimson-deeper: #260008;
+  --blush: #D9C8CC;
+  --blush-light: #f5eff0;
+  --blush-mid: #ede1e3;
+  --white: #ffffff;
+  --text: #1c1417;
+  --text-muted: #6b5c5e;
+  --text-light: #9e8e90;
+  --border: rgba(79,0,16,0.12);
+  --border-strong: rgba(79,0,16,0.25);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --nav-h: 68px;
+  --max-w: 1060px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { font-family: var(--sans); cursor: pointer; border: none; background: none; }
+
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.8rem 1.8rem;
+  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  border-radius: 2px; transition: all 0.25s var(--ease);
+  cursor: pointer; text-decoration: none; white-space: nowrap;
+}
+.btn-primary { background: var(--white); color: var(--crimson); }
+.btn-primary:hover { background: var(--blush-light); }
+.btn-outline-white { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.45); }
+.btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.85); }
+.btn-outline-crimson { background: transparent; color: var(--crimson); border: 1px solid var(--border-strong); }
+.btn-outline-crimson:hover { background: var(--blush-light); }
+.btn-crimson { background: var(--crimson); color: var(--white); }
+.btn-crimson:hover { background: var(--crimson-dark); }
+
+/* Reveal */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+
+/* ═══════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════ */
+#site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-h);
+  background: var(--crimson);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+#site-header.scrolled {
+  background: var(--crimson-deeper);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.35);
+}
+
+.nav-inner {
+  max-width: var(--max-w); margin: 0 auto; padding: 0 2rem;
+  height: var(--nav-h);
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+
+.nav-logo { display: flex; align-items: center; flex-shrink: 0; line-height: 1; }
+.nav-logo:hover { opacity: 0.88; }
+
+.nav-desktop { display: flex; align-items: center; gap: 0; }
+
+.nav-item { position: relative; }
+
+.nav-link {
+  display: flex; align-items: center; gap: 5px;
+  padding: 0 1rem; height: var(--nav-h);
+  font-size: 12px; font-weight: 400;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.78);
+  transition: color 0.2s; cursor: pointer; white-space: nowrap;
+}
+.nav-link:hover { color: var(--white); }
+.nav-link svg { width: 10px; height: 10px; transition: transform 0.25s; flex-shrink: 0; }
+.nav-item:hover .nav-link svg { transform: rotate(180deg); }
+
+.nav-dropdown {
+  position: absolute; top: calc(var(--nav-h) - 4px); left: 0;
+  min-width: 240px; background: var(--crimson-deeper);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-top: 2px solid var(--blush);
+  opacity: 0; visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0.25s;
+  pointer-events: none;
+}
+.nav-item:hover .nav-dropdown {
+  opacity: 1; visibility: visible; transform: none; pointer-events: auto;
+}
+.nav-dropdown a {
+  display: block; padding: 0.75rem 1.25rem; font-size: 13px;
+  color: rgba(255,255,255,0.72);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: color 0.2s, background 0.2s;
+}
+.nav-dropdown a:last-child { border-bottom: none; }
+.nav-dropdown a:hover { color: var(--white); background: rgba(255,255,255,0.07); }
+
+.nav-cta {
+  margin-left: 0.75rem; padding: 0.55rem 1.25rem;
+  font-size: 11.5px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--white); border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 2px; transition: background 0.2s, border-color 0.2s; white-space: nowrap;
+}
+.nav-cta:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.8); }
+
+.nav-hamburger {
+  display: none; flex-direction: column; justify-content: center;
+  gap: 5px; width: 36px; height: 36px;
+  cursor: pointer; background: none; border: none; padding: 4px; flex-shrink: 0;
+}
+.nav-hamburger span {
+  display: block; height: 1.5px; background: var(--white);
+  transition: transform 0.3s var(--ease), opacity 0.3s; transform-origin: center;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+.nav-mobile {
+  display: none; position: fixed;
+  top: var(--nav-h); left: 0; right: 0; bottom: 0;
+  background: var(--crimson-deeper); overflow-y: auto; z-index: 999;
+  padding: 1.5rem 2rem 3rem;
+  transform: translateX(100%); transition: transform 0.35s var(--ease);
+}
+.nav-mobile.open { transform: none; }
+.mobile-section-label {
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(217,200,204,0.5); font-weight: 500;
+  padding: 1.25rem 0 0.4rem;
+  border-top: 1px solid rgba(255,255,255,0.08); margin-top: 0.75rem;
+}
+.mobile-section-label:first-child { border-top: none; margin-top: 0; }
+.nav-mobile a {
+  display: block; padding: 0.65rem 0; font-size: 15px;
+  color: rgba(255,255,255,0.82);
+  border-bottom: 1px solid rgba(255,255,255,0.05); transition: color 0.2s;
+}
+.nav-mobile a:hover { color: var(--white); }
+.nav-mobile .nav-cta { display: inline-block; margin-top: 1.5rem; }
+
+/* ═══════════════════════════════════════════════
+   PAGE HERO
+═══════════════════════════════════════════════ */
+.page-hero {
+  background: var(--crimson);
+  padding: calc(var(--nav-h) + 3.5rem) 0 3.5rem;
+  position: relative; overflow: hidden;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+
+.page-hero-inner {
+  position: relative;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+
+.breadcrumb {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 11px; font-weight: 400;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(217,200,204,0.55);
+}
+.breadcrumb a { transition: color 0.2s; }
+.breadcrumb a:hover { color: rgba(217,200,204,0.9); }
+.breadcrumb-sep { opacity: 0.4; }
+
+.page-hero-label {
+  font-size: 10.5px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--blush); opacity: 0.7; margin-bottom: 0.25rem;
+}
+
+.page-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 600; color: var(--white);
+  line-height: 1.1; letter-spacing: -0.01em;
+}
+
+.page-hero-meta {
+  display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.5rem;
+}
+.meta-tag {
+  display: flex; align-items: center; gap: 0.45rem;
+  font-size: 12.5px; color: rgba(217,200,204,0.7);
+}
+.meta-tag svg { width: 13px; height: 13px; opacity: 0.6; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════════
+   MAIN LAYOUT
+═══════════════════════════════════════════════ */
+.page-body {
+  padding: 5rem 0 6rem;
+}
+
+.page-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 5rem;
+  align-items: start;
+}
+
+/* ═══════════════════════════════════════════════
+   CONTENT COLUMN
+═══════════════════════════════════════════════ */
+.content-block { margin-bottom: 3rem; }
+.content-block:last-child { margin-bottom: 0; }
+
+.content-block h2 {
+  font-family: var(--serif);
+  font-size: 1.55rem; font-weight: 600;
+  color: var(--crimson); margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.content-block p {
+  font-size: 15px; color: var(--text-muted);
+  line-height: 1.85; margin-bottom: 0.85rem;
+}
+.content-block p:last-child { margin-bottom: 0; }
+
+/* Checklist */
+.checklist { display: flex; flex-direction: column; gap: 0.7rem; margin-top: 0.25rem; }
+.checklist-item {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  font-size: 14.5px; color: var(--text-muted); line-height: 1.65;
+}
+.checklist-icon {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--blush-light); border: 1px solid var(--blush-mid);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+.checklist-icon svg { width: 10px; height: 10px; stroke: var(--crimson); stroke-width: 2; fill: none; }
+
+/* Offer grid */
+.offer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+.offer-card {
+  background: var(--blush-light);
+  border: 1px solid var(--blush-mid);
+  border-radius: 2px;
+  padding: 1rem 1.1rem;
+  display: flex; align-items: flex-start; gap: 0.65rem;
+}
+.offer-card-icon {
+  font-size: 16px; flex-shrink: 0; margin-top: 1px;
+  line-height: 1;
+}
+.offer-card-text {
+  font-size: 13.5px; color: var(--text-muted); line-height: 1.5;
+}
+.offer-card-text strong {
+  display: block; font-size: 13px; font-weight: 500;
+  color: var(--crimson); margin-bottom: 0.1rem;
+}
+
+/* Cover letter steps */
+.steps { display: flex; flex-direction: column; gap: 0; }
+.step {
+  display: flex; gap: 1.25rem; align-items: flex-start;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+  font-family: var(--serif);
+  font-size: 1.8rem; font-weight: 400;
+  color: var(--blush); line-height: 1;
+  min-width: 28px; flex-shrink: 0;
+  margin-top: -3px;
+}
+.step-text {
+  font-size: 14.5px; color: var(--text-muted); line-height: 1.65;
+  padding-top: 0.15rem;
+}
+
+/* Sign-off */
+.signoff {
+  margin-top: 2rem;
+  padding: 1.5rem 1.75rem;
+  background: var(--crimson);
+  border-radius: 2px;
+}
+.signoff p {
+  font-size: 15px; color: rgba(217,200,204,0.85); line-height: 1.75;
+  font-family: var(--serif); font-style: italic; margin-bottom: 0 !important;
+}
+.signoff-name {
+  margin-top: 0.75rem;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(217,200,204,0.5);
+}
+
+/* ═══════════════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════════════ */
+.sidebar { position: sticky; top: calc(var(--nav-h) + 2rem); }
+
+.sidebar-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+
+.sidebar-card-header {
+  background: var(--crimson);
+  padding: 1.1rem 1.4rem;
+}
+.sidebar-card-header h3 {
+  font-family: var(--serif);
+  font-size: 1.1rem; font-weight: 600;
+  color: var(--white);
+}
+
+.sidebar-card-body { padding: 1.25rem 1.4rem; }
+
+.sidebar-detail {
+  display: flex; align-items: flex-start; gap: 0.7rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.sidebar-detail:last-child { border-bottom: none; padding-bottom: 0; }
+.sidebar-detail-label {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-light); min-width: 72px; padding-top: 2px;
+}
+.sidebar-detail-value { color: var(--text-muted); line-height: 1.45; }
+
+.sidebar-apply {
+  background: var(--crimson);
+  padding: 1.5rem 1.4rem;
+  text-align: center;
+}
+.sidebar-apply p {
+  font-size: 12.5px; color: rgba(217,200,204,0.75);
+  margin-bottom: 1rem; line-height: 1.55;
+}
+.sidebar-apply .btn {
+  width: 100%; justify-content: center;
+  background: var(--white); color: var(--crimson);
+}
+.sidebar-apply .btn:hover { background: var(--blush-light); }
+.sidebar-apply .btn-email {
+  margin-top: 0.6rem;
+  background: transparent; color: rgba(217,200,204,0.65);
+  border: 1px solid rgba(255,255,255,0.2); font-size: 11px;
+  width: 100%; justify-content: center;
+}
+.sidebar-apply .btn-email:hover { background: rgba(255,255,255,0.07); color: var(--white); }
+
+.sidebar-more { padding: 1.25rem 1.4rem; }
+.sidebar-more h4 {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-light); margin-bottom: 0.85rem;
+}
+.sidebar-position-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px; color: var(--text-muted);
+  transition: color 0.2s;
+}
+.sidebar-position-link:last-child { border-bottom: none; }
+.sidebar-position-link:hover { color: var(--crimson); }
+.sidebar-position-link span { line-height: 1.35; }
+.sidebar-position-link .arrow { flex-shrink: 0; opacity: 0.4; transition: opacity 0.2s, transform 0.2s; }
+.sidebar-position-link:hover .arrow { opacity: 0.8; transform: translateX(3px); }
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+#site-footer { background: #1a0005; }
+
+.footer-top {
+  padding: 3rem 0;
+  display: grid; grid-template-columns: auto 1fr auto;
+  gap: 2rem; align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer-logo { display: flex; align-items: center; }
+
+.footer-nav {
+  display: flex; justify-content: center;
+  gap: 2rem; flex-wrap: wrap;
+}
+.footer-nav a {
+  font-size: 12px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: rgba(217,200,204,0.45);
+  transition: color 0.2s;
+}
+.footer-nav a:hover { color: rgba(217,200,204,0.9); }
+
+.footer-social { display: flex; align-items: center; gap: 1rem; }
+.footer-social a {
+  display: flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px;
+  border: 1px solid rgba(255,255,255,0.12); border-radius: 2px;
+  color: rgba(217,200,204,0.5); transition: border-color 0.2s, color 0.2s;
+}
+.footer-social a:hover { border-color: rgba(217,200,204,0.5); color: rgba(217,200,204,0.9); }
+.footer-social svg { width: 16px; height: 16px; fill: currentColor; }
+
+.footer-bottom { padding: 1.25rem 0; }
+.footer-bottom-inner {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+}
+.footer-copy { font-size: 12px; color: rgba(217,200,204,0.35); letter-spacing: 0.03em; }
+.footer-legal { display: flex; gap: 1.5rem; }
+.footer-legal a { font-size: 12px; color: rgba(217,200,204,0.35); transition: color 0.2s; }
+.footer-legal a:hover { color: rgba(217,200,204,0.8); }
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media (max-width: 860px) {
+  .page-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .sidebar { position: static; }
+  .offer-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; text-align: center; }
+  .footer-nav { justify-content: center; }
+  .footer-social { justify-content: center; }
+}
+@media (max-width: 600px) {
+  .nav-desktop { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-mobile { display: block; }
+  .footer-bottom-inner { flex-direction: column; text-align: center; }
+}
+
+
+/* ── Case study page ─────────────────────────── */
+.cs-hero-kicker { font-size: 10px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blush); opacity: 0.6; display: block; margin-bottom: 0.5rem; }
+.cs-hero-title  { font-family: var(--serif); font-size: clamp(2rem,5vw,3.6rem); font-weight: 600; color: var(--white); line-height: 1.08; letter-spacing: -0.01em; }
+.cs-hero-sub    { font-size: 15px; color: var(--blush); opacity: 0.85; max-width: 520px; line-height: 1.75; margin-top: 1rem; }
+.cs-hero-pills  { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.75rem; }
+.cs-hero-pill   { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 20px; padding: 0.3rem 0.85rem; }
+
+/* Layout */
+.cs-body        { padding: 5.5rem 0 6rem; }
+.cs-layout      { display: grid; grid-template-columns: 1fr 300px; gap: 5rem; align-items: start; }
+
+/* Visual banner */
+.cs-visual-banner {
+  width: 100%; border-radius: 3px; overflow: hidden;
+  background: var(--crimson); margin-bottom: 3rem;
+  position: relative; height: 280px;
+  display: flex; align-items: center; justify-content: center;
+}
+.cs-visual-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(-45deg,transparent,transparent 20px,rgba(255,255,255,0.025) 20px,rgba(255,255,255,0.025) 21px);
+}
+.cs-banner-svg  { position: relative; z-index: 1; width: 100%; height: 100%; }
+
+/* Stat strip */
+.cs-stats-strip {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1.5px; background: var(--border);
+  border: 1.5px solid var(--border); border-radius: 3px;
+  overflow: hidden; margin-bottom: 3rem;
+}
+.cs-stat-box    { background: var(--white); padding: 1.5rem 1.25rem; text-align: center; }
+.cs-stat-num    { font-family: var(--serif); font-size: 2.2rem; font-weight: 600; color: var(--crimson); line-height: 1; }
+.cs-stat-label  { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-top: 0.35rem; }
+
+/* Section blocks */
+.cs-block       { margin-bottom: 3rem; }
+.cs-block:last-of-type { margin-bottom: 0; }
+.cs-block h2    { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: var(--crimson); margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
+.cs-block p     { font-size: 15px; color: var(--text-muted); line-height: 1.85; margin-bottom: 0.85rem; }
+.cs-block p:last-child { margin-bottom: 0; }
+
+/* Situation cards */
+.cs-cards       { display: flex; flex-direction: column; gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); border-radius: 3px; overflow: hidden; margin-top: 1rem; }
+.cs-card        { background: var(--white); padding: 1.4rem 1.5rem; display: flex; gap: 1rem; transition: background 0.25s; }
+.cs-card:hover  { background: var(--blush-light); }
+.cs-card-num    { font-family: var(--serif); font-size: 1.6rem; font-weight: 400; color: var(--blush); flex-shrink: 0; line-height: 1.1; min-width: 24px; margin-top: -1px; }
+.cs-card-text   { font-size: 14.5px; color: var(--text-muted); line-height: 1.7; }
+.cs-card-text strong { display: block; font-size: 13px; font-weight: 500; color: var(--crimson); margin-bottom: 0.2rem; }
+
+/* Contribution items with crimson left bar */
+.cs-contribution { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1rem; }
+.cs-contrib-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1.25rem 1.25rem 1.25rem 1.5rem; background: var(--blush-light); border: 1px solid var(--blush-mid); border-left: 3px solid var(--crimson); border-radius: 0 3px 3px 0; }
+.cs-contrib-icon { width: 36px; height: 36px; background: var(--white); border: 1px solid var(--blush-mid); border-radius: 3px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.cs-contrib-icon svg { width: 18px; height: 18px; stroke: var(--crimson); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.cs-contrib-body strong { display: block; font-size: 13px; font-weight: 500; color: var(--crimson); margin-bottom: 0.25rem; letter-spacing: 0.02em; }
+.cs-contrib-body p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin: 0; }
+
+/* Challenge / solution grid */
+.cs-challenge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); border-radius: 3px; overflow: hidden; margin-top: 1rem; }
+.cs-challenge-col  { background: var(--white); padding: 1.75rem 1.5rem; }
+.cs-challenge-label { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--crimson); opacity: 0.7; margin-bottom: 1rem; display: block; }
+.cs-challenge-col ul { display: flex; flex-direction: column; gap: 0.65rem; }
+.cs-challenge-col li { display: flex; gap: 0.6rem; font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
+.cs-challenge-dot  { width: 5px; height: 5px; border-radius: 50%; background: var(--crimson); opacity: 0.4; flex-shrink: 0; margin-top: 7px; }
+
+/* Process flow */
+.cs-process     { display: flex; align-items: flex-start; gap: 0; margin-top: 1rem; overflow-x: auto; padding-bottom: 0.5rem; }
+.cs-process-step { flex: 1; min-width: 120px; text-align: center; position: relative; }
+.cs-process-step::after { content: ''; position: absolute; top: 18px; left: 60%; right: -40%; height: 1.5px; background: var(--blush-mid); z-index: 0; }
+.cs-process-step:last-child::after { display: none; }
+.cs-process-dot { width: 36px; height: 36px; border-radius: 50%; background: var(--crimson); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.65rem; position: relative; z-index: 1; }
+.cs-process-dot svg { width: 16px; height: 16px; stroke: white; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.cs-process-label { font-size: 11.5px; font-weight: 500; color: var(--crimson); line-height: 1.35; padding: 0 0.25rem; }
+
+/* Quote pull */
+.cs-pullquote   { background: var(--crimson); border-radius: 3px; padding: 2rem 2.25rem; margin: 2.5rem 0; text-align: center; }
+.cs-pullquote p { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 400; color: var(--white); line-height: 1.6; }
+.cs-pullquote-attr { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(217,200,204,0.55); margin-top: 0.85rem; display: block; }
+
+/* Sidebar */
+.sidebar        { position: sticky; top: calc(var(--nav-h) + 2rem); }
+.sidebar-card   { background: var(--white); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; margin-bottom: 1.25rem; }
+.sidebar-card-header   { background: var(--crimson); padding: 1.1rem 1.4rem; }
+.sidebar-card-header h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; color: var(--white); }
+.sidebar-card-body     { padding: 1.25rem 1.4rem; }
+.sidebar-detail        { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.65rem 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.sidebar-detail:last-child { border-bottom: none; padding-bottom: 0; }
+.sidebar-detail-label  { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-light); min-width: 72px; padding-top: 2px; }
+.sidebar-detail-value  { color: var(--text-muted); line-height: 1.45; }
+.sidebar-cta           { padding: 1.4rem; background: var(--crimson); text-align: center; }
+.sidebar-cta p         { font-size: 12.5px; color: rgba(217,200,204,0.75); margin-bottom: 1rem; line-height: 1.55; }
+.sidebar-cta .btn-w    { width: 100%; justify-content: center; background: var(--white); color: var(--crimson); }
+.sidebar-cta .btn-w:hover { background: var(--blush-light); }
+.sidebar-more          { padding: 1.25rem 1.4rem; }
+.sidebar-more h4       { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.85rem; }
+.sidebar-cs-link       { display: flex; align-items: center; justify-content: space-between; padding: 0.7rem 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); transition: color 0.2s; }
+.sidebar-cs-link:last-child { border-bottom: none; }
+.sidebar-cs-link:hover { color: var(--crimson); }
+.sidebar-cs-link .arrow { flex-shrink: 0; opacity: 0.4; transition: opacity 0.2s, transform 0.2s; }
+.sidebar-cs-link:hover .arrow { opacity: 0.8; transform: translateX(3px); }
+.sidebar-tag           { display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; background: var(--blush-light); border: 1px solid var(--blush-mid); color: var(--crimson); border-radius: 2px; padding: 0.2rem 0.5rem; margin-bottom: 0.25rem; }
+
+/* meta tags in hero */
+.page-hero-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem; }
+.meta-tag       { display: flex; align-items: center; gap: 0.45rem; font-size: 12.5px; color: rgba(217,200,204,0.7); }
+.meta-tag svg   { width: 13px; height: 13px; opacity: 0.6; flex-shrink: 0; }
+
+@media (max-width: 860px) {
+  .cs-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .sidebar { position: static; }
+  .cs-challenge-grid { grid-template-columns: 1fr; }
+  .cs-stats-strip { grid-template-columns: 1fr; }
+  .cs-process { flex-wrap: wrap; gap: 1.5rem; }
+  .cs-process-step::after { display: none; }
+}
+
+
+/* ── Case study page ─────────────────────────── */
+.cs-hero-kicker { font-size: 10px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blush); opacity: 0.6; display: block; margin-bottom: 0.5rem; }
+.cs-hero-title  { font-family: var(--serif); font-size: clamp(2rem,5vw,3.6rem); font-weight: 600; color: var(--white); line-height: 1.08; letter-spacing: -0.01em; }
+.cs-hero-sub    { font-size: 15px; color: var(--blush); opacity: 0.85; max-width: 520px; line-height: 1.75; margin-top: 1rem; }
+.cs-hero-pills  { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.75rem; }
+.cs-hero-pill   { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 20px; padding: 0.3rem 0.85rem; }
+
+/* Layout */
+.cs-body        { padding: 5.5rem 0 6rem; }
+.cs-layout      { display: grid; grid-template-columns: 1fr 300px; gap: 5rem; align-items: start; }
+
+/* Visual banner */
+.cs-visual-banner {
+  width: 100%; border-radius: 3px; overflow: hidden;
+  background: var(--crimson); margin-bottom: 3rem;
+  position: relative; height: 280px;
+  display: flex; align-items: center; justify-content: center;
+}
+.cs-visual-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(-45deg,transparent,transparent 20px,rgba(255,255,255,0.025) 20px,rgba(255,255,255,0.025) 21px);
+}
+.cs-banner-svg  { position: relative; z-index: 1; width: 100%; height: 100%; }
+
+/* Stat strip */
+.cs-stats-strip {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1.5px; background: var(--border);
+  border: 1.5px solid var(--border); border-radius: 3px;
+  overflow: hidden; margin-bottom: 3rem;
+}
+.cs-stat-box    { background: var(--white); padding: 1.5rem 1.25rem; text-align: center; }
+.cs-stat-num    { font-family: var(--serif); font-size: 2.2rem; font-weight: 600; color: var(--crimson); line-height: 1; }
+.cs-stat-label  { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-top: 0.35rem; }
+
+/* Section blocks */
+.cs-block       { margin-bottom: 3rem; }
+.cs-block:last-of-type { margin-bottom: 0; }
+.cs-block h2    { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: var(--crimson); margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
+.cs-block p     { font-size: 15px; color: var(--text-muted); line-height: 1.85; margin-bottom: 0.85rem; }
+.cs-block p:last-child { margin-bottom: 0; }
+
+/* Situation cards */
+.cs-cards       { display: flex; flex-direction: column; gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); border-radius: 3px; overflow: hidden; margin-top: 1rem; }
+.cs-card        { background: var(--white); padding: 1.4rem 1.5rem; display: flex; gap: 1rem; transition: background 0.25s; }
+.cs-card:hover  { background: var(--blush-light); }
+.cs-card-num    { font-family: var(--serif); font-size: 1.6rem; font-weight: 400; color: var(--blush); flex-shrink: 0; line-height: 1.1; min-width: 24px; margin-top: -1px; }
+.cs-card-text   { font-size: 14.5px; color: var(--text-muted); line-height: 1.7; }
+.cs-card-text strong { display: block; font-size: 13px; font-weight: 500; color: var(--crimson); margin-bottom: 0.2rem; }
+
+/* Contribution items with crimson left bar */
+.cs-contribution { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1rem; }
+.cs-contrib-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1.25rem 1.25rem 1.25rem 1.5rem; background: var(--blush-light); border: 1px solid var(--blush-mid); border-left: 3px solid var(--crimson); border-radius: 0 3px 3px 0; }
+.cs-contrib-icon { width: 36px; height: 36px; background: var(--white); border: 1px solid var(--blush-mid); border-radius: 3px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.cs-contrib-icon svg { width: 18px; height: 18px; stroke: var(--crimson); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.cs-contrib-body strong { display: block; font-size: 13px; font-weight: 500; color: var(--crimson); margin-bottom: 0.25rem; letter-spacing: 0.02em; }
+.cs-contrib-body p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin: 0; }
+
+/* Challenge / solution grid */
+.cs-challenge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); border-radius: 3px; overflow: hidden; margin-top: 1rem; }
+.cs-challenge-col  { background: var(--white); padding: 1.75rem 1.5rem; }
+.cs-challenge-label { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--crimson); opacity: 0.7; margin-bottom: 1rem; display: block; }
+.cs-challenge-col ul { display: flex; flex-direction: column; gap: 0.65rem; }
+.cs-challenge-col li { display: flex; gap: 0.6rem; font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
+.cs-challenge-dot  { width: 5px; height: 5px; border-radius: 50%; background: var(--crimson); opacity: 0.4; flex-shrink: 0; margin-top: 7px; }
+
+/* Process flow */
+.cs-process     { display: flex; align-items: flex-start; gap: 0; margin-top: 1rem; overflow-x: auto; padding-bottom: 0.5rem; }
+.cs-process-step { flex: 1; min-width: 120px; text-align: center; position: relative; }
+.cs-process-step::after { content: ''; position: absolute; top: 18px; left: 60%; right: -40%; height: 1.5px; background: var(--blush-mid); z-index: 0; }
+.cs-process-step:last-child::after { display: none; }
+.cs-process-dot { width: 36px; height: 36px; border-radius: 50%; background: var(--crimson); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.65rem; position: relative; z-index: 1; }
+.cs-process-dot svg { width: 16px; height: 16px; stroke: white; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.cs-process-label { font-size: 11.5px; font-weight: 500; color: var(--crimson); line-height: 1.35; padding: 0 0.25rem; }
+
+/* Quote pull */
+.cs-pullquote   { background: var(--crimson); border-radius: 3px; padding: 2rem 2.25rem; margin: 2.5rem 0; text-align: center; }
+.cs-pullquote p { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 400; color: var(--white); line-height: 1.6; }
+.cs-pullquote-attr { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(217,200,204,0.55); margin-top: 0.85rem; display: block; }
+
+/* Sidebar */
+.sidebar        { position: sticky; top: calc(var(--nav-h) + 2rem); }
+.sidebar-card   { background: var(--white); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; margin-bottom: 1.25rem; }
+.sidebar-card-header   { background: var(--crimson); padding: 1.1rem 1.4rem; }
+.sidebar-card-header h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; color: var(--white); }
+.sidebar-card-body     { padding: 1.25rem 1.4rem; }
+.sidebar-detail        { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.65rem 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.sidebar-detail:last-child { border-bottom: none; padding-bottom: 0; }
+.sidebar-detail-label  { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-light); min-width: 72px; padding-top: 2px; }
+.sidebar-detail-value  { color: var(--text-muted); line-height: 1.45; }
+.sidebar-cta           { padding: 1.4rem; background: var(--crimson); text-align: center; }
+.sidebar-cta p         { font-size: 12.5px; color: rgba(217,200,204,0.75); margin-bottom: 1rem; line-height: 1.55; }
+.sidebar-cta .btn-w    { width: 100%; justify-content: center; background: var(--white); color: var(--crimson); }
+.sidebar-cta .btn-w:hover { background: var(--blush-light); }
+.sidebar-more          { padding: 1.25rem 1.4rem; }
+.sidebar-more h4       { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.85rem; }
+.sidebar-cs-link       { display: flex; align-items: center; justify-content: space-between; padding: 0.7rem 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); transition: color 0.2s; }
+.sidebar-cs-link:last-child { border-bottom: none; }
+.sidebar-cs-link:hover { color: var(--crimson); }
+.sidebar-cs-link .arrow { flex-shrink: 0; opacity: 0.4; transition: opacity 0.2s, transform 0.2s; }
+.sidebar-cs-link:hover .arrow { opacity: 0.8; transform: translateX(3px); }
+.sidebar-tag           { display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; background: var(--blush-light); border: 1px solid var(--blush-mid); color: var(--crimson); border-radius: 2px; padding: 0.2rem 0.5rem; margin-bottom: 0.25rem; }
+
+/* meta tags in hero */
+.page-hero-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem; }
+.meta-tag       { display: flex; align-items: center; gap: 0.45rem; font-size: 12.5px; color: rgba(217,200,204,0.7); }
+.meta-tag svg   { width: 13px; height: 13px; opacity: 0.6; flex-shrink: 0; }
+
+@media (max-width: 860px) {
+  .cs-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .sidebar { position: static; }
+  .cs-challenge-grid { grid-template-columns: 1fr; }
+  .cs-stats-strip { grid-template-columns: 1fr; }
+  .cs-process { flex-wrap: wrap; gap: 1.5rem; }
+  .cs-process-step::after { display: none; }
+}
+
+
+</style>
+</head>
+<body>
+<header id="site-header" role="banner">
+  <nav class="nav-inner" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="Crescenti Pohl Advisory – home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 52" height="34" style="display:block;" aria-hidden="true" focusable="false">
+        <polygon points="20,6 0,46 40,46"   fill="#ffffff"/>
+        <polygon points="38,20 25,46 51,46" fill="rgba(255,255,255,0.42)"/>
+        <text x="68" y="34" font-family="Cormorant Garamond, Georgia, serif" font-size="22" font-weight="500" letter-spacing="0.015em" fill="#ffffff">Crescenti Pohl Advisory</text>
+      </svg>
+    </a>
+
+    <ul class="nav-desktop" role="list">
+      <li class="nav-item">
+        <span class="nav-link" tabindex="0" aria-haspopup="true">
+          Clients
+          <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <div class="nav-dropdown" role="menu">
+          <a href="index.html#expertise" role="menuitem">Energy Transition</a>
+          <a href="index.html#expertise" role="menuitem">Business Transformation &amp; Digitalization</a>
+          <a href="index.html#expertise" role="menuitem">Market Insight &amp; Strategy</a>
+          <a href="index.html#expertise" role="menuitem">Data &amp; Artificial Intelligence</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link active" tabindex="0" aria-haspopup="true">
+          Careers
+          <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <div class="nav-dropdown" role="menu">
+          <a href="index.html#careers-teaser" role="menuitem">Why Work for Us</a>
+          <a href="index.html#careers-teaser" role="menuitem">Career Path</a>
+          <a href="index.html#careers-teaser" role="menuitem">Professional Development</a>
+          <a href="index.html#openpositions" role="menuitem">Open Positions</a>
+          <a href="speculative.html" role="menuitem">Speculative Application</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link" tabindex="0" aria-haspopup="true">
+          About us
+          <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <div class="nav-dropdown" role="menu">
+          <a href="index.html#mission" role="menuitem">Mission &amp; Values</a>
+          <a href="index.html#team" role="menuitem">Our Team</a>
+          <a href="index.html#offices" role="menuitem">Our Offices</a>
+        </div>
+      </li>
+      <li>
+        <a class="nav-cta" href="mailto:info@crescentipohl.com?subject=Please get in touch with me!">Contact us</a>
+      </li>
+    </ul>
+
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <nav class="nav-mobile" id="mobile-menu" aria-label="Mobile navigation">
+    <div class="mobile-section-label">Clients</div>
+    <a href="index.html#expertise">Energy Transition</a>
+    <a href="index.html#expertise">Business Transformation &amp; Digitalization</a>
+    <a href="index.html#expertise">Market Insight &amp; Strategy</a>
+    <a href="index.html#expertise">Data &amp; Artificial Intelligence</a>
+    <div class="mobile-section-label">Careers</div>
+    <a href="index.html#careers-teaser">Why Work for Us</a>
+    <a href="index.html#careers-teaser">Career Path</a>
+    <a href="index.html#openpositions">Open Positions</a>
+    <a href="speculative.html">Speculative Application</a>
+    <div class="mobile-section-label">About Us</div>
+    <a href="index.html#mission">Mission &amp; Values</a>
+    <a href="index.html#team">Our Team</a>
+    <a href="index.html#offices">Our Offices</a>
+    <div class="mobile-section-label">Contact</div>
+    <a class="nav-cta" href="mailto:info@crescentipohl.com?subject=Please get in touch with me!">Contact us →</a>
+  </nav>
+</header>
+<main>
+<section class="page-hero" aria-labelledby="cs-title">
+  <div class="container page-hero-inner">
+    <nav class="breadcrumb reveal" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep" aria-hidden="true">›</span><a href="index.html#expertise">Clients</a><span class="breadcrumb-sep" aria-hidden="true">›</span><a href="index.html#expertise">Data & Artificial Intelligence</a><span class="breadcrumb-sep" aria-hidden="true">›</span><span aria-current="page">Case Study</span></nav>
+    <span class="cs-hero-kicker reveal">Case study</span>
+    <h1 id="cs-title" class="cs-hero-title reveal reveal-delay-1">Strategic Cloud<br>Data Platform</h1>
+    <p class="cs-hero-sub reveal reveal-delay-2">Replacing a fragmented on-premise landscape with a scalable, cloud-based data integration and analytics platform — built iteratively and scaled through continuous delivery.</p>
+    <div class="cs-hero-pills reveal reveal-delay-2"><span class="cs-hero-pill">Data & AI</span><span class="cs-hero-pill">Cloud Architecture</span><span class="cs-hero-pill">Agile Delivery</span><span class="cs-hero-pill">Data Governance</span></div>
+  </div>
+</section>
+<div class="cs-body">
+  <div class="container">
+    <div class="cs-layout">
+      <div>
+        <div class="cs-visual-banner reveal" aria-hidden="true"><svg viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+  <defs>
+    <linearGradient id="sky4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a0005"/><stop offset="100%" stop-color="#4F0010"/></linearGradient>
+    <linearGradient id="glow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="rgba(217,200,204,0.15)"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="280" fill="url(#sky4)"/>
+  <!-- Data flow background nodes -->
+  <g opacity="0.5">
+    <!-- Source nodes left -->
+    <rect x="30"  y="60"  width="70" height="32" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+    <text x="65"  y="80"  text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,255,255,0.6)">SCADA</text>
+    <rect x="30"  y="105" width="70" height="32" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+    <text x="65"  y="125" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,255,255,0.6)">ERP</text>
+    <rect x="30"  y="150" width="70" height="32" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+    <text x="65"  y="170" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,255,255,0.6)">Market</text>
+    <rect x="30"  y="195" width="70" height="32" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+    <text x="65"  y="215" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,255,255,0.6)">CRM</text>
+    <!-- Arrows to platform -->
+    <path d="M100 76  L190 120" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none" marker-end="url(#arr)"/>
+    <path d="M100 121 L190 130" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"/>
+    <path d="M100 166 L190 140" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"/>
+    <path d="M100 211 L190 150" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"/>
+  </g>
+  <!-- Central cloud platform -->
+  <g transform="translate(190,88)">
+    <rect width="160" height="100" rx="8" fill="rgba(79,0,16,0.7)" stroke="rgba(217,200,204,0.3)" stroke-width="1.5"/>
+    <!-- Cloud icon -->
+    <text x="80" y="25" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(217,200,204,0.55)" letter-spacing="2">CLOUD DATA PLATFORM</text>
+    <!-- Mini pipeline diagram inside -->
+    <rect x="12" y="32" width="28" height="18" rx="3" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+    <text x="26" y="44" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(255,255,255,0.6)">Ingest</text>
+    <rect x="50" y="32" width="28" height="18" rx="3" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+    <text x="64" y="44" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(255,255,255,0.6)">Transform</text>
+    <rect x="88" y="32" width="28" height="18" rx="3" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+    <text x="102" y="44" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(255,255,255,0.6)">Orchestrate</text>
+    <rect x="126" y="32" width="22" height="18" rx="3" fill="rgba(255,255,255,0.15)" stroke="rgba(217,200,204,0.3)" stroke-width="0.8"/>
+    <text x="137" y="44" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(217,200,204,0.7)">Serve</text>
+    <line x1="40" y1="41" x2="50" y2="41" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+    <line x1="78" y1="41" x2="88" y2="41" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+    <line x1="116" y1="41" x2="126" y2="41" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+    <!-- Storage tiers -->
+    <text x="12" y="70" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(255,255,255,0.4)">Raw</text>
+    <rect x="12" y="73" width="35" height="6" rx="1" fill="rgba(255,255,255,0.12)"/>
+    <text x="55" y="70" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(255,255,255,0.4)">Curated</text>
+    <rect x="55" y="73" width="45" height="6" rx="1" fill="rgba(255,255,255,0.2)"/>
+    <text x="108" y="70" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(255,255,255,0.4)">Analytics</text>
+    <rect x="108" y="73" width="40" height="6" rx="1" fill="rgba(217,200,204,0.3)"/>
+  </g>
+  <!-- Arrows out to consumers -->
+  <g opacity="0.5">
+    <path d="M350 120 L440 80"  stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"/>
+    <path d="M350 138 L440 138" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"/>
+    <path d="M350 158 L440 195" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"/>
+    <rect x="440" y="60"  width="75" height="32" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+    <text x="477" y="80"  text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,255,255,0.6)">Dashboards</text>
+    <rect x="440" y="122" width="75" height="32" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+    <text x="477" y="142" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,255,255,0.6)">Analytics</text>
+    <rect x="440" y="180" width="75" height="32" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+    <text x="477" y="200" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(255,255,255,0.6)">ML / AI</text>
+  </g>
+  <!-- Right: sprint/backlog illustration -->
+  <g transform="translate(570,40)" opacity="0.85">
+    <rect width="280" height="195" rx="4" fill="rgba(0,0,0,0.35)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <text x="14" y="20" font-family="DM Sans,sans-serif" font-size="8.5" fill="rgba(217,200,204,0.6)" letter-spacing="1.5">DELIVERY BACKLOG</text>
+    <!-- Epics -->
+    <g transform="translate(14,30)">
+      <rect x="0"   y="0"  width="240" height="14" rx="2" fill="rgba(255,255,255,0.18)"/>
+      <text x="6"   y="10" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,255,255,0.75)">Epic 1 — Data Integration Layer</text>
+      <rect x="0"   y="18" width="240" height="14" rx="2" fill="rgba(255,255,255,0.14)"/>
+      <text x="6"   y="28" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,255,255,0.65)">Epic 2 — Transformation &amp; Orchestration</text>
+      <rect x="0"   y="36" width="240" height="14" rx="2" fill="rgba(255,255,255,0.1)"/>
+      <text x="6"   y="46" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,255,255,0.55)">Epic 3 — Analytics &amp; Serving Layer</text>
+      <!-- Sprint progress -->
+      <text x="0"   y="68" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(217,200,204,0.5)" letter-spacing="1">SPRINT VELOCITY</text>
+      <rect x="0"   y="73" width="240" height="6" rx="2" fill="rgba(255,255,255,0.08)"/>
+      <rect x="0"   y="73" width="175" height="6" rx="2" fill="rgba(217,200,204,0.45)"/>
+      <text x="0"   y="92" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,255,255,0.35)">Features done: 73 / 98</text>
+      <!-- Story cards -->
+      <g transform="translate(0,100)">
+        <rect x="0"   y="0"  width="74" height="40" rx="3" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+        <text x="5"   y="12" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(255,255,255,0.5)">To Do</text>
+        <rect x="5"   y="16" width="64" height="7" rx="1" fill="rgba(255,255,255,0.12)"/>
+        <rect x="5"   y="26" width="50" height="7" rx="1" fill="rgba(255,255,255,0.09)"/>
+        <rect x="83"  y="0"  width="74" height="40" rx="3" fill="rgba(255,255,255,0.1)" stroke="rgba(217,200,204,0.2)" stroke-width="0.8"/>
+        <text x="88"  y="12" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(217,200,204,0.55)">In Progress</text>
+        <rect x="88"  y="16" width="64" height="7" rx="1" fill="rgba(217,200,204,0.2)"/>
+        <rect x="88"  y="26" width="40" height="7" rx="1" fill="rgba(217,200,204,0.15)"/>
+        <rect x="166" y="0"  width="74" height="40" rx="3" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+        <text x="171" y="12" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(255,255,255,0.7)">Done ✓</text>
+        <rect x="171" y="16" width="64" height="7" rx="1" fill="rgba(255,255,255,0.25)"/>
+        <rect x="171" y="26" width="55" height="7" rx="1" fill="rgba(255,255,255,0.2)"/>
+      </g>
+    </g>
+  </g>
+  <!-- Stars -->
+  <circle cx="130" cy="25"  r="1"   fill="rgba(255,255,255,0.5)"/>
+  <circle cx="400" cy="18"  r="0.9" fill="rgba(255,255,255,0.4)"/>
+  <circle cx="540" cy="30"  r="1"   fill="rgba(255,255,255,0.45)"/>
+  <!-- Title -->
+  <text x="270" y="248" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="24" font-weight="600" fill="rgba(255,255,255,0.9)" letter-spacing="0.5">Strategic Data Platform</text>
+  <text x="270" y="268" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="rgba(217,200,204,0.55)" letter-spacing="2">DATA &amp; ARTIFICIAL INTELLIGENCE · CASE STUDY</text>
+</svg></div>
+        <div class="cs-stats-strip reveal"><div class="cs-stat-box"><div class="cs-stat-num">4</div><div class="cs-stat-label">Data capability layers</div></div><div class="cs-stat-box"><div class="cs-stat-num">Agile</div><div class="cs-stat-label">Delivery methodology</div></div><div class="cs-stat-box"><div class="cs-stat-num">0</div><div class="cs-stat-label">Manual workarounds remaining</div></div></div>
+        <div class="cs-block reveal"><h2>Context</h2><p>Data is increasingly central to competitive advantage in European energy markets — enabling better trading decisions, more precise asset management, and faster regulatory reporting. Yet many utilities operate on data architectures built incrementally over decades, resulting in fragmented on-premise landscapes where scalability is limited, integration is fragile, and analytical work depends on manual processes.</p><p>This client had reached a tipping point: the on-premise landscape could no longer support the analytical ambitions of the business, manual data workarounds had proliferated to the point of operational risk, and a strategic decision had been made to build a modern, cloud-native data platform from the ground up.</p></div>
+        <div class="cs-pullquote reveal"><p>"When manual data workarounds become part of the operational process, the data architecture has stopped serving the business and started constraining it."</p><span class="cs-pullquote-attr">Crescenti Pohl Advisory · Project observation</span></div>
+        <div class="cs-block reveal">
+          <h2>Client situation</h2>
+          <div class="cs-challenge-grid">
+            <div class="cs-challenge-col"><span class="cs-challenge-label">The starting point</span><ul role="list"><li><span class="cs-challenge-dot" aria-hidden="true"></span>On-premise system landscape with applications that could not scale to meet growing analytical demand</li><li><span class="cs-challenge-dot" aria-hidden="true"></span>Data processing reliant on manual triggers and extensive human intervention at each stage</li><li><span class="cs-challenge-dot" aria-hidden="true"></span>Legacy processes had accumulated significant manual workarounds, creating operational risk</li></ul></div>
+            <div class="cs-challenge-col"><span class="cs-challenge-label">The strategic decision</span><ul role="list"><li><span class="cs-challenge-dot" aria-hidden="true"></span>Decision taken to build a strategic, cloud-based data integration and analytics platform</li><li><span class="cs-challenge-dot" aria-hidden="true"></span>New platform required to replace manual processes with automated, governed data pipelines</li><li><span class="cs-challenge-dot" aria-hidden="true"></span>Architecture needed to support both current operational needs and future AI/ML capability</li></ul></div>
+          </div>
+        </div>
+        <div class="cs-block reveal"><h2>Our approach</h2><div class="cs-process" role="list"><div class="cs-process-step" role="listitem"><div class="cs-process-dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg></div><div class="cs-process-label">Solution design & architecture</div></div><div class="cs-process-step" role="listitem"><div class="cs-process-dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg></div><div class="cs-process-label">Backlog definition & prioritisation</div></div><div class="cs-process-step" role="listitem"><div class="cs-process-dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div><div class="cs-process-label">Data capabilities development (Ingest · Transform · Orchestrate)</div></div><div class="cs-process-step" role="listitem"><div class="cs-process-dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></div><div class="cs-process-label">Continuous scaling & operational improvement</div></div></div></div>
+        <div class="cs-block reveal"><h2>Our contribution</h2><div class="cs-contribution" role="list"><div class="cs-contrib-item" role="listitem"><div class="cs-contrib-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg></div><div class="cs-contrib-body"><strong>Initial solution design and cloud architecture</strong><p>Produced the end-to-end solution design and cloud architecture for the new platform — defining storage tiers, integration patterns, data flows, and the technical stack — providing the blueprint from which all subsequent delivery work was organised.</p></div></div><div class="cs-contrib-item" role="listitem"><div class="cs-contrib-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg></div><div class="cs-contrib-body"><strong>Structured backlog at epic, feature and story level</strong><p>Defined the full delivery backlog from epics down to user stories, with clear prioritisation criteria and a structured process for backlog refinement — ensuring the team always worked on the highest-value, best-understood items.</p></div></div><div class="cs-contrib-item" role="listitem"><div class="cs-contrib-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div><div class="cs-contrib-body"><strong>Core data capabilities development</strong><p>Developed the foundational data capabilities including ingestion connectors for all source systems, transformation and enrichment logic, and an orchestration layer managing pipeline scheduling, dependency resolution and monitoring.</p></div></div><div class="cs-contrib-item" role="listitem"><div class="cs-contrib-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></div><div class="cs-contrib-body"><strong>Operational capabilities scaled through continuous delivery</strong><p>Established the operational model for the platform — runbooks, incident management, data quality monitoring — and scaled capabilities continuously through iterative development cycles, progressively replacing manual processes with automated, governed pipelines.</p></div></div></div></div>
+        <div class="cs-block reveal"><h2>Outcome</h2><p>The client moved from a fragmented, manually-operated data landscape to a governed, automated cloud platform capable of supporting the analytical and AI/ML ambitions of the business at scale.</p><p>Manual workarounds that had been embedded in operational processes for years were replaced with automated, monitored pipelines. The backlog-driven delivery approach allowed priorities to evolve as business needs became clearer, and the operational model established during the engagement ensured the platform continued to improve after the initial delivery phase.</p></div>
+      </div>
+      <aside class="sidebar" aria-label="Case study details">
+        <div class="sidebar-card reveal"><div class="sidebar-card-header"><h3>Case study details</h3></div><div class="sidebar-card-body"><div class="sidebar-detail"><span class="sidebar-detail-label">Practice</span><span class="sidebar-detail-value">Data & Artificial Intelligence</span></div><div class="sidebar-detail"><span class="sidebar-detail-label">Client</span><span class="sidebar-detail-value">European energy company (name withheld)</span></div><div class="sidebar-detail"><span class="sidebar-detail-label">Scope</span><span class="sidebar-detail-value">Architecture, build, operational scaling</span></div><div class="sidebar-detail"><span class="sidebar-detail-label">Architecture</span><span class="sidebar-detail-value">Cloud-native, modular</span></div><div class="sidebar-detail"><span class="sidebar-detail-label">Methodology</span><span class="sidebar-detail-value">Agile · Continuous delivery</span></div></div></div>
+        <div class="sidebar-card reveal reveal-delay-1"><div class="sidebar-cta"><p>Looking to modernise your data architecture or build analytical capabilities?</p><a href="mailto:info@crescentipohl.com?subject=Enquiry: Data platform and architecture" class="btn btn-w">Get in touch</a></div></div>
+        <div class="sidebar-card reveal reveal-delay-2"><div class="sidebar-more"><h4>Other case studies</h4><a href="case-study-renewable-mandate.html" class="sidebar-cs-link"><div><span class="sidebar-tag">Energy Transition</span><br><span>Renewable commercial mandate</span></div><span class="arrow" aria-hidden="true">→</span></a><a href="case-study-asset-optimization.html" class="sidebar-cs-link"><div><span class="sidebar-tag">Business Transformation</span><br><span>Asset optimization platform</span></div><span class="arrow" aria-hidden="true">→</span></a><a href="case-study-hydro-investment.html" class="sidebar-cs-link"><div><span class="sidebar-tag">Market Strategy</span><br><span>Investment hydro pump storage</span></div><span class="arrow" aria-hidden="true">→</span></a></div></div>
+        <div class="sidebar-card reveal reveal-delay-2"><div class="sidebar-more"><h4>Related expertise</h4><a href="index.html#expertise" class="sidebar-cs-link"><span>Data & Artificial Intelligence</span><span class="arrow" aria-hidden="true">→</span></a><a href="index.html#expertise" class="sidebar-cs-link"><span>Business Transformation & Digitalization</span><span class="arrow" aria-hidden="true">→</span></a></div></div>
+      </aside>
+    </div>
+  </div>
+</div>
+</main>
+<footer id="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 52" height="26" style="display:block;" aria-hidden="true" focusable="false">
+          <polygon points="20,6 0,46 40,46"   fill="#ffffff"/>
+          <polygon points="38,20 25,46 51,46" fill="rgba(255,255,255,0.28)"/>
+          <text x="68" y="34" font-family="Cormorant Garamond, Georgia, serif" font-size="22" font-weight="500" letter-spacing="0.015em" fill="rgba(255,255,255,0.48)">Crescenti Pohl Advisory</text>
+        </svg>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html#expertise">Clients</a>
+        <a href="index.html#careers-teaser">Careers</a>
+        <a href="index.html#mission">About us</a>
+        <a href="index.html#offices">Offices</a>
+        <a href="mailto:info@crescentipohl.com?subject=Please get in touch with me!">Contact</a>
+      </nav>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/company/72534621" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p class="footer-copy">© 2025 Crescenti Pohl Advisory Ltd. All rights reserved.</p>
+        <nav class="footer-legal" aria-label="Legal links">
+          <a href="impressum.html">Impressum</a>
+          <a href="privacy.html">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+const header = document.getElementById('site-header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+function toggleMenu(open) {
+  hamburger.classList.toggle('open', open);
+  mobileMenu.classList.toggle('open', open);
+  hamburger.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+hamburger.addEventListener('click', () => toggleMenu(!hamburger.classList.contains('open')));
+mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => toggleMenu(false)));
+document.addEventListener('click', e => {
+  if (mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && !hamburger.contains(e.target)) toggleMenu(false);
+});
+
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+reveals.forEach(el => observer.observe(el));
+setTimeout(() => document.querySelectorAll('.page-hero .reveal').forEach(el => el.classList.add('visible')), 80);
+</script>
+</body>
+</html>
