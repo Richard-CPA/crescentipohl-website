@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Senior Management Consultant — Crescenti Pohl Advisory</title>
-<meta name="description" content="Join Crescenti Pohl Advisory as a Senior Management Consultant — Power Utilities and Commodity Trading. 5+ years experience required. UK or Germany." />
+<title>Our Expertise — Crescenti Pohl Advisory</title>
+<meta name="description" content="Crescenti Pohl Advisory's areas of expertise: Energy Transition, Business Transformation & Digitalization, Market Insight & Strategy, and Data & Artificial Intelligence." />
   <link rel="icon" type="image/png" sizes="64x64" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAA6klEQVR42u3awQ3DIBBEUUpIZ2ksx5SS/hz5YMmKHBvwssD+GWkL+E8cSUnTNM1wz/RYBCAAcPx2AhAAOB6JIAAywFE8CkEAZICzeAQCGiAnPjSCAMgAJfEhEbwAPq/3IoAI8bUIaIA1fjsBRIgvRUAD7OOHQkADWMTnIqABjuK7I1jGXyGgAc7iuyKgAVrE/0NAA+TEd0FAA7SM/0VAA5TEuyKgATzi16uJd0EQABlghvimCGgAr3g8gEV8EwQ0wGzPf1oAy3hTBDTAzPEmCAIgA0SIv4UgADJApPgqBDRAxPghv9Vo2pj7ApttZ7Oj83StAAAAAElFTkSuQmCC" />
   <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAA6klEQVR42u3awQ3DIBBEUUpIZ2ksx5SS/hz5YMmKHBvwssD+GWkL+E8cSUnTNM1wz/RYBCAAcPx2AhAAOB6JIAAywFE8CkEAZICzeAQCGiAnPjSCAMgAJfEhEbwAPq/3IoAI8bUIaIA1fjsBRIgvRUAD7OOHQkADWMTnIqABjuK7I1jGXyGgAc7iuyKgAVrE/0NAA+TEd0FAA7SM/0VAA5TEuyKgATzi16uJd0EQABlghvimCGgAr3g8gEV8EwQ0wGzPf1oAy3hTBDTAzPEmCAIgA0SIv4UgADJApPgqBDRAxPghv9Vo2pj7ApttZ7Oj83StAAAAAElFTkSuQmCC" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -509,6 +509,681 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
 .project-example:hover { background: var(--blush-light); }
 .project-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--crimson); opacity: 0.7; margin-bottom: 0.5rem; }
 .project-example p { font-size: 14px; color: var(--text-muted); line-height: 1.75; margin-bottom: 0; }
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+.section-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  margin-bottom: 0.9rem;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 600;
+  color: var(--crimson);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+.section-body {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 580px;
+}
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.8rem 1.8rem;
+/* ═══════════════════════════════════════════════
+   MISSION
+═══════════════════════════════════════════════ */
+#mission {
+  background: var(--blush-light);
+  padding: 6rem 0;
+  border-bottom: 1px solid var(--blush-mid);
+}
+
+.mission-quote {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--crimson);
+  line-height: 1.55;
+  max-width: 700px;
+  margin-bottom: 3rem;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--blush);
+}
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5px;
+  background: var(--blush-mid);
+  border: 1.5px solid var(--blush-mid);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.pillar {
+  background: var(--white);
+  padding: 2.25rem 2rem;
+}
+
+.pillar-bar {
+  width: 40px; height: 2px;
+  background: var(--crimson);
+  margin-bottom: 1.25rem;
+  opacity: 0.7;
+}
+
+.pillar h3 {
+  font-family: var(--serif);
+  font-size: 1.25rem; font-weight: 600;
+  color: var(--crimson);
+  margin-bottom: 0.75rem;
+}
+
+.pillar p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+/* ═══════════════════════════════════════════════
+   EXPERTISE / CLIENTS
+═══════════════════════════════════════════════ */
+#expertise { padding: 7rem 0; }
+
+.expertise-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5px;
+  background: var(--border);
+  border: 1.5px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.service-card {
+  background: var(--white);
+  padding: 2.5rem 2rem;
+  display: flex; flex-direction: column;
+  transition: background 0.3s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--crimson);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease);
+}
+
+.service-card:hover { background: var(--blush-light); }
+.service-card:hover::after { transform: scaleX(1); }
+
+.service-num {
+  font-family: var(--serif);
+  font-size: 3.5rem; font-weight: 400;
+  color: var(--blush);
+  line-height: 1;
+  margin-bottom: 1rem;
+  transition: color 0.3s;
+}
+.service-card:hover .service-num { color: var(--blush-mid); }
+
+.service-card h3 {
+  font-family: var(--serif);
+  font-size: 1.2rem; font-weight: 600;
+  color: var(--crimson);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.service-card p {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.75;
+  flex: 1;
+  margin-bottom: 1.25rem;
+}
+
+.service-link {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--crimson);
+  display: flex; align-items: center; gap: 0.4rem;
+  transition: gap 0.25s;
+}
+.service-card:hover .service-link { gap: 0.7rem; }
+
+/* ═══════════════════════════════════════════════
+   CASE STUDIES
+═══════════════════════════════════════════════ */
+#case-studies {
+  background: var(--crimson);
+  padding: 6rem 0;
+}
+
+.case-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.case-header .section-label { color: rgba(217,200,204,0.7); }
+.case-header .section-title { color: var(--white); }
+
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto;
+  gap: 1.5px;
+  background: rgba(255,255,255,0.12);
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.case-card {
+  background: rgba(255,255,255,0.04);
+  padding: 2rem 1.75rem;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+.case-card:hover { background: rgba(255,255,255,0.1); }
+
+.case-tag {
+  font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blush); opacity: 0.6;
+  margin-bottom: 0.75rem; font-weight: 500;
+}
+
+.case-card h3 {
+  font-family: var(--serif);
+  font-size: 1.15rem; font-weight: 600;
+  color: var(--white);
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+}
+
+.case-card p {
+  font-size: 13px;
+  color: rgba(217,200,204,0.75);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.case-link {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(217,200,204,0.6);
+  display: flex; align-items: center; gap: 0.35rem;
+  transition: color 0.2s, gap 0.25s;
+}
+.case-card:hover .case-link { color: var(--blush); gap: 0.6rem; }
+
+.case-cta-strip {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center;
+  justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+}
+
+.case-cta-strip p {
+  font-size: 14px;
+  color: rgba(217,200,204,0.75);
+}
+
+/* ═══════════════════════════════════════════════
+   CAREERS TEASER
+═══════════════════════════════════════════════ */
+#careers-teaser { padding: 7rem 0; }
+
+.careers-inner {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.careers-benefits {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.benefit-pill {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.7rem 1rem;
+  background: var(--blush-light);
+  border: 1px solid var(--blush-mid);
+  border-radius: 2px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+.benefit-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--crimson); opacity: 0.4; flex-shrink: 0;
+}
+
+.careers-right {
+  background: var(--crimson);
+  padding: 2.5rem;
+  border-radius: 3px;
+}
+
+.careers-right h3 {
+  font-family: var(--serif);
+  font-size: 1.35rem; font-weight: 600;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.careers-right p {
+  font-size: 13.5px;
+  color: rgba(217,200,204,0.8);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+.position-list { margin-bottom: 1.75rem; }
+.position-item {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.position-item:last-child { border-bottom: none; }
+.position-title {
+  font-size: 13.5px; font-weight: 500; color: var(--white);
+  margin-bottom: 0.2rem;
+}
+.position-meta {
+  font-size: 11px; color: rgba(217,200,204,0.55);
+  letter-spacing: 0.06em;
+}
+.position-arrow {
+  color: rgba(217,200,204,0.4); font-size: 16px;
+  transition: transform 0.2s, color 0.2s; flex-shrink: 0;
+}
+.position-item:hover .position-arrow {
+  transform: translateX(4px); color: var(--blush);
+}
+
+/* ═══════════════════════════════════════════════
+   TEAM
+═══════════════════════════════════════════════ */
+#team {
+  background: var(--blush-light);
+  border-top: 1px solid var(--blush-mid);
+  border-bottom: 1px solid var(--blush-mid);
+  padding: 7rem 0;
+}
+
+.team-header { margin-bottom: 3rem; }
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5px;
+  background: var(--blush-mid);
+  border: 1.5px solid var(--blush-mid);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+
+
+
+
+
+
+/* ═══════════════════════════════════════════════
+   OFFICES
+═══════════════════════════════════════════════ */
+#offices { padding: 6rem 0; }
+
+.offices-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.office-card {
+  padding: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  text-align: center;
+  transition: border-color 0.3s, background 0.3s;
+}
+.office-card:hover { border-color: var(--border-strong); background: var(--blush-light); }
+
+.office-flag {
+  font-size: 1.5rem; margin-bottom: 0.75rem;
+}
+
+.office-country {
+  font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--crimson);
+  opacity: 0.6; font-weight: 500; margin-bottom: 0.3rem;
+}
+
+.office-city {
+  font-family: var(--serif);
+  font-size: 1.3rem; font-weight: 600;
+  color: var(--crimson);
+  margin-bottom: 0.75rem;
+}
+
+.office-email {
+  font-size: 12px; color: var(--text-muted);
+  display: flex; align-items: center; justify-content: center; gap: 0.35rem;
+  transition: color 0.2s;
+}
+.office-email:hover { color: var(--crimson); }
+
+/* ═══════════════════════════════════════════════
+   CONTACT / CTA
+═══════════════════════════════════════════════ */
+#contact {
+  background: var(--crimson-darker, var(--crimson-deeper));
+  padding: 7rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+#contact::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.contact-inner { position: relative; }
+
+#contact h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+#contact p {
+  font-size: 15px;
+  color: rgba(217,200,204,0.8);
+  max-width: 480px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.8;
+}
+
+.contact-btns {
+  display: flex; gap: 1rem;
+  justify-content: center; flex-wrap: wrap;
+}
+
+.video-teaser {
+  margin-top: 3.5rem;
+  padding: 1.75rem 2rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 3px;
+  max-width: 460px;
+  margin-left: auto; margin-right: auto;
+  display: flex; align-items: center; gap: 1.25rem;
+  text-align: left;
+}
+
+.video-icon {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.video-teaser:hover .video-icon { background: rgba(255,255,255,0.2); }
+
+.video-icon svg { fill: var(--white); width: 18px; height: 18px; margin-left: 2px; }
+
+.video-title {
+  font-size: 13px; font-weight: 500;
+  color: var(--white); margin-bottom: 0.2rem;
+}
+.video-sub {
+  font-size: 12px;
+  color: rgba(217,200,204,0.6);
+}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+#site-footer {
+  background: #1a0005;
+  padding: 0;
+}
+
+.footer-top {
+  padding: 3rem 0;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+}
+
+.footer-nav {
+  display: flex; justify-content: center;
+  gap: 2rem; flex-wrap: wrap;
+}
+.footer-nav a {
+  font-size: 12px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: rgba(217,200,204,0.45);
+  transition: color 0.2s;
+}
+.footer-nav a:hover { color: rgba(217,200,204,0.9); }
+
+.footer-social {
+  display: flex; align-items: center; gap: 1rem;
+}
+.footer-social a {
+  display: flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 2px;
+  color: rgba(217,200,204,0.5);
+  font-size: 13px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.footer-social a:hover { border-color: rgba(217,200,204,0.5); color: rgba(217,200,204,0.9); }
+.footer-social svg { width: 16px; height: 16px; fill: currentColor; }
+
+.footer-bottom {
+  padding: 1.25rem 0;
+}
+.footer-bottom-inner {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+}
+.footer-copy {
+  font-size: 12px;
+  color: rgba(217,200,204,0.35);
+  letter-spacing: 0.03em;
+}
+.footer-legal {
+  display: flex; gap: 1.5rem;
+}
+.footer-legal a {
+  font-size: 12px;
+  color: rgba(217,200,204,0.35);
+  transition: color 0.2s;
+}
+.footer-legal a:hover { color: rgba(217,200,204,0.8); }
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .cases-grid { grid-template-columns: 1fr; }
+  .careers-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .team-grid { grid-template-columns: 1fr; }
+  .offices-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .footer-top { grid-template-columns: 1fr; text-align: center; }
+  .footer-nav { justify-content: center; }
+  .footer-social { justify-content: center; }
+}
+
+@media (max-width: 700px) {
+  .pillars-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .careers-benefits { grid-template-columns: 1fr; }
+  .nav-desktop { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-mobile { display: block; }
+  .hero-stats { gap: 2rem; }
+  .footer-bottom-inner { flex-direction: column; text-align: center; }
+}
+
+/* Team photo */
+
+/* Animated stat numbers */
+.hero-stat-num {
+  font-family: var(--serif);
+  font-size: 2.4rem; font-weight: 600;
+  color: var(--white);
+  line-height: 1;
+  transition: transform 0.3s;
+}
+.hero-stat-num.counting { transform: scale(1.08); }
+.hero-stat-suffix { font-family: var(--serif); font-size: 2rem; font-weight: 400; color: var(--white); }
+
+/* Practice icons */
+.service-icon {
+  width: 44px; height: 44px;
+  margin-bottom: 1.25rem;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--blush-light);
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.service-icon svg { width: 24px; height: 24px; stroke: var(--crimson); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Enhanced team cards */
+.team-card {
+  background: var(--white);
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  cursor: default;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+.team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(79,0,16,0.12);
+  z-index: 2;
+}
+.team-card-inner { padding: 2rem 1.75rem; }
+.team-photo {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  margin-bottom: 1.25rem;
+  border: 3px solid var(--blush-mid);
+  display: block;
+  transition: border-color 0.3s;
+}
+.team-card:hover .team-photo { border-color: var(--crimson); }
+
+.team-quote-overlay {
+  position: absolute; inset: 0;
+  background: var(--crimson);
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem 1.75rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+  pointer-events: none;
+}
+.team-card:hover .team-quote-overlay {
+  opacity: 1; transform: none;
+  pointer-events: auto;
+}
+.team-quote-overlay p {
+  font-family: var(--serif);
+  font-size: 1.05rem; font-weight: 400;
+  color: var(--white); line-height: 1.65;
+  font-style: italic; text-align: center;
+}
+.team-quote-overlay .quote-name {
+  display: block; margin-top: 1.1rem;
+  font-family: var(--sans);
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(217,200,204,0.65);
+  font-style: normal; text-align: center;
+}
+
+/* Section texture strips */
+.section-texture {
+  background-image: repeating-linear-gradient(
+    -55deg,
+    transparent,
+    transparent 12px,
+    rgba(79,0,16,0.025) 12px,
+    rgba(79,0,16,0.025) 13px
+  );
+}
+
+/* Diagonal divider */
+.section-divider {
+  height: 60px; overflow: hidden;
+  line-height: 0;
+}
+.section-divider svg { display: block; width: 100%; height: 100%; }
+
+</style>
 </style>
 </head>
 <body>
@@ -526,7 +1201,7 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
 
     <ul class="nav-desktop" role="list">
       <li class="nav-item">
-        <span class="nav-link" tabindex="0" aria-haspopup="true">
+        <span class="nav-link active" tabindex="0" aria-haspopup="true">
           Expertise
           <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
@@ -540,7 +1215,7 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
         </div>
       </li>
       <li class="nav-item">
-        <span class="nav-link active" tabindex="0" aria-haspopup="true">
+        <span class="nav-link" tabindex="0" aria-haspopup="true">
           Careers
           <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
@@ -600,292 +1275,156 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
 
 <main>
 <!-- ═══════════════ PAGE HERO ═══════════════ -->
-<section class="page-hero" aria-labelledby="job-title">
+<section class="page-hero" aria-labelledby="clients-title">
   <div class="container page-hero-inner">
     <nav class="breadcrumb reveal" aria-label="Breadcrumb">
       <a href="index.html">Home</a>
       <span class="breadcrumb-sep" aria-hidden="true">›</span>
-      <a href="index.html#careers-teaser">Careers</a>
-      <span class="breadcrumb-sep" aria-hidden="true">›</span>
-      <span aria-current="page">Senior Management Consultant</span>
+      <span aria-current="page">Expertise</span>
     </nav>
-    <p class="page-hero-label reveal">Open position</p>
-    <h1 id="job-title" class="reveal reveal-delay-1">Senior Management<br>Consultant</h1>
-    <div class="page-hero-meta reveal reveal-delay-2">
-      <span class="meta-tag">
-        <svg viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M6.5 1a4 4 0 100 8 4 4 0 000-8zm0 10.5c-2.8 0-5.5 1.4-5.5 2v.5h11v-.5c0-.6-2.7-2-5.5-2z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
-        </svg>
-        Senior level
-      </span>
-      <span class="meta-tag">
-        <svg viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M6.5 1.5a4 4 0 100 8 4 4 0 000-8zM6.5 5v2.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
-        </svg>
-        Permanent · Full-time
-      </span>
-      <span class="meta-tag">
-        <svg viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M6.5 1C4.3 1 2.5 2.8 2.5 5c0 3 4 7 4 7s4-4 4-7c0-2.2-1.8-4-4-4zm0 5.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
-        </svg>
-        United Kingdom · Germany
-      </span>
-    </div>
+    <p class="page-hero-label reveal">What we do</p>
+    <h1 id="clients-title" class="reveal reveal-delay-1">Our Expertise</h1>
   </div>
 </section>
 
 <!-- ═══════════════ CONTENT ═══════════════ -->
-<div class="page-body">
+<!-- ═══════════════ EXPERTISE ═══════════════ -->
+<section id="expertise" aria-labelledby="expertise-heading">
   <div class="container">
-    <div class="page-layout">
-
-      <!-- LEFT: Main content -->
+    <div class="expertise-header">
       <div>
-
-        
-        <!-- About us -->
-        <div class="content-block reveal">
-          <h2>About Crescenti Pohl Advisory</h2>
-          <p>We are a business consultancy with a small but strongly connected and established client base that values our delivery focus and constantly high standards. We have started to grow into a wider recognised brand and currently have a physical presence in Cyprus, the United Kingdom, and Germany.</p>
-          <p>We are now aiming to further expand our footprint by growing our team in those countries. This position is available in the <strong>UK or Germany</strong>. We are looking for candidates who are passionate about the energy industry and have 5+ years of experience in a relevant field or position. The ideal candidate is confident in sharing their perspectives and ideas directly with clients — ambitious, solution-focused, and driven to succeed alongside our clients.</p>
-        </div>
-
-        <!-- Requirements -->
-        <div class="content-block reveal">
-          <h2>What we are looking for</h2>
-          <p style="font-size:14px;color:var(--text-light);margin-bottom:1rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;">The candidate must</p>
-          <ul class="checklist" role="list">
-            <li class="checklist-item">
-              <div class="checklist-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              Have extensive experience in key roles in the energy industry or related fields, with deep subject matter expertise in several domains and some managerial or project management experience
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              Have extensive experience as a business consultant in the energy industry or related fields, ideally in large business transformation and core strategic projects
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              Be fluent in English, and ideally have some knowledge in German or French
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              Be willing to travel frequently within Europe — although remote work is feasible and has become a standard part of our way of working
-            </li>
-          </ul>
-        </div>
-
-        <!-- Ideal profile -->
-        <div class="content-block reveal">
-          <h2>The ideal candidate</h2>
-          <p style="font-size:14px;color:var(--text-light);margin-bottom:1rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;">Experience in some of the following</p>
-          <ul class="checklist" role="list">
-            <li class="checklist-item">
-              <div class="checklist-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              Excellent communication and presentation skills — ideally practised across various group sizes and for diverse topics
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              A delivery focus — experience as a programme or project manager with accountability for delivery and leadership of consultancy teams
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              A track record in the sales of business consultancy projects
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              Building and maintaining client relationships in the energy industry, with success in business development within a consultancy
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              Deep understanding of aspects of the energy markets — for example market modelling, wholesale markets, regulatory environment, or the design of business models in the energy market
-            </li>
-          </ul>
-        </div>
-
-        <!-- Typical work -->
-        <div class="content-block reveal">
-          <h2>Your typical work</h2>
-          <p>We advise clients in their business transformation and provide economic and strategic consulting. A typical day involves intensive discussions and workshops with clients — working on understanding challenges and questions, their solutions, new complex concepts and ideas, and bringing this into a form that is easy to understand for various stakeholder groups.</p>
-
-          <p style="font-size:14px;color:var(--text-light);margin:1.5rem 0 0.85rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;">Project examples</p>
-          <div class="project-examples">
-            <div class="project-example reveal">
-              <div class="project-tag">Market capabilities</div>
-              <p>An energy trader targets to become one of Europe's most successful market players and is building up various capabilities in advanced market modelling, data analytics and reporting, sophisticated risk management and underlying up-to-date technologies and IT infrastructure — we provide first class project management and business analysis support.</p>
-            </div>
-            <div class="project-example reveal reveal-delay-1">
-              <div class="project-tag">Process &amp; system design</div>
-              <p>The organisation has difficulties implementing complex core processes that cross line functions and requires functional enhancement of various key systems — we support the process and system design, coordinate the implementation end-to-end, and report to the board.</p>
-            </div>
-            <div class="project-example reveal reveal-delay-2">
-              <div class="project-tag">Hedging strategy</div>
-              <p>A smaller utility does not have extensive trading experience but wants to market their generation assets effectively — we define a hedging strategy and evaluate trading services with them.</p>
-            </div>
-          </div>
-          <p style="margin-top:1.25rem;">You will be working at the forefront of the European energy sector alongside market specialists with deep industry knowledge.</p>
-        </div>
-
-        <!-- What we offer -->
-        <div class="content-block reveal">
-          <h2>What we offer</h2>
-          <div class="offer-grid">
-            <div class="offer-card">
-              <div class="offer-card-icon" aria-hidden="true">⚡</div>
-              <div class="offer-card-text">
-                <strong>Industry leadership</strong>
-                Work at the forefront of the energy industry and in particular energy trading
-              </div>
-            </div>
-            <div class="offer-card">
-              <div class="offer-card-icon" aria-hidden="true">👥</div>
-              <div class="offer-card-text">
-                <strong>Team leadership</strong>
-                Lead a small team and co-develop further personnel
-              </div>
-            </div>
-            <div class="offer-card">
-              <div class="offer-card-icon" aria-hidden="true">📈</div>
-              <div class="offer-card-text">
-                <strong>Performance promotions</strong>
-                Progress quickly in line with the growth of your knowledge, contribution, and role
-              </div>
-            </div>
-            <div class="offer-card">
-              <div class="offer-card-icon" aria-hidden="true">⚖️</div>
-              <div class="offer-card-text">
-                <strong>Work-life balance</strong>
-                We take this seriously — remote work is standard and travel is managed responsibly
-              </div>
-            </div>
-            <div class="offer-card">
-              <div class="offer-card-icon" aria-hidden="true">🎓</div>
-              <div class="offer-card-text">
-                <strong>Training budget</strong>
-                Flexible on-the-job, internal, and individual development budget
-              </div>
-            </div>
-            <div class="offer-card">
-              <div class="offer-card-icon" aria-hidden="true">💰</div>
-              <div class="offer-card-text">
-                <strong>Compensation</strong>
-                Competitive base salary with excellent success-based upward potential
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- How to apply -->
-        <div class="content-block reveal">
-          <h2>How to apply</h2>
-          <p>Permanent positions are available for ambitious professionals. Please send your application to <a href="mailto:recruitment@crescentipohl.com?subject=Application: Senior Management Consultant" style="color:var(--crimson);text-decoration:underline;text-underline-offset:3px;">recruitment@crescentipohl.com</a>. Ensure you clearly highlight your experience and how you fulfil the above requirements.</p>
-          <p>In your cover letter, please respond to the following two points:</p>
-          <div class="steps" role="list">
-            <div class="step" role="listitem">
-              <div class="step-num" aria-hidden="true">1</div>
-              <div class="step-text">What fascinates you in business consulting, and how your experience and training enables you to be a good senior consultant</div>
-            </div>
-            <div class="step" role="listitem">
-              <div class="step-num" aria-hidden="true">2</div>
-              <div class="step-text">What helps you keep a good work-life balance while being in a profession that is known to be work-intensive and may require extra effort to personally develop and make career</div>
-            </div>
-          </div>
-          <p style="margin-top:1.25rem;font-size:14px;color:var(--text-light);">Incoming CVs will be assessed continuously, and individual interviews and assessments organised until the position is filled.</p>
-        </div>
-
-        <!-- Sign-off -->
-        <div class="signoff reveal">
-          <p>We are looking forward to hearing from you.</p>
-          <div class="signoff-name">Your future colleagues at Crescenti Pohl Advisory</div>
-        </div>
-
+        <span class="section-label reveal">Areas of expertise</span>
+        <h2 class="section-title reveal" id="expertise-heading">Your need and our expertise</h2>
       </div>
-
-      <!-- RIGHT: Sidebar -->
-      <aside class="sidebar" aria-label="Job details">
-
-        <!-- Quick facts -->
-        <div class="sidebar-card reveal">
-          <div class="sidebar-card-header">
-            <h3>Position details</h3>
-          </div>
-          <div class="sidebar-card-body">
-            <div class="sidebar-detail">
-              <span class="sidebar-detail-label">Role</span>
-              <span class="sidebar-detail-value">Senior Management Consultant</span>
-            </div>
-            <div class="sidebar-detail">
-              <span class="sidebar-detail-label">Level</span>
-              <span class="sidebar-detail-value">Senior level / Analyst</span>
-            </div>
-            <div class="sidebar-detail">
-              <span class="sidebar-detail-label">Type</span>
-              <span class="sidebar-detail-value">Permanent · Full-time</span>
-            </div>
-            <div class="sidebar-detail">
-              <span class="sidebar-detail-label">Locations</span>
-              <span class="sidebar-detail-value">United Kingdom · Germany</span>
-            </div>
-            <div class="sidebar-detail">
-              <span class="sidebar-detail-label">Travel</span>
-              <span class="sidebar-detail-value">Within Europe as required</span>
-            </div>
-            <div class="sidebar-detail">
-              <span class="sidebar-detail-label">Sector</span>
-              <span class="sidebar-detail-value">Energy — Utilities &amp; Trading</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Apply CTA -->
-        <div class="sidebar-card reveal reveal-delay-1">
-          <div class="sidebar-apply">
-            <p>Ready to apply? Send your CV and cover letter directly to our team.</p>
-            <a href="mailto:recruitment@crescentipohl.com?subject=Application: Senior Management Consultant" class="btn">
-              Apply now
-            </a>
-            <a href="mailto:recruitment@crescentipohl.com?subject=Question: Senior Management Consultant role" class="btn btn-email">
-              Ask a question
-            </a>
-          </div>
-        </div>
-
-        <!-- Other positions -->
-        <div class="sidebar-card reveal reveal-delay-2">
-          <div class="sidebar-more">
-            <h4>Other open positions</h4>
-            <a href="junior-consultant.html" class="sidebar-position-link">
-              <span>Junior Management Consultant<br><span style="font-size:11.5px;color:var(--text-light);">UK · DE · CY</span></span>
-              <span class="arrow" aria-hidden="true">→</span>
-            </a>
-            <a href="speculative.html" class="sidebar-position-link">
-              <span>Speculative application<br><span style="font-size:11.5px;color:var(--text-light);">All offices</span></span>
-              <span class="arrow" aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-
-      </aside>
+      <a href="mailto:info@crescentipohl.com?subject=Please get in touch with me!" class="btn btn-outline-crimson reveal" style="flex-shrink:0;">
+        Get in touch
+      </a>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal" id="energy-transition">
+        <div class="service-num" aria-hidden="true">01</div>
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+      </div>
+        <h3>Energy Transition</h3>
+        <p>The energy transition is motivated by the reduction of greenhouse gases to lessen climate change. The core remains the build-up of renewable energy generation. Challenges and emerging topics include energy storage, hydrogen and ammonium, flexibility provision, energy security, and grid stability.</p>
+        <a href="case-study-renewable-mandate.html" class="service-link">
+          Explore practice
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <div class="service-card reveal reveal-delay-1" id="business-transformation">
+        <div class="service-num" aria-hidden="true">02</div>
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5h7M17.5 14v7"/></svg>
+      </div>
+        <h3>Business Transformation &amp; Digitalization</h3>
+        <p>European utilities are accelerating their transformation to meet rising customer expectations, regulatory demands, and sustainability goals. Transformation is an ongoing journey demanding continuous innovation, technology adaptation, and organizational agility while keeping operational efficiency.</p>
+        <a href="case-study-asset-optimization.html" class="service-link">
+          Explore practice
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <div class="service-card reveal reveal-delay-2" id="market-strategy">
+        <div class="service-num" aria-hidden="true">03</div>
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+        <h3>Market Insight &amp; Strategy</h3>
+        <p>In today's volatile energy market, European utilities need to stay attentive, vigilant, and agile. Successful utilities invest in data-driven insights and flexible strategies to anticipate change and respond proactively. Those who can adapt quickly with fast time-to-market are best positioned.</p>
+        <a href="case-study-hydro-investment.html" class="service-link">
+          Explore practice
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <div class="service-card reveal reveal-delay-3" id="data-ai">
+        <div class="service-num" aria-hidden="true">04</div>
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+      </div>
+        <h3>Data &amp; Artificial Intelligence</h3>
+        <p>The power of data and AI is reshaping the energy industry, driving efficiency and unlocking new potential. Real-time data quality requires robust governance. Introducing AI carefully and responsibly will unlock its potential while avoiding risks around privacy and proprietary strategic insight.</p>
+        <a href="case-study-data-platform.html" class="service-link">
+          Explore practice
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
     </div>
   </div>
-</div>
+</section>
+
+<!-- ═══════════════ CASE STUDIES ═══════════════ -->
+<section id="case-studies" aria-labelledby="cases-heading">
+  <div class="container">
+    <div class="case-header">
+      <div>
+        <span class="section-label reveal">Selected case studies</span>
+        <h2 class="section-title reveal" id="cases-heading">Delivering impact across Europe</h2>
+      </div>
+    </div>
+    <div class="cases-grid">
+      <div class="case-card reveal">
+        <div class="case-tag">Energy Transition</div>
+        <h3>Renewable commercial mandate</h3>
+        <p>Defined commercial models and end-to-end portfolio management capabilities for a major European utility building a renewable pipeline across core markets.</p>
+        <a href="case-study-renewable-mandate.html" class="case-link">
+          Learn more
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1.5 6h9M7 2.5l3.5 3.5L7 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <div class="case-card reveal reveal-delay-1">
+        <div class="case-tag">Business Transformation</div>
+        <h3>Asset optimization platform</h3>
+        <p>Modular, flexible cloud-based solution for power asset modelling and optimization, replacing legacy applications across a combined hydro and conventional generation portfolio.</p>
+        <a href="case-study-asset-optimization.html" class="case-link">
+          Learn more
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1.5 6h9M7 2.5l3.5 3.5L7 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <div class="case-card reveal reveal-delay-2">
+        <div class="case-tag">Market Strategy</div>
+        <h3>Investment hydro pump storage</h3>
+        <p>Scenario-based valuation and (des-)investment strategy for a hydro pump storage project. Options valuation against energy and ancillary power markets with clear hold/exit thresholds.</p>
+        <a href="case-study-hydro-investment.html" class="case-link">
+          Learn more
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1.5 6h9M7 2.5l3.5 3.5L7 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <div class="case-card reveal reveal-delay-3">
+        <div class="case-tag">Data &amp; AI</div>
+        <h3>Strategic data platform</h3>
+        <p>Cloud-based data integration and analytics platform — replacing fragmented on-premise landscape with automated, governed pipelines at scale.</p>
+        <a href="case-study-data-platform.html" class="case-link">
+          Learn more
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1.5 6h9M7 2.5l3.5 3.5L7 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="case-cta-strip reveal">
+      <p>More case studies and a detailed breakdown of our expertise?</p>
+      <a href="mailto:info@crescentipohl.com?subject=Please get in touch with me!" class="btn btn-outline-white">
+        Get in touch
+      </a>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <!-- ═══════════════ FOOTER ═══════════════ -->
