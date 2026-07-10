@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Junior Management Consultant — Crescenti Pohl Advisory</title>
-<meta name="description" content="Join Crescenti Pohl Advisory as a Junior Management Consultant. Work at the forefront of the European energy sector alongside senior consultants and market specialists." />
+<title>Careers — Crescenti Pohl Advisory</title>
+<meta name="description" content="Careers at Crescenti Pohl Advisory — why join us, our career path from Analyst to Associate Partner, continuous professional development, and open positions across the UK, Germany, and Cyprus." />
   <link rel="icon" type="image/png" sizes="64x64" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAA6klEQVR42u3awQ3DIBBEUUpIZ2ksx5SS/hz5YMmKHBvwssD+GWkL+E8cSUnTNM1wz/RYBCAAcPx2AhAAOB6JIAAywFE8CkEAZICzeAQCGiAnPjSCAMgAJfEhEbwAPq/3IoAI8bUIaIA1fjsBRIgvRUAD7OOHQkADWMTnIqABjuK7I1jGXyGgAc7iuyKgAVrE/0NAA+TEd0FAA7SM/0VAA5TEuyKgATzi16uJd0EQABlghvimCGgAr3g8gEV8EwQ0wGzPf1oAy3hTBDTAzPEmCAIgA0SIv4UgADJApPgqBDRAxPghv9Vo2pj7ApttZ7Oj83StAAAAAElFTkSuQmCC" />
   <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAA6klEQVR42u3awQ3DIBBEUUpIZ2ksx5SS/hz5YMmKHBvwssD+GWkL+E8cSUnTNM1wz/RYBCAAcPx2AhAAOB6JIAAywFE8CkEAZICzeAQCGiAnPjSCAMgAJfEhEbwAPq/3IoAI8bUIaIA1fjsBRIgvRUAD7OOHQkADWMTnIqABjuK7I1jGXyGgAc7iuyKgAVrE/0NAA+TEd0FAA7SM/0VAA5TEuyKgATzi16uJd0EQABlghvimCGgAr3g8gEV8EwQ0wGzPf1oAy3hTBDTAzPEmCAIgA0SIv4UgADJApPgqBDRAxPghv9Vo2pj7ApttZ7Oj83StAAAAAElFTkSuQmCC" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -122,6 +122,7 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
   transition: color 0.2s; cursor: pointer; white-space: nowrap;
 }
 .nav-link:hover { color: var(--white); }
+.nav-link.active { color: var(--white); }
 .nav-link svg { width: 10px; height: 10px; transition: transform 0.25s; flex-shrink: 0; }
 .nav-item:hover .nav-link svg { transform: rotate(180deg); }
 
@@ -239,35 +240,113 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
   line-height: 1.1; letter-spacing: -0.01em;
 }
 
-.page-hero-meta {
-  display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.5rem;
+/* ═══════════════════════════════════════════════
+   SECTION HEADINGS
+═══════════════════════════════════════════════ */
+.section-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  margin-bottom: 0.9rem;
 }
-.meta-tag {
-  display: flex; align-items: center; gap: 0.45rem;
-  font-size: 12.5px; color: rgba(217,200,204,0.7);
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 600;
+  color: var(--crimson);
+  line-height: 1.15;
+  margin-bottom: 1rem;
 }
-.meta-tag svg { width: 13px; height: 13px; opacity: 0.6; flex-shrink: 0; }
+.section-body {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 640px;
+}
 
 /* ═══════════════════════════════════════════════
-   MAIN LAYOUT
+   WHY WORK FOR US
 ═══════════════════════════════════════════════ */
-.page-body {
-  padding: 5rem 0 6rem;
+#why-work-for-us { padding: 7rem 0; }
+
+#why-work-for-us .section-body { max-width: 900px; }
+
+.careers-benefits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 2rem;
+  max-width: 900px;
 }
 
-.page-layout {
+.benefit-pill {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.7rem 1rem;
+  background: var(--blush-light);
+  border: 1px solid var(--blush-mid);
+  border-radius: 2px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+.benefit-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--crimson); opacity: 0.4; flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════
+   CAREER PATH
+═══════════════════════════════════════════════ */
+#career-path {
+  background: var(--blush-light);
+  border-top: 1px solid var(--blush-mid);
+  border-bottom: 1px solid var(--blush-mid);
+  padding: 7rem 0;
+}
+
+.career-ladder  { display: flex; flex-direction: column; gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); border-radius: 3px; overflow: hidden; margin-top: 1.5rem; }
+.career-rung    { background: var(--white); padding: 1.1rem 1.5rem; display: flex; align-items: flex-start; gap: 1.25rem; transition: background 0.25s; }
+.career-rung:hover { background: var(--blush-light); }
+.career-level   { font-family: var(--serif); font-size: 2rem; font-weight: 400; color: var(--blush); line-height: 1; min-width: 24px; flex-shrink: 0; }
+.career-title   { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; color: var(--crimson); margin-bottom: 0.25rem; }
+.career-desc    { font-size: 13.5px; color: var(--text-muted); line-height: 1.65; }
+
+/* ═══════════════════════════════════════════════
+   PROFESSIONAL DEVELOPMENT
+═══════════════════════════════════════════════ */
+#professional-development { padding: 7rem 0; }
+
+.training-grid  { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); border-radius: 3px; overflow: hidden; margin-top: 1.5rem; }
+.training-card  { background: var(--white); padding: 1.75rem 1.5rem; transition: background 0.25s; }
+.training-card:hover { background: var(--blush-light); }
+.training-icon  { width: 40px; height: 40px; background: var(--blush-light); border: 1px solid var(--blush-mid); border-radius: 3px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+.training-icon svg { width: 22px; height: 22px; stroke: var(--crimson); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.training-card h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; color: var(--crimson); margin-bottom: 0.75rem; }
+.training-list  { display: flex; flex-direction: column; gap: 0.5rem; }
+.training-list li { display: flex; align-items: flex-start; gap: 0.55rem; font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+.training-dot   { width: 4px; height: 4px; border-radius: 50%; background: var(--crimson); opacity: 0.4; flex-shrink: 0; margin-top: 7px; }
+
+/* ═══════════════════════════════════════════════
+   OPEN POSITIONS
+═══════════════════════════════════════════════ */
+#open-positions {
+  background: var(--blush-light);
+  border-top: 1px solid var(--blush-mid);
+  padding: 7rem 0;
+}
+
+.careers-offer-row {
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 1.3fr 1fr;
   gap: 5rem;
   align-items: start;
+  margin-top: 2rem;
 }
 
-/* ═══════════════════════════════════════════════
-   CONTENT COLUMN
-═══════════════════════════════════════════════ */
-.content-block { margin-bottom: 3rem; }
-.content-block:last-child { margin-bottom: 0; }
-
+.content-block { margin-bottom: 0; }
 .content-block h2 {
   font-family: var(--serif);
   font-size: 1.55rem; font-weight: 600;
@@ -275,14 +354,12 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
   padding-bottom: 0.6rem;
   border-bottom: 1px solid var(--border);
 }
-
 .content-block p {
   font-size: 15px; color: var(--text-muted);
   line-height: 1.85; margin-bottom: 0.85rem;
 }
 .content-block p:last-child { margin-bottom: 0; }
 
-/* Checklist */
 .checklist { display: flex; flex-direction: column; gap: 0.7rem; margin-top: 0.25rem; }
 .checklist-item {
   display: flex; align-items: flex-start; gap: 0.75rem;
@@ -290,155 +367,55 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
 }
 .checklist-icon {
   width: 20px; height: 20px; border-radius: 50%;
-  background: var(--blush-light); border: 1px solid var(--blush-mid);
+  background: var(--white); border: 1px solid var(--blush-mid);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0; margin-top: 1px;
 }
 .checklist-icon svg { width: 10px; height: 10px; stroke: var(--crimson); stroke-width: 2; fill: none; }
 
-/* Offer grid */
-.offer-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-  margin-top: 0.25rem;
-}
-.offer-card {
-  background: var(--blush-light);
-  border: 1px solid var(--blush-mid);
-  border-radius: 2px;
-  padding: 1rem 1.1rem;
-  display: flex; align-items: flex-start; gap: 0.65rem;
-}
-.offer-card-icon {
-  font-size: 16px; flex-shrink: 0; margin-top: 1px;
-  line-height: 1;
-}
-.offer-card-text {
-  font-size: 13.5px; color: var(--text-muted); line-height: 1.5;
-}
-.offer-card-text strong {
-  display: block; font-size: 13px; font-weight: 500;
-  color: var(--crimson); margin-bottom: 0.1rem;
-}
-
-/* Cover letter steps */
-.steps { display: flex; flex-direction: column; gap: 0; }
-.step {
-  display: flex; gap: 1.25rem; align-items: flex-start;
-  padding: 1.1rem 0;
-  border-bottom: 1px solid var(--border);
-}
-.step:last-child { border-bottom: none; }
-.step-num {
-  font-family: var(--serif);
-  font-size: 1.8rem; font-weight: 400;
-  color: var(--blush); line-height: 1;
-  min-width: 28px; flex-shrink: 0;
-  margin-top: -3px;
-}
-.step-text {
-  font-size: 14.5px; color: var(--text-muted); line-height: 1.65;
-  padding-top: 0.15rem;
-}
-
-/* Sign-off */
-.signoff {
-  margin-top: 2rem;
-  padding: 1.5rem 1.75rem;
+.careers-right {
   background: var(--crimson);
-  border-radius: 2px;
-}
-.signoff p {
-  font-size: 15px; color: rgba(217,200,204,0.85); line-height: 1.75;
-  font-family: var(--serif); font-style: italic; margin-bottom: 0 !important;
-}
-.signoff-name {
-  margin-top: 0.75rem;
-  font-size: 12px; font-weight: 500;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: rgba(217,200,204,0.5);
-}
-
-/* ═══════════════════════════════════════════════
-   SIDEBAR
-═══════════════════════════════════════════════ */
-.sidebar { position: sticky; top: calc(var(--nav-h) + 2rem); }
-
-.sidebar-card {
-  background: var(--white);
-  border: 1px solid var(--border);
+  padding: 2.5rem;
   border-radius: 3px;
-  overflow: hidden;
-  margin-bottom: 1.25rem;
+  max-width: 480px;
 }
 
-.sidebar-card-header {
-  background: var(--crimson);
-  padding: 1.1rem 1.4rem;
-}
-.sidebar-card-header h3 {
+.careers-right h3 {
   font-family: var(--serif);
-  font-size: 1.1rem; font-weight: 600;
+  font-size: 1.35rem; font-weight: 600;
   color: var(--white);
+  margin-bottom: 1rem;
 }
 
-.sidebar-card-body { padding: 1.25rem 1.4rem; }
+.careers-right p {
+  font-size: 13.5px;
+  color: rgba(217,200,204,0.8);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
 
-.sidebar-detail {
-  display: flex; align-items: flex-start; gap: 0.7rem;
-  padding: 0.65rem 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 13px;
+.position-list { margin-bottom: 1.75rem; }
+.position-item {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
 }
-.sidebar-detail:last-child { border-bottom: none; padding-bottom: 0; }
-.sidebar-detail-label {
-  font-size: 10px; font-weight: 500;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--text-light); min-width: 72px; padding-top: 2px;
+.position-item:last-child { border-bottom: none; }
+.position-title {
+  font-size: 13.5px; font-weight: 500; color: var(--white);
+  margin-bottom: 0.2rem;
 }
-.sidebar-detail-value { color: var(--text-muted); line-height: 1.45; }
-
-.sidebar-apply {
-  background: var(--crimson);
-  padding: 1.5rem 1.4rem;
-  text-align: center;
+.position-meta {
+  font-size: 11px; color: rgba(217,200,204,0.55);
+  letter-spacing: 0.06em;
 }
-.sidebar-apply p {
-  font-size: 12.5px; color: rgba(217,200,204,0.75);
-  margin-bottom: 1rem; line-height: 1.55;
+.position-arrow {
+  color: rgba(217,200,204,0.4); font-size: 16px;
+  transition: transform 0.2s, color 0.2s; flex-shrink: 0;
 }
-.sidebar-apply .btn {
-  width: 100%; justify-content: center;
-  background: var(--white); color: var(--crimson);
+.position-item:hover .position-arrow {
+  transform: translateX(4px); color: var(--blush);
 }
-.sidebar-apply .btn:hover { background: var(--blush-light); }
-.sidebar-apply .btn-email {
-  margin-top: 0.6rem;
-  background: transparent; color: rgba(217,200,204,0.65);
-  border: 1px solid rgba(255,255,255,0.2); font-size: 11px;
-  width: 100%; justify-content: center;
-}
-.sidebar-apply .btn-email:hover { background: rgba(255,255,255,0.07); color: var(--white); }
-
-.sidebar-more { padding: 1.25rem 1.4rem; }
-.sidebar-more h4 {
-  font-size: 11px; font-weight: 500;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--text-light); margin-bottom: 0.85rem;
-}
-.sidebar-position-link {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0.7rem 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 13px; color: var(--text-muted);
-  transition: color 0.2s;
-}
-.sidebar-position-link:last-child { border-bottom: none; }
-.sidebar-position-link:hover { color: var(--crimson); }
-.sidebar-position-link span { line-height: 1.35; }
-.sidebar-position-link .arrow { flex-shrink: 0; opacity: 0.4; transition: opacity 0.2s, transform 0.2s; }
-.sidebar-position-link:hover .arrow { opacity: 0.8; transform: translateX(3px); }
 
 /* ═══════════════════════════════════════════════
    FOOTER
@@ -489,9 +466,9 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
    RESPONSIVE
 ═══════════════════════════════════════════════ */
 @media (max-width: 860px) {
-  .page-layout { grid-template-columns: 1fr; gap: 3rem; }
-  .sidebar { position: static; }
-  .offer-grid { grid-template-columns: 1fr; }
+  .careers-benefits { grid-template-columns: 1fr; }
+  .training-grid { grid-template-columns: 1fr; }
+  .careers-offer-row { grid-template-columns: 1fr; gap: 3rem; }
   .footer-top { grid-template-columns: 1fr; text-align: center; }
   .footer-nav { justify-content: center; }
   .footer-social { justify-content: center; }
@@ -506,7 +483,7 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
 </head>
 <body>
 
-<!-- ═══════════════ HEADER ═══════════════ -->
+<!-- ═══════════════════════════════════════════════ HEADER ═══════════════════════════════════════════════ -->
 <header id="site-header" role="banner">
   <nav class="nav-inner" aria-label="Main navigation">
     <a href="index.html" class="nav-logo" aria-label="Crescenti Pohl Advisory – home">
@@ -592,234 +569,168 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
 </header>
 
 <main>
-<!-- ═══════════════ PAGE HERO ═══════════════ -->
-<section class="page-hero" aria-labelledby="job-title">
+<!-- ═══════════════════════════════════════════════ PAGE HERO ═══════════════════════════════════════════════ -->
+<section class="page-hero" aria-labelledby="careers-title">
   <div class="container page-hero-inner">
     <nav class="breadcrumb reveal" aria-label="Breadcrumb">
       <a href="index.html">Home</a>
       <span class="breadcrumb-sep" aria-hidden="true">›</span>
-      <a href="index.html#careers-teaser">Careers</a>
-      <span class="breadcrumb-sep" aria-hidden="true">›</span>
-      <span aria-current="page">Junior Management Consultant</span>
+      <span aria-current="page">Careers</span>
     </nav>
-    <p class="page-hero-label reveal">Open position</p>
-    <h1 id="job-title" class="reveal reveal-delay-1">Junior Management<br>Consultant</h1>
-    <div class="page-hero-meta reveal reveal-delay-2">
-      <span class="meta-tag">
-        <svg viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M6.5 1a4 4 0 100 8 4 4 0 000-8zm0 10.5c-2.8 0-5.5 1.4-5.5 2v.5h11v-.5c0-.6-2.7-2-5.5-2z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
-        </svg>
-        Entry level
-      </span>
-      <span class="meta-tag">
-        <svg viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M6.5 1.5a4 4 0 100 8 4 4 0 000-8zM6.5 5v2.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
-        </svg>
-        Permanent · Full-time
-      </span>
-      <span class="meta-tag">
-        <svg viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M6.5 1C4.3 1 2.5 2.8 2.5 5c0 3 4 7 4 7s4-4 4-7c0-2.2-1.8-4-4-4zm0 5.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
-        </svg>
-        Cyprus · United Kingdom · Germany
-      </span>
+    <p class="page-hero-label reveal">Join our team</p>
+    <h1 id="careers-title" class="reveal reveal-delay-1">Careers at Crescenti Pohl Advisory</h1>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ WHY WORK FOR US ═══════════════════════════════════════════════ -->
+<section id="why-work-for-us" aria-labelledby="why-work-heading">
+  <div class="container">
+    <span class="section-label reveal">Careers</span>
+    <h2 class="section-title reveal" id="why-work-heading">Shape the future of European energy</h2>
+    <p class="section-body reveal">Engage at the forefront of the energy industry. Contribute to transforming the largest European utility companies while growing in an empowering, flexible, and truly international environment.</p>
+    <div class="careers-benefits reveal">
+      <div class="benefit-pill"><span class="benefit-dot" aria-hidden="true"></span>Meaningful social impact</div>
+      <div class="benefit-pill"><span class="benefit-dot" aria-hidden="true"></span>Work-life balance</div>
+      <div class="benefit-pill"><span class="benefit-dot" aria-hidden="true"></span>Competitive salary &amp; bonus</div>
+      <div class="benefit-pill"><span class="benefit-dot" aria-hidden="true"></span>Empowering culture</div>
+      <div class="benefit-pill"><span class="benefit-dot" aria-hidden="true"></span>International network</div>
+      <div class="benefit-pill"><span class="benefit-dot" aria-hidden="true"></span>Ambition to excel</div>
+    </div>
+    <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;" class="reveal">
+      <a href="speculative.html" class="btn btn-crimson">Why join us</a>
+      <a href="speculative.html" class="btn btn-outline-crimson">Apply now</a>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ CONTENT ═══════════════ -->
-<div class="page-body">
+<!-- ═══════════════════════════════════════════════ CAREER PATH ═══════════════════════════════════════════════ -->
+<section id="career-path" aria-labelledby="career-path-heading">
   <div class="container">
-    <div class="page-layout">
-
-      <!-- LEFT: Main content -->
-      <div>
-
-        <!-- About us -->
-        <div class="content-block reveal">
-          <h2>About Crescenti Pohl Advisory</h2>
-          <p>We are a small but strongly connected business consultancy working with some of the largest European energy companies. We have started to grow into a wider recognised brand and currently have a physical presence in three countries: Cyprus, United Kingdom, and Germany.</p>
-          <p>We are now aiming to further expand our footprint by growing our team across all those countries. We are looking for highly motivated candidates to join us as Junior Management Consultant — a great career-starter opportunity for ambitious professionals looking to work and thrive at the forefront of the European energy sector alongside our senior business consultants and market specialists with deep industry knowledge.</p>
+    <span class="section-label reveal">Career progression</span>
+    <h2 class="section-title reveal" id="career-path-heading">Where you could fit</h2>
+    <p class="section-body reveal">We hire across all experience levels. Wherever you are in your career, we will find the right scope of work and responsibility to match your profile.</p>
+    <div class="career-ladder reveal" role="list">
+      <div class="career-rung" role="listitem">
+        <div class="career-level" aria-hidden="true">A</div>
+        <div>
+          <div class="career-title">Analyst</div>
+          <p class="career-desc">Entry level. Strong degree, early career experience, and a demonstrated interest in energy and consulting. Works on defined project workstreams supported by senior colleagues.</p>
         </div>
-
-        <!-- What we're looking for -->
-        <div class="content-block reveal">
-          <h2>What we are looking for</h2>
-          <ul class="checklist" role="list">
-            <li class="checklist-item">
-              <div class="checklist-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              A fast learner and capable of understanding highly complex topics
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              An adept problem-solver with critical thinking and attention to detail
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              An excellent communicator with strong presentation skills
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              An expert in collecting, analysing, and interpreting information
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              Willing to travel within Europe if required
-            </li>
-          </ul>
-        </div>
-
-        <!-- The role -->
-        <div class="content-block reveal">
-          <h2>The role</h2>
-          <p>You will be developing concepts for change and supporting our utility clients in large business transformations. Our projects span the full breadth of the European energy sector — from energy transition and renewables to data platforms, trading IT, and market strategy.</p>
-          <p>You may find project examples in our <a href="case-study-renewable-mandate.html" style="color:var(--crimson);text-decoration:underline;text-underline-offset:3px;">case studies</a> — including renewable portfolio mandates, asset optimization platforms, and investment strategy for hydro pump storage.</p>
-        </div>
-
-        <!-- What we offer -->
-        <div class="content-block reveal">
-          <h2>What we offer</h2>
-          <div class="offer-grid">
-            <div class="offer-card">
-              <div class="offer-card-icon" aria-hidden="true">📈</div>
-              <div class="offer-card-text">
-                <strong>Career prospects</strong>
-                Permanent employment with great career prospects and success-based promotions
-              </div>
-            </div>
-            <div class="offer-card">
-              <div class="offer-card-icon" aria-hidden="true">💰</div>
-              <div class="offer-card-text">
-                <strong>Compensation</strong>
-                Above average base salary and extra performance-based bonus
-              </div>
-            </div>
-            <div class="offer-card">
-              <div class="offer-card-icon" aria-hidden="true">🏖️</div>
-              <div class="offer-card-text">
-                <strong>Annual leave</strong>
-                25 days of annual leave per year
-              </div>
-            </div>
-            <div class="offer-card">
-              <div class="offer-card-icon" aria-hidden="true">🎓</div>
-              <div class="offer-card-text">
-                <strong>Training budget</strong>
-                Flexible training budget to support your professional development
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- How to apply -->
-        <div class="content-block reveal">
-          <h2>How to apply</h2>
-          <p>Please send your application to <a href="mailto:recruitment@crescentipohl.com?subject=Application: Junior Management Consultant" style="color:var(--crimson);text-decoration:underline;text-underline-offset:3px;">recruitment@crescentipohl.com</a>. In your cover letter, please address the following three points:</p>
-          <div class="steps" role="list">
-            <div class="step" role="listitem">
-              <div class="step-num" aria-hidden="true">1</div>
-              <div class="step-text">What fascinates you in business consulting and why you want to build your career in the energy sector</div>
-            </div>
-            <div class="step" role="listitem">
-              <div class="step-num" aria-hidden="true">2</div>
-              <div class="step-text">How your experience and training enable you to be a good business consultant</div>
-            </div>
-            <div class="step" role="listitem">
-              <div class="step-num" aria-hidden="true">3</div>
-              <div class="step-text">What you need to keep a good work-life balance and stay motivated in a demanding environment</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Sign-off -->
-        <div class="signoff reveal">
-          <p>We are looking forward to hearing from you.</p>
-          <div class="signoff-name">Your future colleagues at Crescenti Pohl Advisory</div>
-        </div>
-
       </div>
-
-      <!-- RIGHT: Sidebar -->
-      <aside class="sidebar" aria-label="Job details">
-
-        <!-- Quick facts -->
-        <div class="sidebar-card reveal">
-          <div class="sidebar-card-header">
-            <h3>Position details</h3>
-          </div>
-          <div class="sidebar-card-body">
-            <div class="sidebar-detail">
-              <span class="sidebar-detail-label">Role</span>
-              <span class="sidebar-detail-value">Junior Management Consultant</span>
-            </div>
-            <div class="sidebar-detail">
-              <span class="sidebar-detail-label">Level</span>
-              <span class="sidebar-detail-value">Entry level / Analyst</span>
-            </div>
-            <div class="sidebar-detail">
-              <span class="sidebar-detail-label">Type</span>
-              <span class="sidebar-detail-value">Permanent · Full-time</span>
-            </div>
-            <div class="sidebar-detail">
-              <span class="sidebar-detail-label">Locations</span>
-              <span class="sidebar-detail-value">Cyprus · United Kingdom · Germany</span>
-            </div>
-            <div class="sidebar-detail">
-              <span class="sidebar-detail-label">Travel</span>
-              <span class="sidebar-detail-value">Within Europe as required</span>
-            </div>
-            <div class="sidebar-detail">
-              <span class="sidebar-detail-label">Sector</span>
-              <span class="sidebar-detail-value">Energy — Utilities &amp; Trading</span>
-            </div>
-          </div>
+      <div class="career-rung" role="listitem">
+        <div class="career-level" aria-hidden="true">C</div>
+        <div>
+          <div class="career-title">Consultant</div>
+          <p class="career-desc">Typically a PhD or ~3 years of relevant experience. Leads workstreams independently and rapidly builds subject matter expertise in their domain.</p>
         </div>
-
-        <!-- Apply CTA -->
-        <div class="sidebar-card reveal reveal-delay-1">
-          <div class="sidebar-apply">
-            <p>Ready to apply? Send your CV and cover letter directly to our team.</p>
-            <a href="mailto:recruitment@crescentipohl.com?subject=Application: Junior Management Consultant" class="btn">
-              Apply now
-            </a>
-            <a href="mailto:recruitment@crescentipohl.com?subject=Question: Junior Management Consultant role" class="btn btn-email">
-              Ask a question
-            </a>
-          </div>
+      </div>
+      <div class="career-rung" role="listitem">
+        <div class="career-level" aria-hidden="true">M</div>
+        <div>
+          <div class="career-title">Manager</div>
+          <p class="career-desc">Leads projects and small teams. Recognised by clients for deep knowledge. Experienced in managing delivery end-to-end and reporting to client leadership.</p>
         </div>
-
-        <!-- Other positions -->
-        <div class="sidebar-card reveal reveal-delay-2">
-          <div class="sidebar-more">
-            <h4>Other open positions</h4>
-            <a href="senior-consultant.html" class="sidebar-position-link">
-              <span>Senior Management Consultant<br><span style="font-size:11.5px;color:var(--text-light);">UK · Germany</span></span>
-              <span class="arrow" aria-hidden="true">→</span>
-            </a>
-            <a href="speculative.html" class="sidebar-position-link">
-              <span>Speculative application<br><span style="font-size:11.5px;color:var(--text-light);">All offices</span></span>
-              <span class="arrow" aria-hidden="true">→</span>
-            </a>
-          </div>
+      </div>
+      <div class="career-rung" role="listitem">
+        <div class="career-level" aria-hidden="true" style="font-size:1.35rem;">AP</div>
+        <div>
+          <div class="career-title">Associate Partner</div>
+          <p class="career-desc">Acquires and delivers projects. A long-standing, trusted client partner with deep subject matter expertise and business development capability.</p>
         </div>
-
-      </aside>
+      </div>
     </div>
   </div>
-</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ PROFESSIONAL DEVELOPMENT ═══════════════════════════════════════════════ -->
+<section id="professional-development" aria-labelledby="prof-dev-heading">
+  <div class="container">
+    <span class="section-label reveal">Growth &amp; learning</span>
+    <h2 class="section-title reveal" id="prof-dev-heading">Continuous professional development</h2>
+    <p class="section-body reveal">We invest in our people across all three dimensions of professional growth. From day one, you develop through real client exposure, internal knowledge sharing, and a flexible budget for external training.</p>
+    <div class="training-grid reveal">
+      <div class="training-card">
+        <div class="training-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <h3>On-the-job training</h3>
+        <ul class="training-list" role="list">
+          <li><span class="training-dot" aria-hidden="true"></span>Apply methods directly in real project environments</li>
+          <li><span class="training-dot" aria-hidden="true"></span>Receive structured feedback from clients and project managers</li>
+          <li><span class="training-dot" aria-hidden="true"></span>Build and deepen subject matter expertise in the energy sector</li>
+        </ul>
+      </div>
+      <div class="training-card">
+        <div class="training-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3>Internal training</h3>
+        <ul class="training-list" role="list">
+          <li><span class="training-dot" aria-hidden="true"></span>Deep-dives, workshops and self-guided study programmes</li>
+          <li><span class="training-dot" aria-hidden="true"></span>Knowledge exchange from project experience and internal topic leadership</li>
+          <li><span class="training-dot" aria-hidden="true"></span>Methodical and subject matter best practices</li>
+        </ul>
+      </div>
+      <div class="training-card">
+        <div class="training-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <h3>External training</h3>
+        <ul class="training-list" role="list">
+          <li><span class="training-dot" aria-hidden="true"></span>Online courses, certifications and in-person workshops</li>
+          <li><span class="training-dot" aria-hidden="true"></span>Access to external subject matter experts for methodical topics</li>
+          <li><span class="training-dot" aria-hidden="true"></span>Fully supported where relevant to industry and business consulting</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ OPEN POSITIONS ═══════════════════════════════════════════════ -->
+<section id="open-positions" aria-labelledby="open-positions-title">
+  <div class="container">
+    <span class="section-label reveal">Careers</span>
+    <div class="careers-offer-row">
+      <div class="content-block reveal">
+        <h2>What we offer</h2>
+        <ul class="checklist" role="list">
+          <li class="checklist-item"><div class="checklist-icon" aria-hidden="true"><svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Permanent employment with clear career progression and performance-based promotions</li>
+          <li class="checklist-item"><div class="checklist-icon" aria-hidden="true"><svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Competitive base salary and a meaningful performance bonus</li>
+          <li class="checklist-item"><div class="checklist-icon" aria-hidden="true"><svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div> 25 days annual leave</li>
+          <li class="checklist-item"><div class="checklist-icon" aria-hidden="true"><svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Flexible training budget tailored to your individual development goals</li>
+          <li class="checklist-item"><div class="checklist-icon" aria-hidden="true"><svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Genuine work-life balance — remote work is standard and travel is managed responsibly</li>
+          <li class="checklist-item"><div class="checklist-icon" aria-hidden="true"><svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div> A small, collaborative team culture where your contribution is visible and valued</li>
+        </ul>
+      </div>
+      <div class="careers-right reveal">
+        <h3 id="open-positions-title">Open positions</h3>
+        <p>We are hiring across all levels for our UK and German offices.</p>
+        <div class="position-list" role="list">
+          <a class="position-item" href="junior-consultant.html" role="listitem">
+            <div>
+              <div class="position-title">Junior Management Consultant</div>
+              <div class="position-meta">Energy Trading &amp; Utilities · UK, DE, CY</div>
+            </div>
+            <div class="position-arrow" aria-hidden="true">→</div>
+          </a>
+          <a class="position-item" href="senior-consultant.html" role="listitem">
+            <div>
+              <div class="position-title">Senior Management Consultant</div>
+              <div class="position-meta">Power Utilities &amp; Commodity Trading · UK, DE</div>
+            </div>
+            <div class="position-arrow" aria-hidden="true">→</div>
+          </a>
+        </div>
+        <a href="speculative.html" class="btn btn-outline-white" style="font-size:11px;">
+          Speculative application →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 </main>
 
-<!-- ═══════════════ FOOTER ═══════════════ -->
+<!-- ═══════════════════════════════════════════════ FOOTER ═══════════════════════════════════════════════ -->
 <footer id="site-footer" role="contentinfo">
   <div class="container">
     <div class="footer-top">
@@ -832,7 +743,7 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
       </div>
       <nav class="footer-nav" aria-label="Footer navigation">
         <a href="clients.html">Clients</a>
-        <a href="index.html#careers-teaser">Careers</a>
+        <a href="careers.html">Careers</a>
         <a href="about.html">About us</a>
         <a href="about.html#offices">Offices</a>
         <a href="mailto:info@crescentipohl.com?subject=Please get in touch with me!">Contact</a>
