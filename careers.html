@@ -325,37 +325,21 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
 .training-dot   { width: 4px; height: 4px; border-radius: 50%; background: var(--crimson); opacity: 0.4; flex-shrink: 0; margin-top: 7px; }
 
 /* ═══════════════════════════════════════════════
-   OPEN POSITIONS
+   WHAT WE OFFER
 ═══════════════════════════════════════════════ */
-#open-positions {
+#what-we-offer {
   background: var(--blush-light);
   border-top: 1px solid var(--blush-mid);
+  border-bottom: 1px solid var(--blush-mid);
   padding: 7rem 0;
 }
 
-.careers-offer-row {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 5rem;
-  align-items: start;
-  margin-top: 2rem;
-}
-
-.content-block { margin-bottom: 0; }
-.content-block h2 {
-  font-family: var(--serif);
-  font-size: 1.55rem; font-weight: 600;
-  color: var(--crimson); margin-bottom: 1rem;
-  padding-bottom: 0.6rem;
-  border-bottom: 1px solid var(--border);
-}
-.content-block p {
-  font-size: 15px; color: var(--text-muted);
-  line-height: 1.85; margin-bottom: 0.85rem;
-}
-.content-block p:last-child { margin-bottom: 0; }
-
 .checklist { display: flex; flex-direction: column; gap: 0.7rem; margin-top: 0.25rem; }
+.offer-checklist {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 2.5rem;
+}
 .checklist-item {
   display: flex; align-items: flex-start; gap: 0.75rem;
   font-size: 14.5px; color: var(--text-muted); line-height: 1.65;
@@ -367,6 +351,19 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
   flex-shrink: 0; margin-top: 1px;
 }
 .checklist-icon svg { width: 10px; height: 10px; stroke: var(--crimson); stroke-width: 2; fill: none; }
+
+/* ═══════════════════════════════════════════════
+   APPLY
+═══════════════════════════════════════════════ */
+#apply { padding: 7rem 0; }
+
+.apply-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+  margin-top: 2rem;
+}
 
 .careers-right {
   background: var(--crimson);
@@ -412,6 +409,47 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
   transform: translateX(4px); color: var(--blush);
 }
 
+.spec-look-label {
+  display: block;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(217,200,204,0.55);
+  margin-bottom: 0.75rem;
+}
+.spec-look-list { display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1.75rem; }
+.spec-look-list li {
+  font-size: 12.5px; color: rgba(217,200,204,0.8); line-height: 1.55;
+  padding-left: 0.9rem; position: relative;
+}
+.spec-look-list li::before {
+  content: ''; position: absolute; left: 0; top: 0.55em;
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--blush); opacity: 0.6;
+}
+
+.apply-card-light {
+  background: var(--blush-light);
+  border: 1px solid var(--blush-mid);
+  padding: 2.5rem;
+  border-radius: 3px;
+  max-width: 480px;
+}
+.apply-card-light h3 {
+  font-family: var(--serif);
+  font-size: 1.35rem; font-weight: 600;
+  color: var(--crimson);
+  margin-bottom: 1rem;
+}
+.apply-card-light p {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+.apply-card-light .spec-look-label { color: var(--text-light); }
+.apply-card-light .spec-look-list li { color: var(--text-muted); }
+.apply-card-light .spec-look-list li::before { background: var(--crimson); opacity: 0.4; }
+
 /* ═══════════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════════ */
@@ -443,7 +481,9 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
 @media (max-width: 860px) {
   .careers-benefits { grid-template-columns: 1fr; }
   .training-grid { grid-template-columns: 1fr; }
-  .careers-offer-row { grid-template-columns: 1fr; gap: 3rem; }
+  .offer-checklist { grid-template-columns: 1fr; }
+  .apply-row { grid-template-columns: 1fr; gap: 3rem; }
+  .careers-right, .apply-card-light { max-width: none; }
   }
 @media (max-width: 600px) {
   .nav-desktop { display: none; }
@@ -494,7 +534,7 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
           <a href="careers.html#career-path" role="menuitem">Career Path</a>
           <a href="careers.html#professional-development" role="menuitem">Professional Development</a>
           <a href="careers.html#open-positions" role="menuitem">Open Positions</a>
-          <a href="speculative.html" role="menuitem">Speculative Application</a>
+          <a href="careers.html#apply" role="menuitem">Speculative Application</a>
         </div>
       </li>
       <li class="nav-item">
@@ -531,7 +571,7 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
     <a href="careers.html#career-path">Career Path</a>
     <a href="careers.html#professional-development">Professional Development</a>
     <a href="careers.html#open-positions">Open Positions</a>
-    <a href="speculative.html">Speculative Application</a>
+    <a href="careers.html#apply">Speculative Application</a>
     <div class="mobile-section-label">About Us</div>
     <a href="about.html#mission">Mission &amp; Values</a>
     <a href="about.html#team">Our Team</a>
@@ -570,8 +610,8 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
       <div class="benefit-pill">Ambition to excel</div>
     </div>
     <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;" class="reveal">
-      <a href="speculative.html" class="btn btn-crimson">Why join us</a>
-      <a href="speculative.html" class="btn btn-outline-crimson">Apply now</a>
+      <a href="careers.html#apply" class="btn btn-crimson">Why join us</a>
+      <a href="careers.html#apply" class="btn btn-outline-crimson">Apply now</a>
     </div>
   </div>
 </section>
@@ -659,22 +699,30 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════ OPEN POSITIONS ═══════════════════════════════════════════════ -->
-<section id="open-positions" aria-labelledby="open-positions-title">
+<!-- ═══════════════════════════════════════════════ WHAT WE OFFER ═══════════════════════════════════════════════ -->
+<section id="what-we-offer" aria-labelledby="what-we-offer-heading">
   <div class="container">
     <span class="section-label reveal">Careers</span>
-    <div class="careers-offer-row">
-      <div class="content-block reveal">
-        <h2>What we offer</h2>
-        <ul class="checklist" role="list">
-          <li class="checklist-item"><div class="checklist-icon" aria-hidden="true"><svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Permanent employment with clear career progression and performance-based promotions</li>
-          <li class="checklist-item"><div class="checklist-icon" aria-hidden="true"><svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Competitive base salary and a meaningful performance bonus</li>
-          <li class="checklist-item"><div class="checklist-icon" aria-hidden="true"><svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div> 25 days annual leave</li>
-          <li class="checklist-item"><div class="checklist-icon" aria-hidden="true"><svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Flexible training budget tailored to your individual development goals</li>
-          <li class="checklist-item"><div class="checklist-icon" aria-hidden="true"><svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Genuine work-life balance — remote work is standard and travel is managed responsibly</li>
-          <li class="checklist-item"><div class="checklist-icon" aria-hidden="true"><svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div> A small, collaborative team culture where your contribution is visible and valued</li>
-        </ul>
-      </div>
+    <h2 class="section-title reveal" id="what-we-offer-heading">What we offer</h2>
+    <p class="section-body reveal">A permanent role with genuine progression, competitive reward, and the flexibility to do your best work.</p>
+    <ul class="checklist offer-checklist reveal" role="list">
+      <li class="checklist-item"><div class="checklist-icon" aria-hidden="true"><svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Permanent employment with clear career progression and performance-based promotions</li>
+      <li class="checklist-item"><div class="checklist-icon" aria-hidden="true"><svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Competitive base salary and a meaningful performance bonus</li>
+      <li class="checklist-item"><div class="checklist-icon" aria-hidden="true"><svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div> 25 days annual leave</li>
+      <li class="checklist-item"><div class="checklist-icon" aria-hidden="true"><svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Flexible training budget tailored to your individual development goals</li>
+      <li class="checklist-item"><div class="checklist-icon" aria-hidden="true"><svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Genuine work-life balance — remote work is standard and travel is managed responsibly</li>
+      <li class="checklist-item"><div class="checklist-icon" aria-hidden="true"><svg viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 4l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div> A small, collaborative team culture where your contribution is visible and valued</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ APPLY ═══════════════════════════════════════════════ -->
+<section id="apply" aria-labelledby="apply-heading">
+  <div class="container">
+    <span class="section-label reveal">Careers</span>
+    <h2 class="section-title reveal" id="apply-heading">Ready to apply?</h2>
+    <p class="section-body reveal">Browse our current openings, or reach out even if nothing fits today — we're always keen to meet exceptional people.</p>
+    <div class="apply-row">
       <div class="careers-right reveal">
         <h3 id="open-positions-title">Open positions</h3>
         <p>We are hiring across all levels for our UK and German offices.</p>
@@ -694,8 +742,22 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
             <div class="position-arrow" aria-hidden="true">→</div>
           </a>
         </div>
-        <a href="speculative.html" class="btn btn-outline-white" style="font-size:11px;">
-          Speculative application →
+        <p style="font-style:italic;margin-bottom:0;">Our team is expanding. Reach out — we're always open to hearing from exceptional people.</p>
+      </div>
+      <div class="apply-card-light reveal">
+        <h3>Speculative application</h3>
+        <p>Don't see the right role? We're a strongly connected, pan-European energy consultancy continuing to grow across Cyprus, the United Kingdom, and Germany — and we're always open to hearing from exceptional people, whether or not a specific position is currently advertised.</p>
+        <span class="spec-look-label">What we look for</span>
+        <ul class="spec-look-list">
+          <li>Genuine passion for the energy industry and Europe's transition to a sustainable future</li>
+          <li>Strong analytical thinking and clear communication of complex problems</li>
+          <li>A client-first, collaborative, delivery-focused mindset</li>
+          <li>Intellectual curiosity and the drive to build subject matter expertise</li>
+          <li>Ability to work independently and as part of a small, high-trust team</li>
+          <li>Willingness to travel within Europe when project work requires it</li>
+        </ul>
+        <a href="mailto:recruitment@crescentipohl.com?subject=Speculative application — Crescenti Pohl Advisory" class="btn btn-outline-crimson" style="font-size:11px;">
+          Apply now →
         </a>
       </div>
     </div>
