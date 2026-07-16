@@ -447,26 +447,6 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
 ═══════════════════════════════════════════════ */
 #site-footer { background: #1a0005; }
 
-.footer-top {
-  padding: 3rem 0;
-  display: grid; grid-template-columns: auto 1fr auto;
-  gap: 2rem; align-items: center;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-
-.footer-logo { display: flex; align-items: center; }
-
-.footer-nav {
-  display: flex; justify-content: center;
-  gap: 2rem; flex-wrap: wrap;
-}
-.footer-nav a {
-  font-size: 12px; letter-spacing: 0.08em;
-  text-transform: uppercase; color: rgba(217,200,204,0.45);
-  transition: color 0.2s;
-}
-.footer-nav a:hover { color: rgba(217,200,204,0.9); }
-
 .footer-social { display: flex; align-items: center; gap: 1rem; }
 .footer-social a {
   display: flex; align-items: center; justify-content: center;
@@ -479,11 +459,11 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
 
 .footer-bottom { padding: 1.25rem 0; }
 .footer-bottom-inner {
-  display: flex; align-items: center;
-  justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  align-items: center; gap: 1rem;
 }
 .footer-copy { font-size: 12px; color: rgba(217,200,204,0.35); letter-spacing: 0.03em; }
-.footer-legal { display: flex; gap: 1.5rem; }
+.footer-legal { display: flex; gap: 1.5rem; justify-self: end; }
 .footer-legal a { font-size: 12px; color: rgba(217,200,204,0.35); transition: color 0.2s; }
 .footer-legal a:hover { color: rgba(217,200,204,0.8); }
 
@@ -494,15 +474,13 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
   .page-layout { grid-template-columns: 1fr; gap: 3rem; }
   .sidebar { position: static; }
   .offer-grid { grid-template-columns: 1fr; }
-  .footer-top { grid-template-columns: 1fr; text-align: center; }
-  .footer-nav { justify-content: center; }
-  .footer-social { justify-content: center; }
-}
+  }
 @media (max-width: 600px) {
   .nav-desktop { display: none; }
   .nav-hamburger { display: flex; }
   .nav-mobile { display: block; }
-  .footer-bottom-inner { flex-direction: column; text-align: center; }
+  .footer-bottom-inner { grid-template-columns: 1fr; justify-items: center; gap: 0.75rem; }
+  .footer-legal { justify-self: center; }
 }
 
 
@@ -784,7 +762,7 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
           <a href="careers.html#career-path" role="menuitem">Career Path</a>
           <a href="careers.html#professional-development" role="menuitem">Professional Development</a>
           <a href="careers.html#open-positions" role="menuitem">Open Positions</a>
-          <a href="speculative.html" role="menuitem">Speculative Application</a>
+          <a href="careers.html#apply" role="menuitem">Speculative Application</a>
         </div>
       </li>
       <li class="nav-item">
@@ -821,7 +799,7 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
     <a href="careers.html#career-path">Career Path</a>
     <a href="careers.html#professional-development">Professional Development</a>
     <a href="careers.html#open-positions">Open Positions</a>
-    <a href="speculative.html">Speculative Application</a>
+    <a href="careers.html#apply">Speculative Application</a>
     <div class="mobile-section-label">About Us</div>
     <a href="about.html#mission">Mission &amp; Values</a>
     <a href="about.html#team">Our Team</a>
@@ -918,21 +896,21 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
   <text x="240" y="137" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="rgba(217,200,204,0.55)" letter-spacing="2">MARKET STRATEGY · CASE STUDY</text>
 </svg></div>
         <div class="cs-stats-strip reveal"><div class="cs-stat-box"><div class="cs-stat-num">3</div><div class="cs-stat-label">Investment scenarios</div></div><div class="cs-stat-box"><div class="cs-stat-num">2+</div><div class="cs-stat-label">Market vectors valued</div></div><div class="cs-stat-box"><div class="cs-stat-num">€</div><div class="cs-stat-label">Defensible board decision</div></div></div>
-        <div class="cs-block reveal"><h2>Context</h2><p>Hydro pump storage assets occupy a unique strategic position in the European energy system. They provide both storage and flexible generation capacity, with value derived from multiple market vectors: energy arbitrage, ancillary services, and capacity payments. This complexity makes their investment valuation materially more demanding than conventional generation.</p><p>This client held a percentage share in an ongoing hydro pump storage capacity expansion project. When project costs began exceeding initial estimates, management needed a structured, defensible basis for deciding whether to increase the investment, maintain the current share, or exit — within a compressed decision timeline.</p></div>
+        <div class="cs-block reveal"><h2>Context</h2><p>Hydro pump storage assets occupy a unique strategic position in the European energy system. They provide both storage and flexible generation capacity, with value derived from multiple markets, i.e. energy markets, ancillary services, and capacity payments. This complexity makes their investment valuation materially more demanding than conventional generation.</p><p>This client held a percentage share in an ongoing hydro pump storage capacity expansion project. When project costs began exceeding initial estimates, management needed a structured, defensible basis for deciding whether to increase the investment, maintain the current share, or exit — within a compressed decision timeline.</p></div>
         <div class="cs-pullquote reveal"><p>"Investment decisions in hydro pump storage require scenario-based thinking — the asset's multi-market value structure means a single-point valuation will always be misleading."</p><span class="cs-pullquote-attr">Crescenti Pohl Advisory · Project observation</span></div>
         <div class="cs-block reveal">
           <h2>Client situation</h2>
           <div class="cs-challenge-grid">
-            <div class="cs-challenge-col"><span class="cs-challenge-label">Project context</span><ul role="list"><li><span class="cs-challenge-dot" aria-hidden="true"></span>Hydro pump storage capacity expansion ongoing, with the client holding a percentage share</li><li><span class="cs-challenge-dot" aria-hidden="true"></span>Project capital costs had exceeded initial estimates, creating a decision point</li><li><span class="cs-challenge-dot" aria-hidden="true"></span>Asset value dependent on multiple market vectors — energy, ancillary services, and capacity</li></ul></div>
-            <div class="cs-challenge-col"><span class="cs-challenge-label">The decision required</span><ul role="list"><li><span class="cs-challenge-dot" aria-hidden="true"></span>Structured basis for a binary decision: increase investment, hold current share, or exit</li><li><span class="cs-challenge-dot" aria-hidden="true"></span>Valuation needed to reflect the full multi-market value of the asset, not a simplified IRR</li><li><span class="cs-challenge-dot" aria-hidden="true"></span>Decision framework required clear thresholds so management could act decisively</li></ul></div>
+            <div class="cs-challenge-col"><span class="cs-challenge-label">Project context</span><ul role="list"><li><span class="cs-challenge-dot" aria-hidden="true"></span>Hydro pump storage capacity expansion ongoing, with the client holding a percentage share</li><li><span class="cs-challenge-dot" aria-hidden="true"></span>Project capital costs had exceeded initial estimates, necessitating a decision point</li><li><span class="cs-challenge-dot" aria-hidden="true"></span>Asset value dependent on multiple markets — energy, ancillary services, and capacity</li></ul></div>
+            <div class="cs-challenge-col"><span class="cs-challenge-label">Decision required</span><ul role="list"><li><span class="cs-challenge-dot" aria-hidden="true"></span>Structured basis for a binary decision: increase investment, hold current share, or exit</li><li><span class="cs-challenge-dot" aria-hidden="true"></span>Valuation needed to reflect the full multi-market value of the asset, not a simplified IRR</li><li><span class="cs-challenge-dot" aria-hidden="true"></span>Decision framework required clear thresholds so management could act decisively</li></ul></div>
           </div>
         </div>
-        <div class="cs-block reveal"><h2>Our approach</h2><div class="cs-process" role="list"><div class="cs-process-step" role="listitem"><div class="cs-process-dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg></div><div class="cs-process-label">Market scenario framework definition</div></div><div class="cs-process-step" role="listitem"><div class="cs-process-dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg></div><div class="cs-process-label">Asset valuation per scenario</div></div><div class="cs-process-step" role="listitem"><div class="cs-process-dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 0V5m0 2c-1.11 0-2.08.402-2.599 1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div class="cs-process-label">Options valuation & cost modelling</div></div><div class="cs-process-step" role="listitem"><div class="cs-process-dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg></div><div class="cs-process-label">Investment decision framework & thresholds</div></div></div></div>
-        <div class="cs-block reveal"><h2>Our contribution</h2><div class="cs-contribution" role="list"><div class="cs-contrib-item" role="listitem"><div class="cs-contrib-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div><div class="cs-contrib-body"><strong>Three-scenario market framework</strong><p>Established bear, base and bull scenarios for the energy and ancillary power markets relevant to the asset — providing a range of valuations that reflected genuine market uncertainty rather than false precision.</p></div></div><div class="cs-contrib-item" role="listitem"><div class="cs-contrib-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg></div><div class="cs-contrib-body"><strong>Asset valuation across energy and ancillary markets</strong><p>Valued the hydro pump storage asset under each scenario, integrating revenue streams from energy arbitrage, frequency response, capacity market participation and balancing services into a single consolidated valuation model.</p></div></div><div class="cs-contrib-item" role="listitem"><div class="cs-contrib-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 0V5"/></svg></div><div class="cs-contrib-body"><strong>Options valuation and cost sensitivity analysis</strong><p>Applied options valuation methodology to quantify the value of flexibility — specifically the value of maintaining the ability to increase or exit the investment — given the range of cost outcomes and market scenarios.</p></div></div><div class="cs-contrib-item" role="listitem"><div class="cs-contrib-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg></div><div class="cs-contrib-body"><strong>Structured (des-)investment decision framework</strong><p>Translated the valuation analysis into a clear decision framework with explicit thresholds — defining the project cost and market conditions under which management should exit, reduce, hold, or increase the investment share.</p></div></div></div></div>
-        <div class="cs-block reveal"><h2>Outcome</h2><p>The client was able to take a structured, board-ready investment decision supported by a transparent scenario framework and a clear articulation of the value at risk under each outcome.</p><p>The decision framework — with its explicit exit, hold and increase thresholds — remained a reference tool through subsequent project cost reviews, allowing management to respond quickly to new information without re-commissioning a full analytical process.</p></div>
+        <div class="cs-block reveal"><h2>Our approach</h2><div class="cs-process" role="list"><div class="cs-process-step" role="listitem"><div class="cs-process-dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg></div><div class="cs-process-label">Market scenario framework definition</div></div><div class="cs-process-step" role="listitem"><div class="cs-process-dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg></div><div class="cs-process-label">Asset valuation per scenario</div></div><div class="cs-process-step" role="listitem"><div class="cs-process-dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 0V5m0 2c-1.11 0-2.08.402-2.599 1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div class="cs-process-label">Integrated business case per market scenarios</div></div><div class="cs-process-step" role="listitem"><div class="cs-process-dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg></div><div class="cs-process-label">Investment decision framework & thresholds</div></div></div></div>
+        <div class="cs-block reveal"><h2>Our contribution</h2><div class="cs-contribution" role="list"><div class="cs-contrib-item" role="listitem"><div class="cs-contrib-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div><div class="cs-contrib-body"><strong>Three-scenario market framework</strong><p>Defined standard and two alternative development scenarios for energy transition and market dynamics changing events, providing a base for the valuations that reflected realistic but different regulatory and market development in Europe.</p></div></div><div class="cs-contrib-item" role="listitem"><div class="cs-contrib-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg></div><div class="cs-contrib-body"><strong>Asset valuation across energy and ancillary markets</strong><p>Valued the hydro pump storage asset under each scenario, integrating revenue streams from energy and capacity markets and from balancing services into a single consolidated view, including an approximation of the extrinsic value.</p></div></div><div class="cs-contrib-item" role="listitem"><div class="cs-contrib-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 0V5"/></svg></div><div class="cs-contrib-body"><strong>Options valuation and cost sensitivity analysis</strong><p>Applied options valuation methodology to quantify the value of flexibility — specifically the value of maintaining the ability to increase or exit the investment — given the range of cost outcomes and market scenarios.</p></div></div><div class="cs-contrib-item" role="listitem"><div class="cs-contrib-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg></div><div class="cs-contrib-body"><strong>Structured (des-)investment decision framework</strong><p>Generated decision framework with explicit thresholds based on expected project cost until completion and market valuation for all three scenarios for management providing reduce, hold or increase signals for the investment share.</p></div></div></div></div>
+        <div class="cs-block reveal"><h2>Outcome</h2><p>The client was able to take a structured, board-ready investment decision supported by a transparent scenario framework and a clear expectation of the value and value at risk for each outcome.</p><p>The decision framework, with its explicit exit, hold and increase thresholds remained a reference tool through subsequent project cost reviews, allowing management to respond quickly to new information without re-commissioning a full analytical process.</p></div>
       </div>
       <aside class="sidebar" aria-label="Case study details">
-        <div class="sidebar-card reveal"><div class="sidebar-card-header"><h3>Case study details</h3></div><div class="sidebar-card-body"><div class="sidebar-detail"><span class="sidebar-detail-label">Practice</span><span class="sidebar-detail-value">Market Insight & Strategy</span></div><div class="sidebar-detail"><span class="sidebar-detail-label">Client</span><span class="sidebar-detail-value">European utility (name withheld)</span></div><div class="sidebar-detail"><span class="sidebar-detail-label">Scope</span><span class="sidebar-detail-value">Scenario valuation, investment strategy</span></div><div class="sidebar-detail"><span class="sidebar-detail-label">Asset type</span><span class="sidebar-detail-value">Hydro pump storage</span></div><div class="sidebar-detail"><span class="sidebar-detail-label">Markets</span><span class="sidebar-detail-value">Energy · Ancillary · Capacity</span></div></div></div>
+        <div class="sidebar-card reveal"><div class="sidebar-card-header"><h3>Case study details</h3></div><div class="sidebar-card-body"><div class="sidebar-detail"><span class="sidebar-detail-label">Practice</span><span class="sidebar-detail-value">Market Insight & Strategy</span></div><div class="sidebar-detail"><span class="sidebar-detail-label">Client</span><span class="sidebar-detail-value">European mobility provider (name withheld)</span></div><div class="sidebar-detail"><span class="sidebar-detail-label">Scope</span><span class="sidebar-detail-value">Scenario valuation, investment strategy</span></div><div class="sidebar-detail"><span class="sidebar-detail-label">Asset type</span><span class="sidebar-detail-value">Hydro pump storage</span></div><div class="sidebar-detail"><span class="sidebar-detail-label">Markets</span><span class="sidebar-detail-value">Energy · Ancillary · Capacity</span></div></div></div>
         <div class="sidebar-card reveal reveal-delay-1"><div class="sidebar-cta"><p>Facing an investment decision that requires scenario-based valuation?</p><a href="mailto:info@crescentipohl.com?subject=Enquiry: Asset investment valuation" class="btn btn-w">Get in touch</a></div></div>
         <div class="sidebar-card reveal reveal-delay-2"><div class="sidebar-more"><h4>Other case studies</h4><a href="case-study-renewable-mandate.html" class="sidebar-cs-link"><div><span class="sidebar-tag">Energy Transition</span><br><span>Renewable commercial mandate</span></div><span class="arrow" aria-hidden="true">→</span></a><a href="case-study-asset-optimization.html" class="sidebar-cs-link"><div><span class="sidebar-tag">Business Transformation</span><br><span>Asset optimization platform</span></div><span class="arrow" aria-hidden="true">→</span></a><a href="case-study-data-platform.html" class="sidebar-cs-link"><div><span class="sidebar-tag">Data & AI</span><br><span>Strategic data platform</span></div><span class="arrow" aria-hidden="true">→</span></a></div></div>
         <div class="sidebar-card reveal reveal-delay-2"><div class="sidebar-more"><h4>Related expertise</h4><a href="clients.html" class="sidebar-cs-link"><span>Market Insight & Strategy</span><span class="arrow" aria-hidden="true">→</span></a><a href="clients.html#energy-transition" class="sidebar-cs-link"><span>Energy Transition</span><span class="arrow" aria-hidden="true">→</span></a></div></div>
@@ -943,32 +921,16 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
 </main>
 <footer id="site-footer" role="contentinfo">
   <div class="container">
-    <div class="footer-top">
-      <div class="footer-logo">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 52" height="26" style="display:block;" aria-hidden="true" focusable="false">
-          <polygon points="20,6 0,46 40,46"   fill="#ffffff"/>
-          <polygon points="38,20 25,46 51,46" fill="rgba(255,255,255,0.28)"/>
-          <text x="68" y="34" font-family="Cormorant Garamond, Georgia, serif" font-size="22" font-weight="500" letter-spacing="0.015em" fill="rgba(255,255,255,0.48)">Crescenti Pohl Advisory</text>
-        </svg>
-      </div>
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="clients.html">Clients</a>
-        <a href="index.html#careers-teaser">Careers</a>
-        <a href="about.html">About us</a>
-        <a href="about.html#offices">Offices</a>
-        <a href="mailto:info@crescentipohl.com?subject=Please get in touch with me!">Contact</a>
-      </nav>
-      <div class="footer-social">
-        <a href="https://www.linkedin.com/company/crescenti-pohl-advisory" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p class="footer-copy">© 2025 Crescenti Pohl Advisory Ltd. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/company/crescenti-pohl-advisory" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
           </svg>
         </a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="footer-bottom-inner">
-        <p class="footer-copy">© 2025 Crescenti Pohl Advisory Ltd. All rights reserved.</p>
+        </div>
         <nav class="footer-legal" aria-label="Legal links">
           <a href="impressum.html">Impressum</a>
           <a href="privacy.html">Privacy Policy</a>
